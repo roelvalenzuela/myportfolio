@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roel Valenzuela — Data Analyst & AI Explorer</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #0f1528;
+    --card: #131929;
+    --border: #1e2d4a;
+    --accent: #00d4ff;
+    --accent2: #7b5ea7;
+    --text: #e2e8f0;
+    --muted: #8899aa;
+    --font: 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top:0; width:100%; z-index:100;
+    background: rgba(10,14,26,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+  }
+  .logo { font-weight:700; font-size:1.1rem; color: var(--accent); letter-spacing:1px; }
+  nav ul { list-style:none; display:flex; gap:2rem; }
+  nav a { color: var(--muted); text-decoration:none; font-size:.9rem; transition:.2s; }
+  nav a:hover { color: var(--accent); }
+
+  #hero {
+    min-height: 100vh; display:flex; align-items:center; justify-content:center;
+    position: relative; overflow: hidden; padding: 6rem 2rem 4rem;
+  }
+  canvas#particles { position:absolute; inset:0; width:100%; height:100%; }
+  .hero-content { text-align:center; position:relative; z-index:1; max-width:700px; }
+  .badge {
+    display:inline-block; background: rgba(0,212,255,.1);
+    border: 1px solid rgba(0,212,255,.3); color: var(--accent);
+    padding: .3rem 1rem; border-radius:99px; font-size:.8rem; margin-bottom:1.5rem;
+    animation: fadeUp .6s ease both;
+  }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:800; line-height:1.1; animation: fadeUp .7s .1s ease both; }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .tagline { margin-top:1rem; font-size:1.1rem; color:var(--muted); animation: fadeUp .7s .2s ease both; }
+  .hero-btns { margin-top:2.5rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation: fadeUp .7s .3s ease both; }
+  .btn { padding:.75rem 1.75rem; border-radius:8px; font-size:.95rem; font-weight:600; cursor:pointer; text-decoration:none; transition:.2s; }
+  .btn-primary { background: var(--accent); color:#000; }
+  .btn-primary:hover { background:#00b8d9; transform:translateY(-2px); }
+  .btn-outline { border:1px solid var(--border); color:var(--text); background:transparent; }
+  .btn-outline:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+  .ticker-wrap {
+    background: var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    overflow:hidden; padding:.6rem 0; white-space:nowrap;
+  }
+  .ticker { display:inline-flex; animation: ticker 35s linear infinite; }
+  .ticker span { margin-right:3rem; font-size:.82rem; color:var(--muted); }
+  .ticker span b { color:var(--accent); }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  section { padding: 6rem 2rem; max-width:1100px; margin:0 auto; }
+  .section-label { font-size:.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem; }
+  h2 { font-size:2rem; font-weight:700; margin-bottom:.5rem; }
+  .divider { width:48px; height:3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:2px; margin-bottom:3rem; }
+
+  /* ABOUT */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+  @media(max-width:680px){ .about-grid{grid-template-columns:1fr;} }
+  .about-text p { color:var(--muted); line-height:1.8; margin-bottom:1rem; font-size:.95rem; }
+  .fun-box {
+    background: var(--card); border:1px solid var(--border); border-radius:16px; padding:1.5rem;
+    position:relative; overflow:hidden;
+  }
+  .fun-box::before {
+    content:''; position:absolute; top:-40px; right:-40px;
+    width:120px; height:120px; border-radius:50%;
+    background: radial-gradient(circle, rgba(123,94,167,.3), transparent);
+  }
+  .fun-box h3 { font-size:.9rem; color:var(--accent2); margin-bottom:1rem; }
+  .fun-item { display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem; font-size:.88rem; color:var(--muted); }
+  .fun-item .icon { font-size:1.2rem; }
+  .learning-badge {
+    margin-top:1.5rem; background: rgba(0,212,255,.07);
+    border:1px dashed rgba(0,212,255,.3); border-radius:10px; padding:.75rem 1rem;
+    font-size:.82rem; color:var(--accent);
+  }
+  .learning-badge span { color:var(--muted); }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg2); max-width:100%; }
+  #experience > div { max-width:1100px; margin:0 auto; padding:6rem 2rem; }
+  .exp-company { margin-bottom:2.5rem; }
+  .company-header {
+    display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;
+    padding-bottom:1rem; border-bottom:1px solid var(--border);
+  }
+  .company-logo {
+    width:44px; height:44px; border-radius:10px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:.85rem; color:#fff; flex-shrink:0;
+  }
+  .company-name { font-weight:700; font-size:1.05rem; }
+  .company-meta { font-size:.8rem; color:var(--muted); margin-top:.2rem; }
+  .exp-role {
+    background: var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:1.25rem 1.5rem; margin-bottom:1rem; position:relative;
+    border-left:3px solid var(--accent);
+  }
+  .exp-role.older { border-left-color: var(--accent2); }
+  .role-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:.5rem; margin-bottom:.75rem; }
+  .role-title { font-weight:700; font-size:.95rem; }
+  .role-period {
+    font-size:.75rem; color:var(--accent); background:rgba(0,212,255,.1);
+    border:1px solid rgba(0,212,255,.2); padding:.2rem .6rem; border-radius:99px; white-space:nowrap;
+  }
+  .role-period.older { color:#b39ddb; background:rgba(123,94,167,.1); border-color:rgba(123,94,167,.2); }
+  .role-desc { font-size:.85rem; color:var(--muted); line-height:1.75; }
+
+  /* SKILLS */
+  #skills { max-width:1100px; }
+  .skill-groups { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:1.25rem; }
+  .skill-group-card {
+    background: var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:1.25rem 1.5rem; transition:.2s;
+  }
+  .skill-group-card:hover { border-color: rgba(0,212,255,.3); transform:translateY(-2px); }
+  .skill-group-card.ai-card {
+    border-color: rgba(123,94,167,.4);
+    background: linear-gradient(135deg, rgba(123,94,167,.08), rgba(0,212,255,.04));
+  }
+  .sg-label {
+    font-size:.72rem; letter-spacing:2px; text-transform:uppercase;
+    color:var(--accent2); margin-bottom:1rem; display:flex; align-items:center; gap:.4rem;
+  }
+  .sg-label.ai { color:var(--accent); }
+  .tool-pills { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .pill {
+    font-size:.78rem; padding:.3rem .75rem; border-radius:99px;
+    border:1px solid var(--border); color:var(--muted); background:rgba(255,255,255,.03);
+    transition:.2s;
+  }
+  .pill:hover { border-color:var(--accent); color:var(--accent); }
+  .pill.learning {
+    border-color:rgba(123,94,167,.5); color:#b39ddb;
+    background:rgba(123,94,167,.1); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+  /* PROJECTS */
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.5rem; }
+  .project-card {
+    background: var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:1.5rem; transition:.25s; cursor:pointer; position:relative; overflow:hidden;
+  }
+  .project-card::after {
+    content:''; position:absolute; inset:0; border-radius:16px;
+    background: linear-gradient(135deg, rgba(0,212,255,.05), rgba(123,94,167,.05));
+    opacity:0; transition:.25s;
+  }
+  .project-card:hover { transform:translateY(-4px); border-color:rgba(0,212,255,.4); }
+  .project-card:hover::after { opacity:1; }
+  .proj-icon { font-size:2rem; margin-bottom:1rem; }
+  .proj-title { font-weight:700; margin-bottom:.5rem; }
+  .proj-desc { font-size:.85rem; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
+  .tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .tag { font-size:.72rem; padding:.2rem .6rem; border-radius:99px; border:1px solid var(--border); color:var(--muted); }
+  .tag.ai { border-color:rgba(0,212,255,.4); color:var(--accent); background:rgba(0,212,255,.07); }
+  .tag.data { border-color:rgba(123,94,167,.4); color:#b39ddb; background:rgba(123,94,167,.07); }
+
+  /* CONTACT */
+  #contact { background: var(--bg2); max-width:100%; }
+  #contact > div { max-width:600px; margin:0 auto; padding:6rem 2rem; text-align:center; }
+  #contact p { color:var(--muted); margin-bottom:2rem; line-height:1.8; }
+  .contact-links { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem; }
+  .contact-link {
+    display:flex; align-items:center; gap:.5rem; padding:.6rem 1.2rem;
+    border:1px solid var(--border); border-radius:8px; color:var(--muted);
+    text-decoration:none; font-size:.9rem; transition:.2s;
+  }
+  .contact-link:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+  footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--muted); font-size:.82rem; }
+  footer span { color:var(--accent); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  [data-tip] { position:relative; cursor:help; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position:absolute; bottom:120%; left:50%; transform:translateX(-50%);
+    background:#1e2d4a; color:var(--accent); font-size:.75rem; padding:.4rem .75rem;
+    border-radius:6px; white-space:nowrap; pointer-events:none; z-index:99;
+    border:1px solid rgba(0,212,255,.3);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">RV.</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-content">
+    <div class="badge">✦ Open to AI/ML Roles</div>
+    <h1>Hi, I'm <span>Roel Valenzuela</span></h1>
+    <p class="tagline">Senior Data Analytics Expert turning numbers into stories — and now, teaching machines to tell them too.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>📊 <b>SQL</b> Power User &nbsp;·</span>
+    <span>🤖 Currently learning <b>LLMs & RAG</b> &nbsp;·</span>
+    <span>📈 <b>10+ years</b> in data analytics &nbsp;·</span>
+    <span>🐍 <b>Python</b> enthusiast &nbsp;·</span>
+    <span>✨ Exploring <b>Generative AI</b> &nbsp;·</span>
+    <span>📊 <b>Looker Studio</b> & <b>Tableau</b> veteran &nbsp;·</span>
+    <span>🌏 Based in <b>Kuala Lumpur</b> &nbsp;·</span>
+    <span>☕ Fueled by <b>coffee</b> & curiosity &nbsp;·</span>
+    <span>📊 <b>SQL</b> Power User &nbsp;·</span>
+    <span>🤖 Currently learning <b>LLMs & RAG</b> &nbsp;·</span>
+    <span>📈 <b>10+ years</b> in data analytics &nbsp;·</span>
+    <span>🐍 <b>Python</b> enthusiast &nbsp;·</span>
+    <span>✨ Exploring <b>Generative AI</b> &nbsp;·</span>
+    <span>📊 <b>Looker Studio</b> & <b>Tableau</b> veteran &nbsp;·</span>
+    <span>🌏 Based in <b>Kuala Lumpur</b> &nbsp;·</span>
+    <span>☕ Fueled by <b>coffee</b> & curiosity &nbsp;·</span>
+  </div>
+</div>
+
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2>About Me</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Senior Data Analytics Expert with <strong data-tip="That's 3,650+ days of SQL queries 👀">10+ years of experience</strong> turning complex data into clear, actionable insights across fintech, BPO, and tech industries.</p>
+      <p>Currently working within the Global Command Center of a leading payment processing company, I drive data initiatives that optimize global operations and deliver measurable business outcomes.</p>
+      <p>Recently, I've been going deep on machine learning and AI — because the future belongs to people who understand <em>both</em> the data and the intelligence built on top of it.</p>
+      <p>When I'm not wrangling data, I'm probably debugging something that definitely isn't my fault, or hunting for the best nasi lemak in KL.</p>
+    </div>
+    <div class="fun-box">
+      <h3>🎉 Things you won't find on my résumé</h3>
+      <div class="fun-item"><span class="icon">🍜</span> On a mission to eat my way through every hawker stall in KL</div>
+      <div class="fun-item"><span class="icon">🐛</span> I once spent 3 hours debugging — it was a missing semicolon</div>
+      <div class="fun-item"><span class="icon">📚</span> Reading about AI at 2am and calling it "professional development"</div>
+      <div class="fun-item"><span class="icon">🎵</span> Lo-fi music is basically my productivity cheat code</div>
+      <div class="fun-item"><span class="icon">☕</span> My coffee consumption is directly proportional to dashboard complexity</div>
+      <div class="learning-badge">
+        📚 Currently Learning: <span>LLMs, RAG Pipelines & AI Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div>
+    <p class="section-label">Where I've Been</p>
+    <h2>Experience</h2>
+    <div class="divider"></div>
+
+    <!-- TDCX -->
+    <div class="exp-company">
+      <div class="company-header">
+        <div class="company-logo">TD</div>
+        <div>
+          <div class="company-name">TDCX</div>
+          <div class="company-meta">5 yrs 1 mo · Kuala Lumpur, Malaysia</div>
+        </div>
+      </div>
+
+      <div class="exp-role">
+        <div class="role-header">
+          <div class="role-title">Senior Business Analytics Expert</div>
+          <div class="role-period">Mar 2025 – Present · 1 yr 5 mos</div>
+        </div>
+        <div class="role-desc">Working within the Global Command Center of a leading payment processing company — driving data initiatives to optimize global operations and deliver measurable business outcomes at scale.</div>
+      </div>
+
+      <div class="exp-role">
+        <div class="role-header">
+          <div class="role-title">Business Analytics Expert</div>
+          <div class="role-period">Jul 2021 – Apr 2025 · 3 yrs 10 mos</div>
+        </div>
+        <div class="role-desc">Built and launched dynamic dashboards in Looker Studio, slashing manual reporting time by over 50%. Engineered a scalable ticketing system that cut turnaround time by 40%. Designed data models and pipelines enabling self-serve analytics, and partnered with cross-functional teams to transform business challenges into data-driven solutions.</div>
+      </div>
+    </div>
+
+    <!-- Bayview -->
+    <div class="exp-company">
+      <div class="company-header">
+        <div class="company-logo" style="background:linear-gradient(135deg,#3a5ea7,#7b5ea7)">BT</div>
+        <div>
+          <div class="company-name">Bayview Technologies, Inc.</div>
+          <div class="company-meta">5 yrs 5 mos · Makati City, Philippines</div>
+        </div>
+      </div>
+
+      <div class="exp-role older">
+        <div class="role-header">
+          <div class="role-title">BA Supervisor</div>
+          <div class="role-period older">Jul 2018 – Jun 2021 · 3 yrs</div>
+        </div>
+        <div class="role-desc">Led and mentored a team of senior and junior business analysts. Delivered high-impact reports and data visualizations for management and key stakeholders. Collaborated with IT-Infra to adopt new tools and modernize data management processes.</div>
+      </div>
+
+      <div class="exp-role older">
+        <div class="role-header">
+          <div class="role-title">Senior Business Analyst</div>
+          <div class="role-period older">Jul 2017 – Jun 2018 · 1 yr</div>
+        </div>
+        <div class="role-desc">Analyzed data across multiple back-end systems using SQL, Excel, VBA, and Tableau. Developed T-SQL stored procedures that significantly reduced report run times. Produced board-level reports and strategic presentations for the BI team.</div>
+      </div>
+
+      <div class="exp-role older">
+        <div class="role-header">
+          <div class="role-title">Junior Business Analyst</div>
+          <div class="role-period older">Feb 2016 – Jun 2017 · 1 yr 5 mos</div>
+        </div>
+        <div class="role-desc">Generated and presented daily performance reports for the company and its product teams, providing key insights to support data-driven decision-making across the organization.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">What I Bring</p>
+  <h2>Skills & Tools</h2>
+  <div class="divider"></div>
+  <div class="skill-groups">
+
+    <div class="skill-group-card">
+      <div class="sg-label">📊 Visualization</div>
+      <div class="tool-pills">
+        <span class="pill">Tableau</span>
+        <span class="pill">Looker Studio</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Grafana</span>
+        <span class="pill">Matplotlib</span>
+        <span class="pill">Seaborn</span>
+        <span class="pill">Plotly</span>
+      </div>
+    </div>
+
+    <div class="skill-group-card">
+      <div class="sg-label">🗄️ SQL & Databases</div>
+      <div class="tool-pills">
+        <span class="pill">Microsoft SQL</span>
+        <span class="pill">DB2 SQL</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">BigQuery</span>
+        <span class="pill">Snowflake</span>
+      </div>
+    </div>
+
+    <div class="skill-group-card">
+      <div class="sg-label">🐍 Python & Data</div>
+      <div class="tool-pills">
+        <span class="pill">Python</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">NumPy</span>
+        <span class="pill">Jupyter</span>
+        <span class="pill">Google Colab</span>
+      </div>
+    </div>
+
+    <div class="skill-group-card">
+      <div class="sg-label">📈 Spreadsheets</div>
+      <div class="tool-pills">
+        <span class="pill">Microsoft Excel</span>
+        <span class="pill">Google Sheets</span>
+        <span class="pill">VBA</span>
+      </div>
+    </div>
+
+    <div class="skill-group-card">
+      <div class="sg-label">📋 Productivity & Ops</div>
+      <div class="tool-pills">
+        <span class="pill">Jira</span>
+        <span class="pill">Salesforce</span>
+        <span class="pill">ZOHO</span>
+        <span class="pill">Google Suite</span>
+        <span class="pill">Google Slides</span>
+      </div>
+    </div>
+
+    <div class="skill-group-card">
+      <div class="sg-label">☁️ Cloud & Deployment</div>
+      <div class="tool-pills">
+        <span class="pill">Google Cloud Platform</span>
+        <span class="pill">Flask</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Kubernetes</span>
+        <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
+        <span class="pill">HuggingFace Hub</span>
+        <span class="pill">IBM Watsonx</span>
+      </div>
+    </div>
+
+    <!-- ML/AI full width, always last -->
+    <div class="skill-group-card ai-card" style="grid-column:1/-1;">
+      <div class="sg-label ai">🤖 ML / AI — <span style="color:var(--accent2);font-size:.7rem;letter-spacing:1px;">ADVANCED PROGRAM · IN PROGRESS</span></div>
+
+      <div style="background:rgba(123,94,167,.12);border:1px dashed rgba(123,94,167,.4);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.8rem;color:var(--muted);line-height:1.7;">
+        🎓 <strong style="color:var(--text);">Advanced Program in Generative AI & Machine Learning</strong><br>
+        Industry-focused program covering ML, Deep Learning, Generative AI, LLMs, RAG, Agentic AI, NLP, Computer Vision, Reinforcement Learning, MLOps & Responsible AI — with hands-on projects across real-world business use cases.
+        <span style="display:inline-block;margin-top:.5rem;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--accent);padding:.15rem .6rem;border-radius:99px;font-size:.72rem;">⏳ Underway — setting expectations, not just listing tools</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div>
+          <div style="font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;">📚 Core Topics</div>
+          <div class="tool-pills">
+            <span class="pill learning">✨ Machine Learning</span>
+            <span class="pill learning">✨ Deep Learning</span>
+            <span class="pill learning">✨ Generative AI & LLMs</span>
+            <span class="pill learning">✨ RAG</span>
+            <span class="pill learning">✨ Agentic AI</span>
+            <span class="pill learning">✨ NLP</span>
+            <span class="pill learning">✨ Computer Vision</span>
+            <span class="pill learning">✨ Reinforcement Learning</span>
+            <span class="pill learning">✨ MLOps & AI Deployment</span>
+            <span class="pill learning">✨ Responsible AI</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;">🛠️ Tools & Frameworks</div>
+          <div class="tool-pills">
+            <span class="pill learning">✨ Scikit-learn</span>
+            <span class="pill learning">✨ TensorFlow</span>
+            <span class="pill learning">✨ PyTorch</span>
+            <span class="pill learning">✨ Hugging Face</span>
+            <span class="pill learning">✨ LangChain</span>
+            <span class="pill learning">✨ OpenAI APIs</span>
+            <span class="pill learning">✨ Streamlit</span>
+            <span class="pill learning">✨ Docker</span>
+            <span class="pill learning">✨ Flask</span>
+            <span class="pill learning">✨ IBM Watsonx</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1rem;font-size:.75rem;color:var(--accent2);">⚡ Actively building — watch this space!</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">What I've Built</p>
+  <h2>Projects</h2>
+  <div class="divider"></div>
+  <!-- Category filter -->
+  <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;" id="proj-filters">
+    <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+    <button class="filter-btn" onclick="filterProjects('ops')">⚙️ Ops & Automation</button>
+    <button class="filter-btn" onclick="filterProjects('dash')">📊 Dashboarding & BI</button>
+    <button class="filter-btn" onclick="filterProjects('data')">🗄️ Data Platforms</button>
+    <button class="filter-btn" onclick="filterProjects('ai')">🤖 AI Projects</button>
+  </div>
+
+  <style>
+    .filter-btn {
+      padding:.4rem 1rem; border-radius:99px; font-size:.8rem; cursor:pointer;
+      border:1px solid var(--border); background:transparent; color:var(--muted); transition:.2s;
+    }
+    .filter-btn:hover, .filter-btn.active { border-color:var(--accent); color:var(--accent); background:rgba(0,212,255,.08); }
+    .project-card.hidden { display:none; }
+  </style>
+
+  <div class="projects-grid">
+
+    <!-- OPS & AUTOMATION -->
+    <div class="project-card" data-cat="ops">
+      <div class="proj-icon">🔭</div>
+      <div class="proj-title">GCC Observability Framework</div>
+      <p class="proj-desc">Standardized observability, reporting, and performance governance frameworks across GCC — enabling proactive, data-driven decision-making and reducing operational risk.</p>
+      <div class="tags">
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag ai">ChatGPT / Claude</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="ops">
+      <div class="proj-icon">🎫</div>
+      <div class="proj-title">OT/Adherence Ticketing & Monitoring System</div>
+      <p class="proj-desc">Designed and implemented a real-time OT/Adherence ticketing workflow across Project Stripe, cutting month-end payroll and adherence disputes by 60% through near real-time issue resolution.</p>
+      <div class="tags">
+        <span class="tag data">Google Apps Script</span>
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">Google Sheets</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="ops">
+      <div class="proj-icon">⚖️</div>
+      <div class="proj-title">PRP & Shift Allowance Dispute Management</div>
+      <p class="proj-desc">Operationalized a centralized dispute management process handling 80–100 monthly cases, reducing average resolution time to under 20 minutes with improved tracking, governance, and escalation management.</p>
+      <div class="tags">
+        <span class="tag data">Google Apps Script</span>
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">Google Sheets</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="ops">
+      <div class="proj-icon">⚡</div>
+      <div class="proj-title">Data Workflow Automation & SOPs</div>
+      <p class="proj-desc">Streamlined data workflows by automating data preparation and implementing observability frameworks — reducing data cleaning effort by ~85% while improving reporting accuracy and root cause analysis.</p>
+      <div class="tags">
+        <span class="tag data">SQL</span>
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="ops">
+      <div class="proj-icon">📐</div>
+      <div class="proj-title">Multivariate Regression — TPH Performance</div>
+      <p class="proj-desc">Leveraged multivariate regression and predictive analytics to identify key performance drivers, contributing to a ~22% improvement in TPH performance while maintaining operational targets.</p>
+      <div class="tags">
+        <span class="tag data">Python</span>
+        <span class="tag data">SQL</span>
+        <span class="tag ai">Predictive Analytics</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARDING & BI -->
+    <div class="project-card" data-cat="dash">
+      <div class="proj-icon">🛡️</div>
+      <div class="proj-title">Predictive Workforce & Queue Health Dashboards</div>
+      <p class="proj-desc">Led development of predictive burndown and queue health dashboards that contributed to zero major critical operational incidents in H2 through enhanced capacity planning and SLA management.</p>
+      <div class="tags">
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="dash">
+      <div class="proj-icon">👥</div>
+      <div class="proj-title">Centralized Workforce Management Dashboard</div>
+      <p class="proj-desc">Built a WFM dashboard providing visibility into forecasting trends, delivery performance, shrinkage, and KPIs — reducing manual reporting effort by 3–4 hours per week.</p>
+      <div class="tags">
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">Google Sheets</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="dash">
+      <div class="proj-icon">🌟</div>
+      <div class="proj-title">CSAT & TPH Performance Dashboards</div>
+      <p class="proj-desc">Built CSAT and productivity dashboards enabling proactive performance monitoring and coaching, supporting consistent achievement of the 85% performance target.</p>
+      <div class="tags">
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">Google Sheets</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="dash">
+      <div class="proj-icon">🏢</div>
+      <div class="proj-title">Vendor & Operational Performance Reporting</div>
+      <p class="proj-desc">Expanded observability through centralized vendor performance reporting, improving transparency and decision-making across GCC operations.</p>
+      <div class="tags">
+        <span class="tag data">Looker</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="dash">
+      <div class="proj-icon">🔍</div>
+      <div class="proj-title">Financial Crimes Contractor Analytics</div>
+      <p class="proj-desc">Delivered workforce analytics dashboards across three Financial Crimes sites, increasing activity tracking adoption from 50% to 90% and strengthening workforce planning and vendor accountability.</p>
+      <div class="tags">
+        <span class="tag data">Looker</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <!-- DATA PLATFORMS -->
+    <div class="project-card" data-cat="data">
+      <div class="proj-icon">🏗️</div>
+      <div class="proj-title">Nexus — GCC Centralized Reporting Platform</div>
+      <p class="proj-desc">Owned and scaled Nexus, GCC's enterprise reporting platform, consolidating fragmented data sources into a single source of truth and reducing data processing effort by ~80%.</p>
+      <div class="tags">
+        <span class="tag data">SQL</span>
+        <span class="tag data">Google Data Studio</span>
+        <span class="tag data">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="proj-icon">✅</div>
+      <div class="proj-title">Reporting Governance & Data Validation Framework</div>
+      <p class="proj-desc">Established scalable reporting frameworks, data validation controls, and governance processes that improved reporting consistency, data quality, and stakeholder confidence across multiple business functions.</p>
+      <div class="tags">
+        <span class="tag data">SQL</span>
+        <span class="tag ai">AI-assisted</span>
+        <span class="tag data">Google Data Studio</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="proj-icon">🤝</div>
+      <div class="proj-title">Stripe S&A Analytics Partnership</div>
+      <p class="proj-desc">Served as primary analytics partner for Stripe Strategy & Analytics, consistently achieving >90% SLA attainment and &lt;2-minute first response times.</p>
+      <div class="tags">
+        <span class="tag data">Jira</span>
+        <span class="tag data">SQL</span>
+      </div>
+    </div>
+
+    <!-- AI PROJECTS -->
+    <div class="project-card" data-cat="ai">
+      <div class="proj-icon">🧠</div>
+      <div class="proj-title">NLP Sentiment Analyzer</div>
+      <p class="proj-desc">Streamlit app using HuggingFace DistilBERT to analyze sentiment from text, CSVs, URLs, Shopee/Lazada reviews, and YouTube comments.</p>
+      <div class="tags">
+        <span class="tag ai">NLP</span>
+        <span class="tag ai">HuggingFace</span>
+        <span class="tag data">Streamlit</span>
+        <span class="tag data">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="proj-icon">🤖</div>
+      <div class="proj-title">AI Report Summarizer</div>
+      <p class="proj-desc">RAG-based tool that ingests business reports and answers natural language questions. Built while exploring LLM engineering and agentic AI systems.</p>
+      <div class="tags">
+        <span class="tag ai">LLM</span>
+        <span class="tag ai">RAG</span>
+        <span class="tag ai">LangChain</span>
+      </div>
+    </div>
+
+    <div class="project-card" style="border-style:dashed; display:flex; align-items:center; justify-content:center; min-height:180px; flex-direction:column; gap:.5rem;" data-cat="ai">
+      <div style="font-size:2rem">🚧</div>
+      <div class="proj-title" style="text-align:center">More AI Projects Coming</div>
+      <p class="proj-desc" style="text-align:center">Always building. Follow along on GitHub.</p>
+    </div>
+
+  </div>
+
+  <script>
+    function filterProjects(cat) {
+      document.querySelectorAll('.project-card').forEach(c => {
+        c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+      });
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</section>
+
+<section id="contact">
+  <div>
+    <p class="section-label">Let's Talk</p>
+    <h2>Get In Touch</h2>
+    <div class="divider" style="margin:0 auto 2rem"></div>
+    <p>Whether you have a role in mind, want to collaborate, or just want to geek out about data and AI — my inbox is open.</p>
+    <div class="contact-links">
+      <a href="mailto:roel@example.com" class="contact-link">📧 Email</a>
+      <a href="https://www.linkedin.com/in/roeldvalenzuela/" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/roelvalenzuela" target="_blank" class="contact-link">🐙 GitHub</a>
+    </div>
+    <a href="#" class="btn btn-primary">📄 Download Résumé</a>
+  </div>
+</section>
+
+<footer>
+  Built with ☕ & curiosity by <span>Roel Valenzuela</span> · 2025
+</footer>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+resize();
+window.addEventListener('resize', resize);
+function randRange(a,b){ return a + Math.random()*(b-a); }
+for(let i=0;i<80;i++) particles.push({x:randRange(0,1),y:randRange(0,1),vx:randRange(-.0003,.0003),vy:randRange(-.0002,.0002),r:randRange(1,2.5),alpha:randRange(.2,.7)});
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='rgba(0,212,255,0.06)';
+  const gs=40;
+  for(let x=0;x<W;x+=gs) for(let y=0;y<H;y+=gs) ctx.fillRect(x,y,1,1);
+  particles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=1; if(p.x>1)p.x=0;
+    if(p.y<0)p.y=1; if(p.y>1)p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x*W,p.y*H,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,212,255,${p.alpha})`;
+    ctx.fill();
+  });
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+    const dx=(particles[i].x-particles[j].x)*W, dy=(particles[i].y-particles[j].y)*H;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<100){ ctx.beginPath(); ctx.moveTo(particles[i].x*W,particles[i].y*H); ctx.lineTo(particles[j].x*W,particles[j].y*H); ctx.strokeStyle=`rgba(0,212,255,${.15*(1-dist/100)})`; ctx.lineWidth=.5; ctx.stroke(); }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
