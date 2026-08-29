@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Roel Valenzuela | Data Analytics Portfolio</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
+    /* =====================================================
+       ROOT
+    ===================================================== */
 
     :root {
       --bg: #09090d;
       --bg-soft: #101017;
+      --bg-deep: #0c0b12;
+
       --card: rgba(255, 255, 255, 0.035);
+
       --text: #f5f2f8;
       --muted: #9c97a8;
+
       --purple: #8d6cc4;
       --purple-light: #c8a8f3;
       --purple-bright: #d8c0ff;
+
       --cyan: #73d5e6;
+
       --border: rgba(255, 255, 255, 0.08);
+
       --max-width: 1250px;
     }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       margin: 0;
@@ -39,20 +61,33 @@
     body {
       background: var(--bg);
       color: var(--text);
+
       font-family: "Outfit", sans-serif;
+
       overflow-x: hidden;
     }
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
+
       pointer-events: none;
       z-index: -1;
 
       background:
-        radial-gradient(circle at 10% 20%, rgba(141, 108, 196, 0.10), transparent 28%),
-        radial-gradient(circle at 90% 55%, rgba(115, 213, 230, 0.045), transparent 25%);
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(141, 108, 196, 0.10),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 90% 55%,
+          rgba(115, 213, 230, 0.045),
+          transparent 25%
+        );
     }
 
     a {
@@ -61,14 +96,19 @@
     }
 
 
-    /* ================= NAVIGATION ================= */
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
 
     nav {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
       height: 78px;
+
       padding: 0 6%;
 
       display: flex;
@@ -76,36 +116,44 @@
       align-items: center;
 
       background: rgba(9, 9, 13, 0.78);
+
       backdrop-filter: blur(20px);
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.04);
 
       z-index: 1000;
     }
 
+
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
+
       letter-spacing: -1px;
     }
 
     .logo span {
-      background: linear-gradient(
-        90deg,
-        var(--purple),
-        var(--purple-light)
-      );
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple),
+          var(--purple-light)
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+
     .nav-links {
       display: flex;
       gap: 26px;
+
       list-style: none;
 
       font-size: 0.82rem;
+
       color: var(--muted);
     }
 
@@ -118,7 +166,9 @@
     }
 
 
-    /* ================= HOME ================= */
+    /* =====================================================
+       HOME
+    ===================================================== */
 
     #home {
       min-height: 100vh;
@@ -132,6 +182,9 @@
       overflow: hidden;
     }
 
+
+    /* Grid Background */
+
     #home::before {
       content: "";
 
@@ -141,61 +194,90 @@
       pointer-events: none;
 
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        linear-gradient(
+          rgba(255, 255, 255, 0.025) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.025) 1px,
+          transparent 1px
+        );
 
       background-size: 75px 75px;
 
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 90%
+        );
 
       z-index: 0;
     }
 
+
+    /* Particle Canvas */
+
     canvas#particles {
       position: absolute;
+
       inset: 0;
 
       width: 100%;
       height: 100%;
 
       z-index: 1;
+
       pointer-events: none;
     }
 
+
     .hero-grid {
       width: 100%;
+
       max-width: var(--max-width);
 
       margin: auto;
 
       position: relative;
+
       z-index: 2;
     }
+
 
     .hero-content {
       max-width: 760px;
     }
 
+
     .hero-headline {
-      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-size:
+        clamp(3rem, 5vw, 5.5rem);
+
       font-weight: 500;
 
       line-height: 1.08;
+
       letter-spacing: -3px;
 
       margin-bottom: 28px;
     }
 
+
     .highlight {
-      background: linear-gradient(
-        90deg,
-        var(--purple-light),
-        var(--purple-bright)
-      );
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple-light),
+          var(--purple-bright)
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
 
     .hero-description {
       max-width: 650px;
@@ -203,15 +285,18 @@
       color: var(--muted);
 
       font-size: 1.05rem;
+
       line-height: 1.8;
 
       margin-bottom: 38px;
     }
 
+
     .hero-buttons {
       display: flex;
       gap: 14px;
     }
+
 
     .btn {
       padding: 14px 22px;
@@ -223,25 +308,31 @@
       transition: 0.3s ease;
     }
 
+
     .btn-primary {
       color: white;
 
-      background: linear-gradient(
-        135deg,
-        #7654a7,
-        #9d79d1
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #7654a7,
+          #9d79d1
+        );
 
       box-shadow:
-        0 12px 35px rgba(141, 108, 196, 0.22);
+        0 12px 35px
+        rgba(141, 108, 196, 0.22);
     }
+
 
     .btn-primary:hover {
       transform: translateY(-3px);
 
       box-shadow:
-        0 18px 45px rgba(141, 108, 196, 0.38);
+        0 18px 45px
+        rgba(141, 108, 196, 0.38);
     }
+
 
     .btn-secondary {
       border: 1px solid var(--border);
@@ -249,6 +340,7 @@
       background:
         rgba(255, 255, 255, 0.02);
     }
+
 
     .btn-secondary:hover {
       border-color: var(--purple-light);
@@ -259,32 +351,260 @@
 
 
     /* =====================================================
-       EXPERIENCE HIGHLIGHTS / STATS
-       UPDATED SECTION
+       GENERAL SECTION
+    ===================================================== */
+
+    .section {
+      position: relative;
+
+      padding: 120px 6%;
+
+      scroll-margin-top: 80px;
+
+      overflow: hidden;
+    }
+
+
+    /* Subtle chapter divider */
+
+    .section::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 6%;
+      right: 6%;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(200, 168, 243, 0.18),
+          transparent
+        );
+    }
+
+
+    .section-container {
+      max-width: var(--max-width);
+      margin: auto;
+
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .section-tag {
+      font-family: "DM Mono", monospace;
+
+      font-size: 0.72rem;
+
+      letter-spacing: 2px;
+
+      color: var(--purple-light);
+
+      margin-bottom: 15px;
+    }
+
+
+    .section-title {
+      font-size:
+        clamp(2.5rem, 4vw, 4rem);
+
+      font-weight: 500;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .section-description {
+      max-width: 650px;
+
+      color: var(--muted);
+
+      line-height: 1.8;
+
+      margin-bottom: 55px;
+    }
+
+
+    /* =====================================================
+       01 / WHO I AM
+    ===================================================== */
+
+    #story {
+
+      background:
+        radial-gradient(
+          circle at 15% 50%,
+          rgba(141, 108, 196, 0.07),
+          transparent 30%
+        ),
+        var(--bg-soft);
+    }
+
+
+    .story-grid {
+      display: grid;
+
+      grid-template-columns:
+        0.8fr 1.2fr;
+
+      gap: 80px;
+
+      align-items: center;
+    }
+
+
+    .profile-image {
+      height: 480px;
+
+      border-radius: 18px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(141, 108, 196, 0.15),
+          rgba(255, 255, 255, 0.02)
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    .profile-image::before {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(141, 108, 196, 0.18);
+
+      filter: blur(70px);
+    }
+
+
+    .profile-placeholder {
+      position: relative;
+
+      z-index: 2;
+
+      font-size: 5rem;
+
+      color:
+        rgba(200, 168, 243, 0.35);
+    }
+
+
+    .story-text p {
+      color: var(--muted);
+
+      line-height: 1.9;
+
+      margin-bottom: 20px;
+    }
+
+
+    .story-highlight {
+      color: var(--text) !important;
+
+      font-size: 1.05rem;
+
+      font-weight: 400;
+
+      line-height: 1.85 !important;
+
+      margin-bottom: 22px !important;
+    }
+
+
+    /* =====================================================
+       EXPERIENCE AT A GLANCE
+       Bridge Section
     ===================================================== */
 
     .stats {
-      padding: 110px 6% 100px;
       position: relative;
+
+      padding: 115px 6% 105px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(141, 108, 196, 0.08),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          var(--bg),
+          #0b0a10
+        );
     }
+
+
+    .stats::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 6%;
+      right: 6%;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(200, 168, 243, 0.22),
+          transparent
+        );
+    }
+
 
     .stats-container {
       max-width: var(--max-width);
       margin: auto;
+
+      position: relative;
+      z-index: 2;
     }
 
-
-    /* Header */
 
     .stats-header {
       max-width: 750px;
+
       margin-bottom: 55px;
     }
+
 
     .stats-tag {
       font-family: "DM Mono", monospace;
 
       font-size: 0.72rem;
+
       letter-spacing: 2px;
 
       color: var(--purple-light);
@@ -292,28 +612,35 @@
       margin-bottom: 16px;
     }
 
+
     .stats-header h2 {
-      font-size: clamp(2.4rem, 4vw, 4rem);
+      font-size:
+        clamp(2.4rem, 4vw, 4rem);
+
       font-weight: 500;
 
       line-height: 1.12;
+
       letter-spacing: -2px;
 
       margin-bottom: 18px;
     }
 
+
     .stats-header h2 span {
       display: block;
 
-      background: linear-gradient(
-        90deg,
-        var(--purple-light),
-        var(--purple-bright)
-      );
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple-light),
+          var(--purple-bright)
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
 
     .stats-header p {
       max-width: 650px;
@@ -321,6 +648,7 @@
       color: var(--muted);
 
       font-size: 1rem;
+
       line-height: 1.8;
     }
 
@@ -330,14 +658,18 @@
     .stats-grid {
       display: grid;
 
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns:
+        repeat(4, 1fr);
 
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
     }
 
 
-    /* Individual Card */
+    /* Stat Card */
 
     .stat-card {
       position: relative;
@@ -351,12 +683,12 @@
       overflow: hidden;
     }
 
+
     .stat-card:not(:last-child) {
-      border-right: 1px solid var(--border);
+      border-right:
+        1px solid var(--border);
     }
 
-
-    /* Hover Glow */
 
     .stat-card::before {
       content: "";
@@ -381,15 +713,18 @@
       transition: opacity 0.4s ease;
     }
 
+
     .stat-card:hover::before {
       opacity: 1;
     }
+
 
     .stat-card:hover {
       background:
         rgba(141, 108, 196, 0.035);
 
-      transform: translateY(-5px);
+      transform:
+        translateY(-5px);
     }
 
 
@@ -416,6 +751,7 @@
       transition: all 0.35s ease;
     }
 
+
     .stat-icon svg {
       width: 20px;
       height: 20px;
@@ -426,9 +762,8 @@
 
       stroke-linecap: round;
       stroke-linejoin: round;
-
-      transition: 0.35s ease;
     }
+
 
     .stat-card:hover .stat-icon {
       transform:
@@ -436,18 +771,8 @@
         rotate(-4deg);
 
       box-shadow:
-        0 10px 30px rgba(141, 108, 196, 0.18);
-
-      border-color:
-        rgba(200, 168, 243, 0.45);
-    }
-
-    .stat-card:hover .stat-icon svg {
-      filter:
-        drop-shadow(
-          0 0 5px
-          rgba(200, 168, 243, 0.7)
-        );
+        0 10px 30px
+        rgba(141, 108, 196, 0.18);
     }
 
 
@@ -464,18 +789,17 @@
 
       margin-bottom: 15px;
 
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        var(--purple-light)
-      );
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          var(--purple-light)
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-
-    /* Labels */
 
     .stat-label {
       color: var(--text);
@@ -489,8 +813,6 @@
       margin-bottom: 12px;
     }
 
-
-    /* Details */
 
     .stat-detail {
       color: var(--muted);
@@ -513,7 +835,8 @@
 
       padding: 25px 30px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 14px;
 
@@ -527,23 +850,27 @@
       transition: 0.35s ease;
     }
 
+
     .learning-strip:hover {
       border-color:
         rgba(200, 168, 243, 0.3);
 
-      transform: translateY(-3px);
+      transform:
+        translateY(-3px);
     }
+
 
     .learning-symbol {
       font-size: 2.8rem;
 
       line-height: 1;
 
-      background: linear-gradient(
-        90deg,
-        var(--purple-light),
-        var(--cyan)
-      );
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple-light),
+          var(--cyan)
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -551,6 +878,7 @@
       animation:
         infinityPulse 3s ease-in-out infinite;
     }
+
 
     .learning-strip strong {
       display: block;
@@ -562,6 +890,7 @@
       margin-bottom: 5px;
     }
 
+
     .learning-strip span {
       color: var(--muted);
 
@@ -571,14 +900,9 @@
 
     @keyframes infinityPulse {
 
-      0%, 100% {
+      0%,
+      100% {
         transform: scale(1);
-
-        filter:
-          drop-shadow(
-            0 0 0
-            rgba(200, 168, 243, 0)
-          );
       }
 
       50% {
@@ -594,128 +918,40 @@
     }
 
 
-    /* ================= SECTIONS ================= */
+    /* =====================================================
+       02 / EXPERIENCE
+    ===================================================== */
 
-    .section {
-      padding: 120px 6%;
-      scroll-margin-top: 80px;
-    }
-
-    .section-container {
-      max-width: var(--max-width);
-      margin: auto;
-    }
-
-    .section-tag {
-      font-family: "DM Mono", monospace;
-
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-
-      color: var(--purple-light);
-
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-size: clamp(2.5rem, 4vw, 4rem);
-
-      letter-spacing: -2px;
-
-      margin-bottom: 20px;
-    }
-
-    .section-description {
-      max-width: 650px;
-
-      color: var(--muted);
-
-      line-height: 1.8;
-
-      margin-bottom: 55px;
-    }
-
-
-    /* ================= WHO I AM ================= */
-
-    #story {
-      background: var(--bg-soft);
-    }
-
-    .story-grid {
-      display: grid;
-
-      grid-template-columns: 0.8fr 1.2fr;
-
-      gap: 80px;
-
-      align-items: center;
-    }
-
-    .profile-image {
-      height: 480px;
-
-      border-radius: 18px;
-
-      border: 1px solid var(--border);
+    #experience {
 
       background:
-        linear-gradient(
-          145deg,
-          rgba(141, 108, 196, 0.15),
-          rgba(255, 255, 255, 0.02)
-        );
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        radial-gradient(
+          circle at 85% 70%,
+          rgba(115, 213, 230, 0.035),
+          transparent 25%
+        ),
+        var(--bg);
     }
 
-    .profile-placeholder {
-      font-size: 5rem;
-
-      color:
-        rgba(200, 168, 243, 0.35);
-    }
-
-    .story-text p {
-      color: var(--muted);
-
-      line-height: 1.9;
-
-      margin-bottom: 20px;
-    }
-
-    .story-highlight {
-      color: var(--text) !important;
-
-      font-size: 1.05rem;
-
-      font-weight: 400;
-
-      line-height: 1.85 !important;
-
-      margin-bottom: 22px !important;
-    }
-
-
-    /* ================= EXPERIENCE ================= */
 
     .timeline {
       display: grid;
       gap: 20px;
     }
 
+
     .experience-card {
       display: grid;
 
-      grid-template-columns: 160px 1fr;
+      grid-template-columns:
+        160px 1fr;
 
       gap: 35px;
 
       padding: 32px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 14px;
 
@@ -724,12 +960,15 @@
       transition: 0.3s ease;
     }
 
+
     .experience-card:hover {
-      transform: translateX(8px);
+      transform:
+        translateX(8px);
 
       border-color:
         rgba(200, 168, 243, 0.3);
     }
+
 
     .experience-date {
       font-family: "DM Mono", monospace;
@@ -739,11 +978,13 @@
       font-size: 0.75rem;
     }
 
+
     .experience-role {
       font-size: 1.35rem;
 
       margin-bottom: 8px;
     }
+
 
     .experience-company {
       color: var(--purple-light);
@@ -752,6 +993,7 @@
 
       margin-bottom: 15px;
     }
+
 
     .experience-description {
       color: var(--muted);
@@ -762,24 +1004,37 @@
     }
 
 
-    /* ================= SERVICES ================= */
+    /* =====================================================
+       03 / WHAT I DO
+    ===================================================== */
 
     #services {
-      background: var(--bg-soft);
+
+      background:
+        radial-gradient(
+          circle at 10% 25%,
+          rgba(141, 108, 196, 0.07),
+          transparent 30%
+        ),
+        var(--bg-soft);
     }
+
 
     .services-grid {
       display: grid;
 
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:
+        repeat(3, 1fr);
 
       gap: 20px;
     }
 
+
     .service-card {
       padding: 35px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 16px;
 
@@ -789,8 +1044,10 @@
       transition: 0.35s ease;
     }
 
+
     .service-card:hover {
-      transform: translateY(-8px);
+      transform:
+        translateY(-8px);
 
       background:
         rgba(141, 108, 196, 0.06);
@@ -798,6 +1055,7 @@
       border-color:
         rgba(200, 168, 243, 0.3);
     }
+
 
     .service-number {
       font-family: "DM Mono", monospace;
@@ -809,11 +1067,13 @@
       margin-bottom: 35px;
     }
 
+
     .service-card h3 {
       font-size: 1.3rem;
 
       margin-bottom: 14px;
     }
+
 
     .service-card p {
       color: var(--muted);
@@ -824,22 +1084,39 @@
     }
 
 
-    /* ================= PORTFOLIO ================= */
+    /* =====================================================
+       04 / PORTFOLIO
+    ===================================================== */
+
+    #portfolio {
+
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(141, 108, 196, 0.06),
+          transparent 28%
+        ),
+        var(--bg);
+    }
+
 
     .portfolio-grid {
       display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
 
       gap: 22px;
     }
+
 
     .portfolio-card {
       min-height: 380px;
 
       border-radius: 18px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       background:
         linear-gradient(
@@ -861,12 +1138,15 @@
       transition: 0.4s ease;
     }
 
+
     .portfolio-card:hover {
-      transform: translateY(-8px);
+      transform:
+        translateY(-8px);
 
       border-color:
         rgba(200, 168, 243, 0.4);
     }
+
 
     .portfolio-number {
       position: absolute;
@@ -880,6 +1160,7 @@
         rgba(200, 168, 243, 0.35);
     }
 
+
     .portfolio-type {
       color: var(--purple-light);
 
@@ -892,11 +1173,13 @@
       margin-bottom: 14px;
     }
 
+
     .portfolio-card h3 {
       font-size: 1.7rem;
 
       margin-bottom: 12px;
     }
+
 
     .portfolio-card p {
       color: var(--muted);
@@ -907,11 +1190,21 @@
     }
 
 
-    /* ================= TOOLS ================= */
+    /* =====================================================
+       05 / TOOLKIT
+    ===================================================== */
 
     #tools {
-      background: var(--bg-soft);
+
+      background:
+        radial-gradient(
+          circle at 20% 70%,
+          rgba(115, 213, 230, 0.03),
+          transparent 25%
+        ),
+        var(--bg-soft);
     }
+
 
     .tools-grid {
       display: flex;
@@ -923,10 +1216,12 @@
       max-width: 900px;
     }
 
+
     .tool {
       padding: 13px 18px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 8px;
 
@@ -938,6 +1233,7 @@
       transition: 0.25s ease;
     }
 
+
     .tool:hover {
       color: var(--text);
 
@@ -948,26 +1244,43 @@
     }
 
 
-    /* ================= CONTACT ================= */
+    /* =====================================================
+       CONTACT
+    ===================================================== */
 
     #contact {
+
       text-align: center;
 
       padding-bottom: 150px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(141, 108, 196, 0.10),
+          transparent 35%
+        ),
+        var(--bg);
     }
+
 
     .contact-container {
       max-width: 800px;
       margin: auto;
     }
 
+
     .contact-title {
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size:
+        clamp(3rem, 6vw, 5rem);
+
+      font-weight: 500;
 
       letter-spacing: -3px;
 
       margin-bottom: 20px;
     }
+
 
     .contact-text {
       color: var(--muted);
@@ -976,6 +1289,7 @@
 
       margin-bottom: 35px;
     }
+
 
     .contact-button {
       display: inline-block;
@@ -994,17 +1308,22 @@
       transition: 0.3s ease;
     }
 
+
     .contact-button:hover {
-      transform: translateY(-4px);
+      transform:
+        translateY(-4px);
     }
 
 
-    /* ================= FOOTER ================= */
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
       padding: 30px 6%;
 
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
 
       display: flex;
       justify-content: space-between;
@@ -1012,10 +1331,14 @@
       color: var(--muted);
 
       font-size: 0.75rem;
+
+      background: var(--bg);
     }
 
 
-    /* ================= RESPONSIVE ================= */
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
 
     @media (max-width: 1000px) {
 
@@ -1024,11 +1347,13 @@
       }
 
       .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .stat-card:nth-child(2) {
@@ -1036,7 +1361,8 @@
       }
 
       .stat-card:nth-child(-n+2) {
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+          1px solid var(--border);
       }
 
     }
@@ -1049,7 +1375,8 @@
       }
 
       .hero-headline {
-        font-size: clamp(2.8rem, 11vw, 4.5rem);
+        font-size:
+          clamp(2.8rem, 11vw, 4.5rem);
       }
 
       .portfolio-grid {
@@ -1078,7 +1405,9 @@
         min-height: auto;
 
         border-right: none !important;
-        border-bottom: 1px solid var(--border);
+
+        border-bottom:
+          1px solid var(--border);
       }
 
       .stat-card:last-child {
@@ -1091,6 +1420,7 @@
 
       .learning-strip {
         align-items: flex-start;
+
         padding: 22px;
       }
 
@@ -1123,7 +1453,9 @@
 <body>
 
 
-  <!-- ================= NAVIGATION ================= -->
+  <!-- =====================================================
+       NAVIGATION
+  ===================================================== -->
 
   <nav>
 
@@ -1132,6 +1464,7 @@
     </a>
 
     <ul class="nav-links">
+
       <li><a href="#home">Home</a></li>
       <li><a href="#story">Who I Am</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -1139,12 +1472,15 @@
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#contact">Contact</a></li>
+
     </ul>
 
   </nav>
 
 
-  <!-- ================= HOME ================= -->
+  <!-- =====================================================
+       HOME
+  ===================================================== -->
 
   <section id="home">
 
@@ -1159,11 +1495,13 @@
           <span class="highlight">understanding.</span>
         </h1>
 
+
         <p class="hero-description">
           I transform complex data into meaningful insights that help
           businesses understand challenges, uncover opportunities,
           and make more confident decisions.
         </p>
+
 
         <div class="hero-buttons">
 
@@ -1185,8 +1523,95 @@
 
 
   <!-- =====================================================
-       EXPERIENCE HIGHLIGHTS
-       UPDATED STATS SECTION
+       01 / WHO I AM
+  ===================================================== -->
+
+  <section id="story" class="section">
+
+    <div class="section-container">
+
+      <div class="story-grid">
+
+
+        <!-- Profile Area -->
+
+        <div class="profile-image">
+
+          <!-- Replace RV with your image later -->
+
+          <div class="profile-placeholder">
+            RV
+          </div>
+
+        </div>
+
+
+        <!-- Story -->
+
+        <div class="story-text">
+
+          <p class="section-tag">
+            01 / WHO I AM
+          </p>
+
+
+          <h2 class="section-title">
+            More than just the numbers.
+          </h2>
+
+
+          <p class="story-highlight">
+
+            Hi, I'm Roel Valenzuela — a Data Analytics Professional
+            and WFM Senior Team Leader with over a decade of experience
+            in operations, workforce management, and analytics.
+
+          </p>
+
+
+          <p>
+
+            My journey is driven by curiosity and a passion for
+            understanding how things work. I enjoy transforming
+            complex data into meaningful insights that help businesses
+            understand challenges, uncover opportunities, and make
+            more confident decisions.
+
+          </p>
+
+
+          <p>
+
+            Working at the intersection of people, operations, data,
+            and technology has given me a practical perspective on
+            problem-solving. I don't just look at the numbers—I look
+            for the story behind them and what they can tell us about
+            what should happen next.
+
+          </p>
+
+
+          <p>
+
+            Today, I continue expanding my knowledge in Machine Learning
+            and Generative AI, exploring how these technologies can help
+            create smarter solutions and solve increasingly complex
+            business problems.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       EXPERIENCE AT A GLANCE
+       Bridge Between Who I Am & Experience
   ===================================================== -->
 
   <section class="stats">
@@ -1202,45 +1627,64 @@
           EXPERIENCE AT A GLANCE
         </p>
 
+
         <h2>
+
           A decade of experience.
-          <span>Still learning what's next.</span>
+
+          <span>
+            Still learning what's next.
+          </span>
+
         </h2>
 
+
         <p>
+
           A career built across operations, workforce management,
           analytics, process improvement, and a continuous curiosity
           for technology and what's possible next.
+
         </p>
 
       </div>
 
 
-      <!-- Stats Grid -->
+      <!-- Stats -->
 
       <div class="stats-grid">
 
 
-        <!-- 01 EXPERIENCE -->
+        <!-- 10+ -->
 
         <div class="stat-card">
 
           <div class="stat-icon">
 
             <svg viewBox="0 0 24 24" fill="none">
+
               <path d="M12 3v9l6 3"/>
-              <circle cx="12" cy="12" r="9"/>
+
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              />
+
             </svg>
 
           </div>
+
 
           <div class="stat-number">
             10+
           </div>
 
+
           <div class="stat-label">
             Years of Professional Experience
           </div>
+
 
           <div class="stat-detail">
             Leadership, operations, workforce management & analytics
@@ -1249,26 +1693,32 @@
         </div>
 
 
-        <!-- 02 IMPROVEMENTS -->
+        <!-- 30+ -->
 
         <div class="stat-card">
 
           <div class="stat-icon">
 
             <svg viewBox="0 0 24 24" fill="none">
+
               <path d="M4 17l5-5 4 4 7-8"/>
+
               <path d="M15 8h5v5"/>
+
             </svg>
 
           </div>
+
 
           <div class="stat-number">
             30+
           </div>
 
+
           <div class="stat-label">
             Process & Project Improvements
           </div>
+
 
           <div class="stat-detail">
             Initiatives focused on efficiency, performance & better outcomes
@@ -1277,27 +1727,49 @@
         </div>
 
 
-        <!-- 03 SUPPORT AREAS -->
+        <!-- 4+ -->
 
         <div class="stat-card">
 
           <div class="stat-icon">
 
             <svg viewBox="0 0 24 24" fill="none">
-              <rect x="4" y="11" width="3" height="7"/>
-              <rect x="10.5" y="7" width="3" height="11"/>
-              <rect x="17" y="3" width="3" height="15"/>
+
+              <rect
+                x="4"
+                y="11"
+                width="3"
+                height="7"
+              />
+
+              <rect
+                x="10.5"
+                y="7"
+                width="3"
+                height="11"
+              />
+
+              <rect
+                x="17"
+                y="3"
+                width="3"
+                height="15"
+              />
+
             </svg>
 
           </div>
+
 
           <div class="stat-number">
             4+
           </div>
 
+
           <div class="stat-label">
             Core Support Areas
           </div>
+
 
           <div class="stat-detail">
             Data Analytics · Business Analytics · Real-Time Operations · WFM
@@ -1306,28 +1778,40 @@
         </div>
 
 
-        <!-- 04 INDUSTRIES -->
+        <!-- 3 -->
 
         <div class="stat-card">
 
           <div class="stat-icon">
 
             <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="8"/>
+
+              <circle
+                cx="12"
+                cy="12"
+                r="8"
+              />
+
               <path d="M4 12h16"/>
+
               <path d="M12 4c2.5 2.2 3.8 5 3.8 8S14.5 17.8 12 20"/>
+
               <path d="M12 4c-2.5 2.2-3.8 5-3.8 8S9.5 17.8 12 20"/>
+
             </svg>
 
           </div>
+
 
           <div class="stat-number">
             3
           </div>
 
+
           <div class="stat-label">
             Industries Supported
           </div>
+
 
           <div class="stat-detail">
             Marketing · Information Technology · Fintech
@@ -1347,6 +1831,7 @@
           ∞
         </div>
 
+
         <div>
 
           <strong>
@@ -1354,8 +1839,10 @@
           </strong>
 
           <span>
+
             Continuously expanding my knowledge in Machine Learning,
             Generative AI, and emerging technologies.
+
           </span>
 
         </div>
@@ -1368,69 +1855,9 @@
   </section>
 
 
-  <!-- ================= WHO I AM ================= -->
-
-  <section id="story" class="section">
-
-    <div class="section-container">
-
-      <div class="story-grid">
-
-        <div class="profile-image">
-          <div class="profile-placeholder">RV</div>
-        </div>
-
-
-        <div class="story-text">
-
-          <p class="section-tag">
-            01 / WHO I AM
-          </p>
-
-          <h2 class="section-title">
-            More than just the numbers.
-          </h2>
-
-
-          <p class="story-highlight">
-            Hi, I'm Roel Valenzuela — a Data Analytics Professional and
-            WFM Senior Team Leader with over a decade of experience in
-            operations, workforce management, and analytics.
-          </p>
-
-
-          <p>
-            My journey is driven by curiosity and a passion for understanding
-            how things work. I enjoy transforming complex data into meaningful
-            insights that help businesses understand challenges, uncover
-            opportunities, and make more confident decisions.
-          </p>
-
-
-          <p>
-            Working at the intersection of people, operations, data, and
-            technology has given me a practical perspective on problem-solving.
-            I don't just look at the numbers—I look for the story behind them
-            and what they can tell us about what should happen next.
-          </p>
-
-
-          <p>
-            Today, I continue expanding my knowledge in Machine Learning and
-            Generative AI, exploring how these technologies can help create
-            smarter solutions and solve increasingly complex business problems.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= EXPERIENCE ================= -->
+  <!-- =====================================================
+       02 / EXPERIENCE
+  ===================================================== -->
 
   <section id="experience" class="section">
 
@@ -1440,19 +1867,25 @@
         02 / EXPERIENCE
       </p>
 
+
       <h2 class="section-title">
         Building experience through real business challenges.
       </h2>
 
+
       <p class="section-description">
-        My professional journey has involved leadership, workforce management,
-        operations, analytics, process improvement, reporting, and
-        technology-driven solutions.
+
+        My professional journey has involved leadership, workforce
+        management, operations, analytics, process improvement,
+        reporting, and technology-driven solutions.
+
       </p>
 
 
       <div class="timeline">
 
+
+        <!-- Experience 1 -->
 
         <div class="experience-card">
 
@@ -1460,20 +1893,25 @@
             CURRENT ROLE
           </div>
 
+
           <div>
 
             <h3 class="experience-role">
               WFM Senior Team Leader
             </h3>
 
+
             <p class="experience-company">
               Add Company Name
             </p>
 
+
             <p class="experience-description">
-              Leading operational performance while using workforce insights,
-              reporting, and analytical approaches to identify opportunities
-              and support better business decisions.
+
+              Leading operational performance while using workforce
+              insights, reporting, and analytical approaches to identify
+              opportunities and support better business decisions.
+
             </p>
 
           </div>
@@ -1481,11 +1919,14 @@
         </div>
 
 
+        <!-- Experience 2 -->
+
         <div class="experience-card">
 
           <div class="experience-date">
             PREVIOUS EXPERIENCE
           </div>
+
 
           <div>
 
@@ -1493,14 +1934,18 @@
               Operations & Analytics Experience
             </h3>
 
+
             <p class="experience-company">
               Add Company / Role
             </p>
 
+
             <p class="experience-description">
-              Supporting teams through data-driven reporting, operational
-              analysis, process improvement, and collaboration with
-              cross-functional stakeholders.
+
+              Supporting teams through data-driven reporting,
+              operational analysis, process improvement, and
+              collaboration with cross-functional stakeholders.
+
             </p>
 
           </div>
@@ -1515,7 +1960,9 @@
   </section>
 
 
-  <!-- ================= SERVICES ================= -->
+  <!-- =====================================================
+       03 / WHAT I DO
+  ===================================================== -->
 
   <section id="services" class="section">
 
@@ -1524,6 +1971,7 @@
       <p class="section-tag">
         03 / WHAT I CAN DO
       </p>
+
 
       <h2 class="section-title">
         Turning problems into clearer possibilities.
@@ -1535,13 +1983,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">01</div>
+          <div class="service-number">
+            01
+          </div>
 
-          <h3>Data Analysis</h3>
+          <h3>
+            Data Analysis
+          </h3>
 
           <p>
-            Transforming complex and scattered information into meaningful
-            insights, patterns, and business understanding.
+
+            Transforming complex and scattered information into
+            meaningful insights, patterns, and business understanding.
+
           </p>
 
         </div>
@@ -1549,13 +2003,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">02</div>
+          <div class="service-number">
+            02
+          </div>
 
-          <h3>Dashboard & Reporting</h3>
+          <h3>
+            Dashboard & Reporting
+          </h3>
 
           <p>
-            Creating reports and dashboards that make important information
-            easier to understand and act upon.
+
+            Creating reports and dashboards that make important
+            information easier to understand and act upon.
+
           </p>
 
         </div>
@@ -1563,13 +2023,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">03</div>
+          <div class="service-number">
+            03
+          </div>
 
-          <h3>Process Improvement</h3>
+          <h3>
+            Process Improvement
+          </h3>
 
           <p>
-            Identifying inefficiencies, opportunities, and practical ways
-            to improve operational processes.
+
+            Identifying inefficiencies, opportunities, and practical
+            ways to improve operational processes.
+
           </p>
 
         </div>
@@ -1577,13 +2043,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">04</div>
+          <div class="service-number">
+            04
+          </div>
 
-          <h3>Business Insights</h3>
+          <h3>
+            Business Insights
+          </h3>
 
           <p>
-            Connecting data with real business context to support better
-            recommendations and decision-making.
+
+            Connecting data with real business context to support
+            better recommendations and decision-making.
+
           </p>
 
         </div>
@@ -1591,13 +2063,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">05</div>
+          <div class="service-number">
+            05
+          </div>
 
-          <h3>Automation & Technology</h3>
+          <h3>
+            Automation & Technology
+          </h3>
 
           <p>
-            Exploring ways technology and automation can reduce manual work
-            and improve how teams operate.
+
+            Exploring ways technology and automation can reduce
+            manual work and improve how teams operate.
+
           </p>
 
         </div>
@@ -1605,13 +2083,19 @@
 
         <div class="service-card">
 
-          <div class="service-number">06</div>
+          <div class="service-number">
+            06
+          </div>
 
-          <h3>Machine Learning & AI</h3>
+          <h3>
+            Machine Learning & AI
+          </h3>
 
           <p>
+
             Continuously expanding my knowledge in Machine Learning,
             Generative AI, and real-world business applications.
+
           </p>
 
         </div>
@@ -1624,7 +2108,9 @@
   </section>
 
 
-  <!-- ================= PORTFOLIO ================= -->
+  <!-- =====================================================
+       04 / SELECTED WORK
+  ===================================================== -->
 
   <section id="portfolio" class="section">
 
@@ -1634,13 +2120,17 @@
         04 / SELECTED WORK
       </p>
 
+
       <h2 class="section-title">
         Projects that turn ideas into impact.
       </h2>
 
+
       <p class="section-description">
+
         A collection of projects, analytical work, process improvements,
         dashboards, and experiments that represent how I approach problems.
+
       </p>
 
 
@@ -1649,18 +2139,24 @@
 
         <div class="portfolio-card">
 
-          <div class="portfolio-number">01</div>
+          <div class="portfolio-number">
+            01
+          </div>
 
           <div class="portfolio-type">
             DATA ANALYTICS
           </div>
 
-          <h3>Operational Scorecard</h3>
+          <h3>
+            Operational Scorecard
+          </h3>
 
           <p>
-            A centralized view designed to help teams understand operational
-            performance, critical areas, and common drivers behind
-            performance changes.
+
+            A centralized view designed to help teams understand
+            operational performance, critical areas, and common
+            drivers behind performance changes.
+
           </p>
 
         </div>
@@ -1668,17 +2164,23 @@
 
         <div class="portfolio-card">
 
-          <div class="portfolio-number">02</div>
+          <div class="portfolio-number">
+            02
+          </div>
 
           <div class="portfolio-type">
             DASHBOARD / INSIGHTS
           </div>
 
-          <h3>Performance Analytics</h3>
+          <h3>
+            Performance Analytics
+          </h3>
 
           <p>
-            Turning performance data into clearer visual insights that help
-            stakeholders understand trends and opportunities.
+
+            Turning performance data into clearer visual insights
+            that help stakeholders understand trends and opportunities.
+
           </p>
 
         </div>
@@ -1686,17 +2188,23 @@
 
         <div class="portfolio-card">
 
-          <div class="portfolio-number">03</div>
+          <div class="portfolio-number">
+            03
+          </div>
 
           <div class="portfolio-type">
             PROCESS IMPROVEMENT
           </div>
 
-          <h3>Workflow Improvement Initiative</h3>
+          <h3>
+            Workflow Improvement Initiative
+          </h3>
 
           <p>
+
             Identifying process challenges and developing practical
             improvements through data and operational understanding.
+
           </p>
 
         </div>
@@ -1704,17 +2212,23 @@
 
         <div class="portfolio-card">
 
-          <div class="portfolio-number">04</div>
+          <div class="portfolio-number">
+            04
+          </div>
 
           <div class="portfolio-type">
             MACHINE LEARNING
           </div>
 
-          <h3>Learning & Experimentation</h3>
+          <h3>
+            Learning & Experimentation
+          </h3>
 
           <p>
+
             Exploring Machine Learning concepts and models to understand
             how predictions and intelligent systems can support decisions.
+
           </p>
 
         </div>
@@ -1727,7 +2241,9 @@
   </section>
 
 
-  <!-- ================= TOOLS ================= -->
+  <!-- =====================================================
+       05 / TOOLKIT
+  ===================================================== -->
 
   <section id="tools" class="section">
 
@@ -1737,13 +2253,17 @@
         05 / TOOLKIT
       </p>
 
+
       <h2 class="section-title">
         Tools I use to explore, analyze, and build.
       </h2>
 
+
       <p class="section-description">
+
         A growing toolkit across analytics, visualization, databases,
         automation, Machine Learning, and Generative AI.
+
       </p>
 
 
@@ -1769,7 +2289,9 @@
   </section>
 
 
-  <!-- ================= CONTACT ================= -->
+  <!-- =====================================================
+       06 / CONTACT
+  ===================================================== -->
 
   <section id="contact" class="section">
 
@@ -1779,17 +2301,25 @@
         06 / LET'S CONNECT
       </p>
 
+
       <h2 class="contact-title">
         Let's turn curiosity into something meaningful.
       </h2>
 
+
       <p class="contact-text">
+
         I'm always interested in conversations about data, analytics,
         technology, Machine Learning, AI, and how these can create
         meaningful impact.
+
       </p>
 
-      <a href="mailto:your@email.com" class="contact-button">
+
+      <a
+        href="mailto:your@email.com"
+        class="contact-button"
+      >
         Get In Touch →
       </a>
 
@@ -1798,7 +2328,9 @@
   </section>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
 
   <footer>
 
@@ -1813,14 +2345,18 @@
   </footer>
 
 
-  <!-- ================= PARTICLE ANIMATION ================= -->
+  <!-- =====================================================
+       PARTICLE / NEURAL ANIMATION
+  ===================================================== -->
 
   <script>
 
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
 
-    let W, H;
+    let W;
+    let H;
+
     let particles = [];
 
 
@@ -1831,7 +2367,8 @@
 
     function resize() {
 
-      const rect = canvas.getBoundingClientRect();
+      const rect =
+        canvas.getBoundingClientRect();
 
       W = canvas.width = rect.width;
       H = canvas.height = rect.height;
@@ -1850,12 +2387,15 @@
         particles.push({
 
           x: randRange(0, W),
+
           y: randRange(0, H),
 
           vx: randRange(-0.22, 0.22),
+
           vy: randRange(-0.22, 0.22),
 
-          radius: randRange(1, 2.5),
+          radius:
+            randRange(1, 2.5),
 
           color:
             Math.random() > 0.75
@@ -1863,7 +2403,10 @@
               : "purple",
 
           pulse:
-            randRange(0, Math.PI * 2)
+            randRange(
+              0,
+              Math.PI * 2
+            )
 
         });
 
@@ -1874,12 +2417,20 @@
 
     function draw(time = 0) {
 
-      ctx.clearRect(0, 0, W, H);
+      ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+      );
 
+
+      /* Move particles */
 
       particles.forEach((particle) => {
 
         particle.x += particle.vx;
+
         particle.y += particle.vy;
 
 
@@ -1894,7 +2445,9 @@
           particle.x < 0 ||
           particle.x > W
         ) {
+
           particle.vx *= -1;
+
         }
 
 
@@ -1902,17 +2455,27 @@
           particle.y < 0 ||
           particle.y > H
         ) {
+
           particle.vy *= -1;
+
         }
 
       });
 
 
-      /* Connections */
+      /* Draw neural connections */
 
-      for (let i = 0; i < particles.length; i++) {
+      for (
+        let i = 0;
+        i < particles.length;
+        i++
+      ) {
 
-        for (let j = i + 1; j < particles.length; j++) {
+        for (
+          let j = i + 1;
+          j < particles.length;
+          j++
+        ) {
 
           const dx =
             particles[i].x -
@@ -1921,6 +2484,7 @@
           const dy =
             particles[i].y -
             particles[j].y;
+
 
           const distance =
             Math.sqrt(
@@ -1932,13 +2496,21 @@
           if (distance < 125) {
 
             const opacity =
-              (1 - distance / 125) * 0.18;
+              (1 - distance / 125)
+              * 0.18;
 
 
             ctx.beginPath();
 
+
             ctx.strokeStyle =
-              `rgba(180, 145, 235, ${opacity})`;
+              `rgba(
+                180,
+                145,
+                235,
+                ${opacity}
+              )`;
+
 
             ctx.lineWidth = 0.6;
 
@@ -1964,7 +2536,7 @@
       }
 
 
-      /* Particle Nodes */
+      /* Draw nodes */
 
       particles.forEach((particle) => {
 
@@ -1995,11 +2567,17 @@
 
 
         ctx.arc(
+
           particle.x,
           particle.y,
-          particle.radius + pulse * 0.7,
+
+          particle.radius +
+          pulse * 0.7,
+
           0,
+
           Math.PI * 2
+
         );
 
 
@@ -2018,10 +2596,12 @@
 
     resize();
 
+
     window.addEventListener(
       "resize",
       resize
     );
+
 
     draw();
 
