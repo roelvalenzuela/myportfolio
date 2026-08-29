@@ -593,6 +593,15 @@
         rgba(200, 168, 243, 0.55);
     }
 
+    .profile-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 3;
+    }
+
 
     /* STORY TEXT */
 
@@ -1836,8 +1845,7 @@
         </h2>
 
         <p class="story-subtitle">
-          Data helps me understand the world.
-          Curiosity makes me explore it.
+          The professional side of me — and the curiosity that shapes how I think beyond work.
         </p>
 
       </div>
@@ -1851,14 +1859,14 @@
           class="toggle-btn active"
           data-target="professional"
         >
-          💼 HOW I WORK
+          💼 PROFESSIONAL
         </button>
 
         <button
           class="toggle-btn"
           data-target="curious"
         >
-          ✨ WHAT KEEPS ME CURIOUS
+          ✨ BEYOND WORK
         </button>
 
       </div>
@@ -1880,17 +1888,13 @@
 
           <div class="profile-image">
 
-            <!--
-              Replace this with your actual image later.
-
-              Example:
-
-              <img
-                src="your-photo.jpg"
-                alt="Roel Valenzuela"
-              >
-
-            -->
+            <!-- Replace src with your actual photo filename -->
+            <img
+              src="your-photo.jpg"
+              alt="Roel Valenzuela"
+              class="profile-photo"
+              onerror="this.style.display='none'; document.querySelector('.profile-placeholder').style.display='flex';"
+            >
 
             <div class="profile-placeholder">
               RV
@@ -1979,10 +1983,9 @@
 
           <p>
 
-            Outside of work, I'm constantly finding new things to learn,
-            explore, and challenge myself with. Not because I have to—
-            but because I genuinely enjoy the process of starting with
-            something unfamiliar and slowly figuring it out.
+            Outside of work, my curiosity takes me in completely different directions.
+            Music, movement, fashion, languages, technology — I genuinely enjoy starting
+            with something unfamiliar, being a beginner, and slowly figuring it out.
 
           </p>
 
@@ -2171,7 +2174,8 @@
 
             <strong>Curiosity is probably my most transferable skill.</strong>
 
-            And it's something I bring into every problem I try to solve.
+            It helps me bring different perspectives together, think creatively,
+            and approach every problem I try to solve with an open mind.
 
           </p>
 
