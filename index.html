@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
     :root {
       --bg: #09090d;
       --bg-soft: #101017;
@@ -48,6 +49,7 @@
       inset: 0;
       pointer-events: none;
       z-index: -1;
+
       background:
         radial-gradient(circle at 10% 20%, rgba(141, 108, 196, 0.10), transparent 28%),
         radial-gradient(circle at 90% 55%, rgba(115, 213, 230, 0.045), transparent 25%);
@@ -58,6 +60,7 @@
       color: inherit;
     }
 
+
     /* ================= NAVIGATION ================= */
 
     nav {
@@ -67,12 +70,16 @@
       width: 100%;
       height: 78px;
       padding: 0 6%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       background: rgba(9, 9, 13, 0.78);
       backdrop-filter: blur(20px);
+
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
       z-index: 1000;
     }
 
@@ -83,7 +90,12 @@
     }
 
     .logo span {
-      background: linear-gradient(90deg, var(--purple), var(--purple-light));
+      background: linear-gradient(
+        90deg,
+        var(--purple),
+        var(--purple-light)
+      );
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -92,6 +104,7 @@
       display: flex;
       gap: 26px;
       list-style: none;
+
       font-size: 0.82rem;
       color: var(--muted);
     }
@@ -104,35 +117,47 @@
       color: var(--purple-light);
     }
 
+
     /* ================= HOME ================= */
 
     #home {
       min-height: 100vh;
+
       padding: 145px 6% 80px;
+
       display: flex;
       align-items: center;
+
       position: relative;
       overflow: hidden;
     }
 
     #home::before {
       content: "";
+
       position: absolute;
       inset: 0;
+
       pointer-events: none;
+
       background-image:
         linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+
       background-size: 75px 75px;
+
       mask-image: linear-gradient(to bottom, black, transparent 90%);
+
       z-index: 0;
     }
 
     canvas#particles {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       z-index: 1;
       pointer-events: none;
     }
@@ -140,7 +165,9 @@
     .hero-grid {
       width: 100%;
       max-width: var(--max-width);
+
       margin: auto;
+
       position: relative;
       z-index: 2;
     }
@@ -152,8 +179,10 @@
     .hero-headline {
       font-size: clamp(3rem, 5vw, 5.5rem);
       font-weight: 500;
+
       line-height: 1.08;
       letter-spacing: -3px;
+
       margin-bottom: 28px;
     }
 
@@ -163,15 +192,19 @@
         var(--purple-light),
         var(--purple-bright)
       );
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-description {
       max-width: 650px;
+
       color: var(--muted);
+
       font-size: 1.05rem;
       line-height: 1.8;
+
       margin-bottom: 38px;
     }
 
@@ -182,76 +215,384 @@
 
     .btn {
       padding: 14px 22px;
+
       border-radius: 8px;
+
       font-size: 0.85rem;
+
       transition: 0.3s ease;
     }
 
     .btn-primary {
       color: white;
-      background: linear-gradient(135deg, #7654a7, #9d79d1);
-      box-shadow: 0 12px 35px rgba(141, 108, 196, 0.22);
+
+      background: linear-gradient(
+        135deg,
+        #7654a7,
+        #9d79d1
+      );
+
+      box-shadow:
+        0 12px 35px rgba(141, 108, 196, 0.22);
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 18px 45px rgba(141, 108, 196, 0.38);
+
+      box-shadow:
+        0 18px 45px rgba(141, 108, 196, 0.38);
     }
 
     .btn-secondary {
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.02);
+
+      background:
+        rgba(255, 255, 255, 0.02);
     }
 
     .btn-secondary:hover {
       border-color: var(--purple-light);
-      background: rgba(141, 108, 196, 0.08);
+
+      background:
+        rgba(141, 108, 196, 0.08);
     }
 
-    /* ================= STATS ================= */
+
+    /* =====================================================
+       EXPERIENCE HIGHLIGHTS / STATS
+       UPDATED SECTION
+    ===================================================== */
 
     .stats {
-      padding: 20px 6% 100px;
+      padding: 110px 6% 100px;
+      position: relative;
     }
 
-    .stats-grid {
+    .stats-container {
       max-width: var(--max-width);
       margin: auto;
+    }
+
+
+    /* Header */
+
+    .stats-header {
+      max-width: 750px;
+      margin-bottom: 55px;
+    }
+
+    .stats-tag {
+      font-family: "DM Mono", monospace;
+
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+
+      color: var(--purple-light);
+
+      margin-bottom: 16px;
+    }
+
+    .stats-header h2 {
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 500;
+
+      line-height: 1.12;
+      letter-spacing: -2px;
+
+      margin-bottom: 18px;
+    }
+
+    .stats-header h2 span {
+      display: block;
+
+      background: linear-gradient(
+        90deg,
+        var(--purple-light),
+        var(--purple-bright)
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stats-header p {
+      max-width: 650px;
+
+      color: var(--muted);
+
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+
+    /* Stats Grid */
+
+    .stats-grid {
       display: grid;
+
       grid-template-columns: repeat(4, 1fr);
+
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
+
+    /* Individual Card */
+
     .stat-card {
-      padding: 35px 28px;
-      min-height: 180px;
-      transition: 0.3s ease;
+      position: relative;
+
+      padding: 38px 30px 35px;
+
+      min-height: 285px;
+
+      transition: all 0.35s ease;
+
+      overflow: hidden;
     }
 
     .stat-card:not(:last-child) {
       border-right: 1px solid var(--border);
     }
 
-    .stat-card:hover {
-      background: rgba(141, 108, 196, 0.04);
+
+    /* Hover Glow */
+
+    .stat-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(141, 108, 196, 0.10);
+
+      filter: blur(50px);
+
+      top: -100px;
+      right: -100px;
+
+      opacity: 0;
+
+      transition: opacity 0.4s ease;
     }
 
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-card:hover {
+      background:
+        rgba(141, 108, 196, 0.035);
+
+      transform: translateY(-5px);
+    }
+
+
+    /* Icons */
+
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+
+      margin-bottom: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border:
+        1px solid rgba(200, 168, 243, 0.22);
+
+      border-radius: 10px;
+
+      background:
+        rgba(141, 108, 196, 0.07);
+
+      transition: all 0.35s ease;
+    }
+
+    .stat-icon svg {
+      width: 20px;
+      height: 20px;
+
+      stroke: var(--purple-light);
+
+      stroke-width: 1.6;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      transition: 0.35s ease;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform:
+        translateY(-4px)
+        rotate(-4deg);
+
+      box-shadow:
+        0 10px 30px rgba(141, 108, 196, 0.18);
+
+      border-color:
+        rgba(200, 168, 243, 0.45);
+    }
+
+    .stat-card:hover .stat-icon svg {
+      filter:
+        drop-shadow(
+          0 0 5px
+          rgba(200, 168, 243, 0.7)
+        );
+    }
+
+
+    /* Numbers */
+
     .stat-number {
-      font-size: 2.6rem;
+      font-size: 3.1rem;
+
       font-weight: 600;
-      letter-spacing: -2px;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #ffffff, var(--purple-light));
+
+      letter-spacing: -2.5px;
+
+      line-height: 1;
+
+      margin-bottom: 15px;
+
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        var(--purple-light)
+      );
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+
+    /* Labels */
+
     .stat-label {
-      color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.5;
+      color: var(--text);
+
+      font-size: 0.95rem;
+
+      font-weight: 500;
+
+      line-height: 1.4;
+
+      margin-bottom: 12px;
     }
+
+
+    /* Details */
+
+    .stat-detail {
+      color: var(--muted);
+
+      font-size: 0.78rem;
+
+      line-height: 1.65;
+    }
+
+
+    /* Continuous Learning */
+
+    .learning-strip {
+      margin-top: 24px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 22px;
+
+      padding: 25px 30px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(141, 108, 196, 0.08),
+          rgba(255, 255, 255, 0.015)
+        );
+
+      transition: 0.35s ease;
+    }
+
+    .learning-strip:hover {
+      border-color:
+        rgba(200, 168, 243, 0.3);
+
+      transform: translateY(-3px);
+    }
+
+    .learning-symbol {
+      font-size: 2.8rem;
+
+      line-height: 1;
+
+      background: linear-gradient(
+        90deg,
+        var(--purple-light),
+        var(--cyan)
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        infinityPulse 3s ease-in-out infinite;
+    }
+
+    .learning-strip strong {
+      display: block;
+
+      font-size: 0.95rem;
+
+      font-weight: 500;
+
+      margin-bottom: 5px;
+    }
+
+    .learning-strip span {
+      color: var(--muted);
+
+      font-size: 0.85rem;
+    }
+
+
+    @keyframes infinityPulse {
+
+      0%, 100% {
+        transform: scale(1);
+
+        filter:
+          drop-shadow(
+            0 0 0
+            rgba(200, 168, 243, 0)
+          );
+      }
+
+      50% {
+        transform: scale(1.08);
+
+        filter:
+          drop-shadow(
+            0 0 10px
+            rgba(200, 168, 243, 0.4)
+          );
+      }
+
+    }
+
 
     /* ================= SECTIONS ================= */
 
@@ -267,24 +608,33 @@
 
     .section-tag {
       font-family: "DM Mono", monospace;
+
       font-size: 0.72rem;
       letter-spacing: 2px;
+
       color: var(--purple-light);
+
       margin-bottom: 15px;
     }
 
     .section-title {
       font-size: clamp(2.5rem, 4vw, 4rem);
+
       letter-spacing: -2px;
+
       margin-bottom: 20px;
     }
 
     .section-description {
       max-width: 650px;
+
       color: var(--muted);
+
       line-height: 1.8;
+
       margin-bottom: 55px;
     }
+
 
     /* ================= WHO I AM ================= */
 
@@ -294,20 +644,28 @@
 
     .story-grid {
       display: grid;
+
       grid-template-columns: 0.8fr 1.2fr;
+
       gap: 80px;
+
       align-items: center;
     }
 
     .profile-image {
       height: 480px;
+
       border-radius: 18px;
+
       border: 1px solid var(--border);
-      background: linear-gradient(
-        145deg,
-        rgba(141, 108, 196, 0.15),
-        rgba(255, 255, 255, 0.02)
-      );
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(141, 108, 196, 0.15),
+          rgba(255, 255, 255, 0.02)
+        );
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -315,24 +673,31 @@
 
     .profile-placeholder {
       font-size: 5rem;
-      color: rgba(200, 168, 243, 0.35);
+
+      color:
+        rgba(200, 168, 243, 0.35);
     }
 
     .story-text p {
       color: var(--muted);
+
       line-height: 1.9;
+
       margin-bottom: 20px;
     }
 
-    /* UPDATED PART */
-
     .story-highlight {
       color: var(--text) !important;
+
       font-size: 1.05rem;
+
       font-weight: 400;
+
       line-height: 1.85 !important;
+
       margin-bottom: 22px !important;
     }
+
 
     /* ================= EXPERIENCE ================= */
 
@@ -343,42 +708,59 @@
 
     .experience-card {
       display: grid;
+
       grid-template-columns: 160px 1fr;
+
       gap: 35px;
+
       padding: 32px;
+
       border: 1px solid var(--border);
+
       border-radius: 14px;
+
       background: var(--card);
+
       transition: 0.3s ease;
     }
 
     .experience-card:hover {
       transform: translateX(8px);
-      border-color: rgba(200, 168, 243, 0.3);
+
+      border-color:
+        rgba(200, 168, 243, 0.3);
     }
 
     .experience-date {
       font-family: "DM Mono", monospace;
+
       color: var(--purple-light);
+
       font-size: 0.75rem;
     }
 
     .experience-role {
       font-size: 1.35rem;
+
       margin-bottom: 8px;
     }
 
     .experience-company {
       color: var(--purple-light);
+
       font-size: 0.9rem;
+
       margin-bottom: 15px;
     }
 
     .experience-description {
       color: var(--muted);
+
       line-height: 1.7;
+
       font-size: 0.9rem;
     }
+
 
     /* ================= SERVICES ================= */
 
@@ -388,99 +770,142 @@
 
     .services-grid {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
     }
 
     .service-card {
       padding: 35px;
+
       border: 1px solid var(--border);
+
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.02);
+
+      background:
+        rgba(255, 255, 255, 0.02);
+
       transition: 0.35s ease;
     }
 
     .service-card:hover {
       transform: translateY(-8px);
-      background: rgba(141, 108, 196, 0.06);
-      border-color: rgba(200, 168, 243, 0.3);
+
+      background:
+        rgba(141, 108, 196, 0.06);
+
+      border-color:
+        rgba(200, 168, 243, 0.3);
     }
 
     .service-number {
       font-family: "DM Mono", monospace;
+
       color: var(--purple-light);
+
       font-size: 0.75rem;
+
       margin-bottom: 35px;
     }
 
     .service-card h3 {
       font-size: 1.3rem;
+
       margin-bottom: 14px;
     }
 
     .service-card p {
       color: var(--muted);
+
       font-size: 0.9rem;
+
       line-height: 1.7;
     }
+
 
     /* ================= PORTFOLIO ================= */
 
     .portfolio-grid {
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 22px;
     }
 
     .portfolio-card {
       min-height: 380px;
+
       border-radius: 18px;
+
       border: 1px solid var(--border);
-      background: linear-gradient(
-        145deg,
-        rgba(141, 108, 196, 0.10),
-        rgba(255, 255, 255, 0.02)
-      );
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(141, 108, 196, 0.10),
+          rgba(255, 255, 255, 0.02)
+        );
+
       padding: 35px;
+
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+
       position: relative;
+
       overflow: hidden;
+
       transition: 0.4s ease;
     }
 
     .portfolio-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(200, 168, 243, 0.4);
+
+      border-color:
+        rgba(200, 168, 243, 0.4);
     }
 
     .portfolio-number {
       position: absolute;
+
       top: 25px;
       right: 30px;
+
       font-family: "DM Mono", monospace;
-      color: rgba(200, 168, 243, 0.35);
+
+      color:
+        rgba(200, 168, 243, 0.35);
     }
 
     .portfolio-type {
       color: var(--purple-light);
+
       font-family: "DM Mono", monospace;
+
       font-size: 0.7rem;
+
       letter-spacing: 1.5px;
+
       margin-bottom: 14px;
     }
 
     .portfolio-card h3 {
       font-size: 1.7rem;
+
       margin-bottom: 12px;
     }
 
     .portfolio-card p {
       color: var(--muted);
+
       line-height: 1.6;
+
       font-size: 0.9rem;
     }
+
 
     /* ================= TOOLS ================= */
 
@@ -490,30 +915,44 @@
 
     .tools-grid {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 12px;
+
       max-width: 900px;
     }
 
     .tool {
       padding: 13px 18px;
+
       border: 1px solid var(--border);
+
       border-radius: 8px;
+
       color: var(--muted);
-      background: rgba(255, 255, 255, 0.02);
+
+      background:
+        rgba(255, 255, 255, 0.02);
+
       transition: 0.25s ease;
     }
 
     .tool:hover {
       color: var(--text);
+
       border-color: var(--purple-light);
-      background: rgba(141, 108, 196, 0.08);
+
+      background:
+        rgba(141, 108, 196, 0.08);
     }
+
 
     /* ================= CONTACT ================= */
 
     #contact {
       text-align: center;
+
       padding-bottom: 150px;
     }
 
@@ -524,21 +963,34 @@
 
     .contact-title {
       font-size: clamp(3rem, 6vw, 5rem);
+
       letter-spacing: -3px;
+
       margin-bottom: 20px;
     }
 
     .contact-text {
       color: var(--muted);
+
       line-height: 1.8;
+
       margin-bottom: 35px;
     }
 
     .contact-button {
       display: inline-block;
+
       padding: 16px 28px;
-      background: linear-gradient(135deg, #7654a7, #a782d8);
+
+      background:
+        linear-gradient(
+          135deg,
+          #7654a7,
+          #a782d8
+        );
+
       border-radius: 8px;
+
       transition: 0.3s ease;
     }
 
@@ -546,20 +998,27 @@
       transform: translateY(-4px);
     }
 
+
     /* ================= FOOTER ================= */
 
     footer {
       padding: 30px 6%;
+
       border-top: 1px solid var(--border);
+
       display: flex;
       justify-content: space-between;
+
       color: var(--muted);
+
       font-size: 0.75rem;
     }
+
 
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 1000px) {
+
       .story-grid {
         grid-template-columns: 1fr;
       }
@@ -567,19 +1026,30 @@
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-card:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat-card:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
     }
 
+
     @media (max-width: 750px) {
+
       .nav-links {
         display: none;
       }
 
       .hero-headline {
         font-size: clamp(2.8rem, 11vw, 4.5rem);
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
       }
 
       .portfolio-grid {
@@ -590,39 +1060,76 @@
         grid-template-columns: 1fr;
         gap: 15px;
       }
+
     }
 
-    @media (max-width: 550px) {
-      #home,
-      .section,
+
+    @media (max-width: 600px) {
+
       .stats {
-        padding-left: 25px;
-        padding-right: 25px;
+        padding: 80px 25px;
       }
 
-      .stats-grid,
-      .services-grid {
+      .stats-grid {
         grid-template-columns: 1fr;
       }
 
       .stat-card {
+        min-height: auto;
+
         border-right: none !important;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat-card:last-child {
+        border-bottom: none;
+      }
+
+      .stats-header h2 {
+        font-size: 2.4rem;
+      }
+
+      .learning-strip {
+        align-items: flex-start;
+        padding: 22px;
+      }
+
+    }
+
+
+    @media (max-width: 550px) {
+
+      #home,
+      .section {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
       }
 
       footer {
         flex-direction: column;
         gap: 10px;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
+
 
   <!-- ================= NAVIGATION ================= -->
 
   <nav>
-    <a href="#home" class="logo"><span>RV</span>.</a>
+
+    <a href="#home" class="logo">
+      <span>RV</span>.
+    </a>
 
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
@@ -633,7 +1140,9 @@
       <li><a href="#tools">Tools</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+
   </nav>
+
 
   <!-- ================= HOME ================= -->
 
@@ -642,6 +1151,7 @@
     <canvas id="particles"></canvas>
 
     <div class="hero-grid">
+
       <div class="hero-content">
 
         <h1 class="hero-headline">
@@ -656,6 +1166,7 @@
         </p>
 
         <div class="hero-buttons">
+
           <a href="#portfolio" class="btn btn-primary">
             View My Work →
           </a>
@@ -663,42 +1174,199 @@
           <a href="#story" class="btn btn-secondary">
             Get to Know Me ↓
           </a>
+
         </div>
 
       </div>
+
     </div>
 
   </section>
 
-  <!-- ================= STATS ================= -->
+
+  <!-- =====================================================
+       EXPERIENCE HIGHLIGHTS
+       UPDATED STATS SECTION
+  ===================================================== -->
 
   <section class="stats">
 
-    <div class="stats-grid">
+    <div class="stats-container">
 
-      <div class="stat-card">
-        <div class="stat-number">10+</div>
-        <div class="stat-label">Years of Professional Experience</div>
+
+      <!-- Header -->
+
+      <div class="stats-header">
+
+        <p class="stats-tag">
+          EXPERIENCE AT A GLANCE
+        </p>
+
+        <h2>
+          A decade of experience.
+          <span>Still learning what's next.</span>
+        </h2>
+
+        <p>
+          A career built across operations, workforce management,
+          analytics, process improvement, and a continuous curiosity
+          for technology and what's possible next.
+        </p>
+
       </div>
 
-      <div class="stat-card">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Projects, Improvements & Initiatives</div>
+
+      <!-- Stats Grid -->
+
+      <div class="stats-grid">
+
+
+        <!-- 01 EXPERIENCE -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v9l6 3"/>
+              <circle cx="12" cy="12" r="9"/>
+            </svg>
+
+          </div>
+
+          <div class="stat-number">
+            10+
+          </div>
+
+          <div class="stat-label">
+            Years of Professional Experience
+          </div>
+
+          <div class="stat-detail">
+            Leadership, operations, workforce management & analytics
+          </div>
+
+        </div>
+
+
+        <!-- 02 IMPROVEMENTS -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 17l5-5 4 4 7-8"/>
+              <path d="M15 8h5v5"/>
+            </svg>
+
+          </div>
+
+          <div class="stat-number">
+            30+
+          </div>
+
+          <div class="stat-label">
+            Process & Project Improvements
+          </div>
+
+          <div class="stat-detail">
+            Initiatives focused on efficiency, performance & better outcomes
+          </div>
+
+        </div>
+
+
+        <!-- 03 SUPPORT AREAS -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="11" width="3" height="7"/>
+              <rect x="10.5" y="7" width="3" height="11"/>
+              <rect x="17" y="3" width="3" height="15"/>
+            </svg>
+
+          </div>
+
+          <div class="stat-number">
+            4+
+          </div>
+
+          <div class="stat-label">
+            Core Support Areas
+          </div>
+
+          <div class="stat-detail">
+            Data Analytics · Business Analytics · Real-Time Operations · WFM
+          </div>
+
+        </div>
+
+
+        <!-- 04 INDUSTRIES -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="8"/>
+              <path d="M4 12h16"/>
+              <path d="M12 4c2.5 2.2 3.8 5 3.8 8S14.5 17.8 12 20"/>
+              <path d="M12 4c-2.5 2.2-3.8 5-3.8 8S9.5 17.8 12 20"/>
+            </svg>
+
+          </div>
+
+          <div class="stat-number">
+            3
+          </div>
+
+          <div class="stat-label">
+            Industries Supported
+          </div>
+
+          <div class="stat-detail">
+            Marketing · Information Technology · Fintech
+          </div>
+
+        </div>
+
+
       </div>
 
-      <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Operations, Analytics & Technology</div>
+
+      <!-- Continuous Learning -->
+
+      <div class="learning-strip">
+
+        <div class="learning-symbol">
+          ∞
+        </div>
+
+        <div>
+
+          <strong>
+            Curiosity doesn't have a finish line.
+          </strong>
+
+          <span>
+            Continuously expanding my knowledge in Machine Learning,
+            Generative AI, and emerging technologies.
+          </span>
+
+        </div>
+
       </div>
 
-      <div class="stat-card">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">Curiosity & Continuous Learning</div>
-      </div>
 
     </div>
 
   </section>
+
 
   <!-- ================= WHO I AM ================= -->
 
@@ -712,20 +1380,24 @@
           <div class="profile-placeholder">RV</div>
         </div>
 
+
         <div class="story-text">
 
-          <p class="section-tag">01 / WHO I AM</p>
+          <p class="section-tag">
+            01 / WHO I AM
+          </p>
 
           <h2 class="section-title">
             More than just the numbers.
           </h2>
 
-          <!-- UPDATED PART -->
+
           <p class="story-highlight">
             Hi, I'm Roel Valenzuela — a Data Analytics Professional and
             WFM Senior Team Leader with over a decade of experience in
             operations, workforce management, and analytics.
           </p>
+
 
           <p>
             My journey is driven by curiosity and a passion for understanding
@@ -734,12 +1406,14 @@
             opportunities, and make more confident decisions.
           </p>
 
+
           <p>
             Working at the intersection of people, operations, data, and
             technology has given me a practical perspective on problem-solving.
             I don't just look at the numbers—I look for the story behind them
             and what they can tell us about what should happen next.
           </p>
+
 
           <p>
             Today, I continue expanding my knowledge in Machine Learning and
@@ -755,13 +1429,16 @@
 
   </section>
 
+
   <!-- ================= EXPERIENCE ================= -->
 
   <section id="experience" class="section">
 
     <div class="section-container">
 
-      <p class="section-tag">02 / EXPERIENCE</p>
+      <p class="section-tag">
+        02 / EXPERIENCE
+      </p>
 
       <h2 class="section-title">
         Building experience through real business challenges.
@@ -773,51 +1450,70 @@
         technology-driven solutions.
       </p>
 
+
       <div class="timeline">
+
 
         <div class="experience-card">
 
-          <div class="experience-date">CURRENT ROLE</div>
+          <div class="experience-date">
+            CURRENT ROLE
+          </div>
 
           <div>
-            <h3 class="experience-role">WFM Senior Team Leader</h3>
 
-            <p class="experience-company">Add Company Name</p>
+            <h3 class="experience-role">
+              WFM Senior Team Leader
+            </h3>
+
+            <p class="experience-company">
+              Add Company Name
+            </p>
 
             <p class="experience-description">
               Leading operational performance while using workforce insights,
               reporting, and analytical approaches to identify opportunities
               and support better business decisions.
             </p>
+
           </div>
 
         </div>
 
+
         <div class="experience-card">
 
-          <div class="experience-date">PREVIOUS EXPERIENCE</div>
+          <div class="experience-date">
+            PREVIOUS EXPERIENCE
+          </div>
 
           <div>
+
             <h3 class="experience-role">
               Operations & Analytics Experience
             </h3>
 
-            <p class="experience-company">Add Company / Role</p>
+            <p class="experience-company">
+              Add Company / Role
+            </p>
 
             <p class="experience-description">
               Supporting teams through data-driven reporting, operational
               analysis, process improvement, and collaboration with
               cross-functional stakeholders.
             </p>
+
           </div>
 
         </div>
+
 
       </div>
 
     </div>
 
   </section>
+
 
   <!-- ================= SERVICES ================= -->
 
@@ -825,67 +1521,101 @@
 
     <div class="section-container">
 
-      <p class="section-tag">03 / WHAT I CAN DO</p>
+      <p class="section-tag">
+        03 / WHAT I CAN DO
+      </p>
 
       <h2 class="section-title">
         Turning problems into clearer possibilities.
       </h2>
 
+
       <div class="services-grid">
 
+
         <div class="service-card">
+
           <div class="service-number">01</div>
+
           <h3>Data Analysis</h3>
+
           <p>
             Transforming complex and scattered information into meaningful
             insights, patterns, and business understanding.
           </p>
+
         </div>
 
+
         <div class="service-card">
+
           <div class="service-number">02</div>
+
           <h3>Dashboard & Reporting</h3>
+
           <p>
             Creating reports and dashboards that make important information
             easier to understand and act upon.
           </p>
+
         </div>
 
+
         <div class="service-card">
+
           <div class="service-number">03</div>
+
           <h3>Process Improvement</h3>
+
           <p>
             Identifying inefficiencies, opportunities, and practical ways
             to improve operational processes.
           </p>
+
         </div>
 
+
         <div class="service-card">
+
           <div class="service-number">04</div>
+
           <h3>Business Insights</h3>
+
           <p>
             Connecting data with real business context to support better
             recommendations and decision-making.
           </p>
+
         </div>
 
+
         <div class="service-card">
+
           <div class="service-number">05</div>
+
           <h3>Automation & Technology</h3>
+
           <p>
             Exploring ways technology and automation can reduce manual work
             and improve how teams operate.
           </p>
+
         </div>
 
+
         <div class="service-card">
+
           <div class="service-number">06</div>
+
           <h3>Machine Learning & AI</h3>
+
           <p>
             Continuously expanding my knowledge in Machine Learning,
             Generative AI, and real-world business applications.
           </p>
+
         </div>
+
 
       </div>
 
@@ -893,13 +1623,16 @@
 
   </section>
 
+
   <!-- ================= PORTFOLIO ================= -->
 
   <section id="portfolio" class="section">
 
     <div class="section-container">
 
-      <p class="section-tag">04 / SELECTED WORK</p>
+      <p class="section-tag">
+        04 / SELECTED WORK
+      </p>
 
       <h2 class="section-title">
         Projects that turn ideas into impact.
@@ -910,48 +1643,82 @@
         dashboards, and experiments that represent how I approach problems.
       </p>
 
+
       <div class="portfolio-grid">
 
+
         <div class="portfolio-card">
+
           <div class="portfolio-number">01</div>
-          <div class="portfolio-type">DATA ANALYTICS</div>
+
+          <div class="portfolio-type">
+            DATA ANALYTICS
+          </div>
+
           <h3>Operational Scorecard</h3>
+
           <p>
             A centralized view designed to help teams understand operational
             performance, critical areas, and common drivers behind
             performance changes.
           </p>
+
         </div>
 
+
         <div class="portfolio-card">
+
           <div class="portfolio-number">02</div>
-          <div class="portfolio-type">DASHBOARD / INSIGHTS</div>
+
+          <div class="portfolio-type">
+            DASHBOARD / INSIGHTS
+          </div>
+
           <h3>Performance Analytics</h3>
+
           <p>
             Turning performance data into clearer visual insights that help
             stakeholders understand trends and opportunities.
           </p>
+
         </div>
 
+
         <div class="portfolio-card">
+
           <div class="portfolio-number">03</div>
-          <div class="portfolio-type">PROCESS IMPROVEMENT</div>
+
+          <div class="portfolio-type">
+            PROCESS IMPROVEMENT
+          </div>
+
           <h3>Workflow Improvement Initiative</h3>
+
           <p>
             Identifying process challenges and developing practical
             improvements through data and operational understanding.
           </p>
+
         </div>
 
+
         <div class="portfolio-card">
+
           <div class="portfolio-number">04</div>
-          <div class="portfolio-type">MACHINE LEARNING</div>
+
+          <div class="portfolio-type">
+            MACHINE LEARNING
+          </div>
+
           <h3>Learning & Experimentation</h3>
+
           <p>
             Exploring Machine Learning concepts and models to understand
             how predictions and intelligent systems can support decisions.
           </p>
+
         </div>
+
 
       </div>
 
@@ -959,13 +1726,16 @@
 
   </section>
 
+
   <!-- ================= TOOLS ================= -->
 
   <section id="tools" class="section">
 
     <div class="section-container">
 
-      <p class="section-tag">05 / TOOLKIT</p>
+      <p class="section-tag">
+        05 / TOOLKIT
+      </p>
 
       <h2 class="section-title">
         Tools I use to explore, analyze, and build.
@@ -976,7 +1746,9 @@
         automation, Machine Learning, and Generative AI.
       </p>
 
+
       <div class="tools-grid">
+
         <div class="tool">Excel</div>
         <div class="tool">SQL</div>
         <div class="tool">Power BI</div>
@@ -989,11 +1761,13 @@
         <div class="tool">Generative AI</div>
         <div class="tool">Prompt Engineering</div>
         <div class="tool">GitHub</div>
+
       </div>
 
     </div>
 
   </section>
+
 
   <!-- ================= CONTACT ================= -->
 
@@ -1001,7 +1775,9 @@
 
     <div class="contact-container">
 
-      <p class="section-tag">06 / LET'S CONNECT</p>
+      <p class="section-tag">
+        06 / LET'S CONNECT
+      </p>
 
       <h2 class="contact-title">
         Let's turn curiosity into something meaningful.
@@ -1021,121 +1797,202 @@
 
   </section>
 
+
   <!-- ================= FOOTER ================= -->
 
   <footer>
-    <div>© 2026 Roel Valenzuela</div>
-    <div>Built with curiosity.</div>
+
+    <div>
+      © 2026 Roel Valenzuela
+    </div>
+
+    <div>
+      Built with curiosity.
+    </div>
+
   </footer>
+
 
   <!-- ================= PARTICLE ANIMATION ================= -->
 
   <script>
+
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
 
     let W, H;
     let particles = [];
 
+
     function randRange(a, b) {
       return a + Math.random() * (b - a);
     }
 
+
     function resize() {
+
       const rect = canvas.getBoundingClientRect();
 
       W = canvas.width = rect.width;
       H = canvas.height = rect.height;
 
       createParticles();
+
     }
 
+
     function createParticles() {
+
       particles = [];
 
       for (let i = 0; i < 85; i++) {
+
         particles.push({
+
           x: randRange(0, W),
           y: randRange(0, H),
+
           vx: randRange(-0.22, 0.22),
           vy: randRange(-0.22, 0.22),
+
           radius: randRange(1, 2.5),
-          color: Math.random() > 0.75 ? "cyan" : "purple",
-          pulse: randRange(0, Math.PI * 2)
+
+          color:
+            Math.random() > 0.75
+              ? "cyan"
+              : "purple",
+
+          pulse:
+            randRange(0, Math.PI * 2)
+
         });
+
       }
+
     }
 
+
     function draw(time = 0) {
+
       ctx.clearRect(0, 0, W, H);
 
+
       particles.forEach((particle) => {
+
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        particle.y += Math.sin(
-          time * 0.001 + particle.pulse
-        ) * 0.08;
 
-        if (particle.x < 0 || particle.x > W) {
+        particle.y +=
+          Math.sin(
+            time * 0.001 +
+            particle.pulse
+          ) * 0.08;
+
+
+        if (
+          particle.x < 0 ||
+          particle.x > W
+        ) {
           particle.vx *= -1;
         }
 
-        if (particle.y < 0 || particle.y > H) {
+
+        if (
+          particle.y < 0 ||
+          particle.y > H
+        ) {
           particle.vy *= -1;
         }
+
       });
 
+
+      /* Connections */
+
       for (let i = 0; i < particles.length; i++) {
+
         for (let j = i + 1; j < particles.length; j++) {
 
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const dx =
+            particles[i].x -
+            particles[j].x;
+
+          const dy =
+            particles[i].y -
+            particles[j].y;
+
+          const distance =
+            Math.sqrt(
+              dx * dx +
+              dy * dy
+            );
+
 
           if (distance < 125) {
 
-            const opacity = (1 - distance / 125) * 0.18;
+            const opacity =
+              (1 - distance / 125) * 0.18;
+
 
             ctx.beginPath();
+
             ctx.strokeStyle =
               `rgba(180, 145, 235, ${opacity})`;
 
             ctx.lineWidth = 0.6;
+
 
             ctx.moveTo(
               particles[i].x,
               particles[i].y
             );
 
+
             ctx.lineTo(
               particles[j].x,
               particles[j].y
             );
 
+
             ctx.stroke();
+
           }
+
         }
+
       }
+
+
+      /* Particle Nodes */
 
       particles.forEach((particle) => {
 
         const pulse =
-          Math.sin(time * 0.002 + particle.pulse) * 0.5 + 0.5;
+          Math.sin(
+            time * 0.002 +
+            particle.pulse
+          ) * 0.5 + 0.5;
+
 
         ctx.beginPath();
 
-        ctx.shadowBlur = 8 + pulse * 10;
+
+        ctx.shadowBlur =
+          8 + pulse * 10;
+
 
         ctx.shadowColor =
           particle.color === "cyan"
             ? "#73d5e6"
             : "#c8a8f3";
 
+
         ctx.fillStyle =
           particle.color === "cyan"
             ? "#73d5e6"
             : "#c8a8f3";
+
 
         ctx.arc(
           particle.x,
@@ -1145,20 +2002,31 @@
           Math.PI * 2
         );
 
+
         ctx.fill();
 
+
         ctx.shadowBlur = 0;
+
       });
 
+
       requestAnimationFrame(draw);
+
     }
+
 
     resize();
 
-    window.addEventListener("resize", resize);
+    window.addEventListener(
+      "resize",
+      resize
+    );
 
     draw();
+
   </script>
+
 
 </body>
 </html>
