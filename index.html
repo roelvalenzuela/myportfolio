@@ -762,6 +762,53 @@
     .toggle-label-short { display: none; }
 
     @media (max-width: 750px) {
+
+      .career-timeline {
+        padding-left: 58px;
+        margin-top: 52px;
+      }
+
+      .career-timeline::before {
+        left: 18px;
+      }
+
+      .timeline-node {
+        left: -54px;
+        width: 26px;
+        height: 26px;
+      }
+
+      .timeline-node::after {
+        inset: 7px;
+      }
+
+      .timeline-item {
+        padding-bottom: 54px;
+      }
+
+      .timeline-company {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .timeline-duration {
+        display: block;
+        margin-top: 8px;
+      }
+
+      .role-entry {
+        padding: 22px 20px 22px 24px;
+      }
+
+      .role-entry.current::after {
+        position: static;
+        display: inline-block;
+        margin-bottom: 14px;
+      }
+
+    }
+
+    @media (max-width: 750px) {
       .story-header { margin-bottom: 20px; }
 
       .story-toggle {
@@ -821,7 +868,7 @@
     .stats {
       position: relative;
 
-      padding: 115px 6% 105px;
+      padding: 115px 6% 65px;
 
       overflow: hidden;
 
@@ -869,6 +916,10 @@
     .stats-header {
       max-width: 750px;
       margin-bottom: 55px;
+    }
+
+    .experience-section-number {
+      margin-bottom: 28px;
     }
 
     .stats-tag {
@@ -1095,79 +1146,268 @@
 
 
     /* =====================================================
-       02 / EXPERIENCE
+       03 / EXPERIENCE — LIVING TIMELINE
     ===================================================== */
 
     #experience {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--bg);
+
+      /* Keep the transition from the stats section tight and intentional */
+      padding-top: 70px;
+    }
+
+    /* Subtle living background — no decorative circles */
+    #experience::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
       background:
-        radial-gradient(
-          circle at 85% 70%,
-          rgba(115, 213, 230, 0.035),
-          transparent 25%
-        ),
-        var(--bg);
+        radial-gradient(ellipse at 18% 30%, rgba(141, 108, 196, 0.10), transparent 24%),
+        radial-gradient(ellipse at 78% 18%, rgba(115, 213, 230, 0.055), transparent 22%),
+        radial-gradient(ellipse at 62% 78%, rgba(141, 108, 196, 0.065), transparent 26%);
+      filter: blur(28px);
+      opacity: 0.9;
+      transform: translate3d(0, 0, 0) scale(1.02);
+      animation: experienceBackgroundDrift 20s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: -2;
     }
 
-    .timeline {
-      display: grid;
-      gap: 20px;
+    #experience::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg,
+          transparent 0%,
+          transparent 42%,
+          rgba(200, 168, 243, 0.025) 48%,
+          transparent 54%,
+          transparent 100%);
+      background-size: 460px 460px;
+      opacity: 0.75;
+      animation: experienceLightSweep 24s linear infinite;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .experience-card {
-      display: grid;
-
-      grid-template-columns:
-        160px 1fr;
-
-      gap: 35px;
-
-      padding: 32px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 14px;
-
-      background: var(--card);
-
-      transition: 0.3s ease;
+    #experience .container {
+      position: relative;
+      z-index: 1;
     }
 
-    .experience-card:hover {
-      transform:
-        translateX(8px);
-
-      border-color:
-        rgba(200, 168, 243, 0.3);
+    @keyframes experienceBackgroundDrift {
+      0% {
+        transform: translate3d(-2%, -1%, 0) scale(1.02);
+      }
+      50% {
+        transform: translate3d(3%, 2%, 0) scale(1.06);
+      }
+      100% {
+        transform: translate3d(-1%, 4%, 0) scale(1.03);
+      }
     }
 
-    .experience-date {
+    @keyframes experienceLightSweep {
+      from { background-position: -460px 0; }
+      to { background-position: 460px 0; }
+    }
+
+    .experience-intro {
+      max-width: 760px;
+    }
+
+    .career-timeline {
+      position: relative;
+      margin-top: 70px;
+      padding-left: 92px;
+    }
+
+    .career-timeline::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 10px;
+      bottom: 40px;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(200, 168, 243, 0.75) 6%,
+        rgba(115, 213, 230, 0.38) 75%,
+        transparent
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 72px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -78px;
+      top: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 168, 243, 0.55);
+      background: var(--bg);
+      box-shadow: 0 0 0 7px rgba(141, 108, 196, 0.07);
+    }
+
+    .timeline-node::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      box-shadow: 0 0 18px rgba(200, 168, 243, 0.8);
+      animation: timelinePulse 3.2s ease-in-out infinite;
+    }
+
+    .timeline-item:nth-child(even) .timeline-node {
+      border-color: rgba(115, 213, 230, 0.45);
+      box-shadow: 0 0 0 7px rgba(115, 213, 230, 0.06);
+    }
+
+    .timeline-item:nth-child(even) .timeline-node::after {
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(115, 213, 230, 0.7);
+      animation-delay: 0.7s;
+    }
+
+    .timeline-period {
       font-family: "DM Mono", monospace;
-
       color: var(--purple-light);
-
-      font-size: 0.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .experience-role {
-      font-size: 1.35rem;
-      margin-bottom: 8px;
+    .timeline-company {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
-    .experience-company {
+    .timeline-company h3 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      letter-spacing: -0.03em;
+    }
+
+    .timeline-duration {
+      font-family: "DM Mono", monospace;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+    }
+
+    .role-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .role-entry {
+      position: relative;
+      padding: 24px 26px 24px 30px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(90deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008));
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    }
+
+    .role-entry::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--purple-light), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .role-entry:hover {
+      transform: translateX(8px);
+      border-left-color: rgba(200, 168, 243, 0.6);
+      background: linear-gradient(90deg, rgba(141,108,196,0.10), rgba(255,255,255,0.012));
+    }
+
+    .role-entry:hover::before {
+      opacity: 1;
+    }
+
+    .role-entry.current {
+      border: 1px solid rgba(200, 168, 243, 0.22);
+      border-left: 1px solid rgba(200, 168, 243, 0.6);
+      border-radius: 0 14px 14px 0;
+      background: linear-gradient(100deg, rgba(141,108,196,0.13), rgba(255,255,255,0.018));
+    }
+
+    .role-entry.current::after {
+      content: "CURRENT";
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
+      padding: 6px 8px;
+      border: 1px solid rgba(115,213,230,0.22);
+      border-radius: 999px;
+      background: rgba(115,213,230,0.05);
+    }
+
+    .role-title {
+      font-size: 1.08rem;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+
+    .role-date {
+      font-family: "DM Mono", monospace;
       color: var(--purple-light);
-
-      font-size: 0.9rem;
-
+      font-size: 0.72rem;
       margin-bottom: 15px;
     }
 
-    .experience-description {
+    .role-summary {
+      margin: 0;
+      max-width: 930px;
       color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
 
-      line-height: 1.7;
+    .role-summary strong {
+      color: var(--text);
+      font-weight: 600;
+    }
 
-      font-size: 0.9rem;
+    @keyframes timelinePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.28); opacity: 0.72; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #experience::before,
+      #experience::after,
+      .timeline-node::after {
+        animation: none !important;
+      }
     }
 
 
@@ -1644,6 +1884,10 @@
         padding: 80px 25px 30px;
       }
 
+      #experience {
+        padding-top: 65px;
+      }
+
       .stats-grid {
         grid-template-columns: 1fr;
       }
@@ -2048,6 +2292,10 @@
 
       <div class="stats-header">
 
+        <p class="section-tag experience-section-number">
+          03 / EXPERIENCE
+        </p>
+
         <p class="stats-tag">
           EXPERIENCE AT A GLANCE
         </p>
@@ -2064,8 +2312,8 @@
 
         <p>
 
-          A career built across operations, workforce management,
-          analytics, process improvement, and a continuous curiosity
+          A career built across operations, workforce management, analytics,
+          process improvement, and leadership—driven by a continuous curiosity
           for technology and what's possible next.
 
         </p>
@@ -2205,81 +2453,132 @@
 
     <div class="section-container">
 
-      <p class="section-tag">
-        03 / EXPERIENCE
-      </p>
+      <div class="experience-intro">
 
-      <h2 class="section-title">
-        Building experience through real business challenges.
-      </h2>
+        <h2 class="section-title">
+          Building experience through real business challenges.
+        </h2>
 
-      <p class="section-description">
+        <p class="section-description">
+          My professional journey has taken me across leadership, workforce management,
+          operations, business analytics, process improvement, and technology-driven
+          solutions—each role building on the last and shaping how I approach complex
+          challenges today.
+        </p>
 
-        My professional journey has involved leadership, workforce
-        management, operations, analytics, process improvement,
-        reporting, and technology-driven solutions.
-
-      </p>
+      </div>
 
 
-      <div class="timeline">
+      <div class="career-timeline">
 
-        <div class="experience-card">
+        <!-- TDCX -->
+        <article class="timeline-item">
 
-          <div class="experience-date">
-            CURRENT ROLE
+          <div class="timeline-node" aria-hidden="true"></div>
+
+          <p class="timeline-period">2021 — Present</p>
+
+          <div class="timeline-company">
+            <h3>TDCX</h3>
+            <span class="timeline-duration">5+ YEARS OF GROWTH</span>
           </div>
 
-          <div>
+          <div class="role-stack">
 
-            <h3 class="experience-role">
-              WFM Senior Team Leader
-            </h3>
+            <div class="role-entry current">
+              <h4 class="role-title">Senior Team Lead — Global Real-Time Operations</h4>
+              <div class="role-date">CURRENT ROLE</div>
+              <p class="role-summary">
+                Currently leading a team of <strong>19+ professionals</strong> supporting multiple
+                real-time operations specializations across the Global Command Center. My focus
+                goes beyond day-to-day delivery—helping <strong>scale the support we provide</strong>,
+                strengthen how work flows into the team, and build the foundations needed for
+                sustainable growth.
+                <br><br>
+                Working to establish stronger capabilities around <strong>training, quality, intake
+                processes, and operational alignment</strong>, while bringing teams and stakeholders
+                together around clearer ways of working. The goal is to build an operation that can
+                grow without losing consistency, quality, or clarity.
+              </p>
+            </div>
 
-            <p class="experience-company">
-              Add Company Name
-            </p>
+            <div class="role-entry">
+              <h4 class="role-title">Senior Business Analytics Expert</h4>
+              <div class="role-date">2025</div>
+              <p class="role-summary">
+                Played a key role in <strong>strengthening and scaling the Business Analytics function</strong>,
+                expanding its reach and improving how data and insights were delivered to stakeholders.
+                Helped establish more consistent ways of working through validation processes,
+                documentation, clearer standards, and stronger team alignment—raising confidence in
+                the <strong>quality and reliability of the outputs we deliver</strong>.
+              </p>
+            </div>
 
-            <p class="experience-description">
-
-              Leading operational performance while using workforce
-              insights, reporting, and analytical approaches to identify
-              opportunities and support better business decisions.
-
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="experience-card">
-
-          <div class="experience-date">
-            PREVIOUS EXPERIENCE
-          </div>
-
-          <div>
-
-            <h3 class="experience-role">
-              Operations & Analytics Experience
-            </h3>
-
-            <p class="experience-company">
-              Add Company / Role
-            </p>
-
-            <p class="experience-description">
-
-              Supporting teams through data-driven reporting,
-              operational analysis, process improvement, and
-              collaboration with cross-functional stakeholders.
-
-            </p>
+            <div class="role-entry">
+              <h4 class="role-title">Business Analytics Expert</h4>
+              <div class="role-date">2021 — 2025</div>
+              <p class="role-summary">
+                Worked at the intersection of <strong>data, operations, and business needs</strong>, creating
+                analytics solutions that made information more accessible and easier to act on.
+                Built dashboards, reporting solutions, data models, and operational tools while
+                partnering with stakeholders to turn complex business needs into practical,
+                data-driven solutions.
+              </p>
+            </div>
 
           </div>
 
-        </div>
+        </article>
+
+
+        <!-- BAYVIEW -->
+        <article class="timeline-item">
+
+          <div class="timeline-node" aria-hidden="true"></div>
+
+          <p class="timeline-period">2016 — 2021</p>
+
+          <div class="timeline-company">
+            <h3>Bayview Technologies, Inc.</h3>
+            <span class="timeline-duration">WHERE THE FOUNDATION BEGAN</span>
+          </div>
+
+          <div class="role-stack">
+
+            <div class="role-entry">
+              <h4 class="role-title">BA Supervisor</h4>
+              <div class="role-date">2018 — 2021</div>
+              <p class="role-summary">
+                Led and supported a team of business analysts while balancing people development
+                with the delivery of reporting, analytics, and operational support. Worked across
+                operations, finance, marketing, and technology to improve processes, solve business
+                challenges, and strengthen how data supported decision-making.
+              </p>
+            </div>
+
+            <div class="role-entry">
+              <h4 class="role-title">Senior Business Analyst</h4>
+              <div class="role-date">2017 — 2018</div>
+              <p class="role-summary">
+                Took on more complex analytical and technical responsibilities across multiple systems
+                and data sources, developing reporting and data solutions that improved the efficiency,
+                reliability, and accessibility of business information.
+              </p>
+            </div>
+
+            <div class="role-entry">
+              <h4 class="role-title">Junior Business Analyst</h4>
+              <div class="role-date">2016 — 2017</div>
+              <p class="role-summary">
+                Built the foundations of my career through operational data, performance reporting,
+                and business analysis—learning how information could be transformed into insights that
+                help teams make better decisions and improve day-to-day operations.
+              </p>
+            </div>
+
+          </div>
+
+        </article>
 
       </div>
 
