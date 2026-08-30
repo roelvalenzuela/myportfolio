@@ -480,22 +480,20 @@
     .professional-grid {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 70px;
-      align-items: center;
+      gap: 75px;
+      align-items: stretch;
     }
 
     .profile-image {
-      height: 650px;
+      min-height: 650px;
+      height: auto;
       border-radius: 18px;
       border: 1px solid var(--border);
       background: linear-gradient(145deg, rgba(141,108,196,.14), rgba(255,255,255,.02));
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
+    
     .profile-placeholder {
       position: relative;
       z-index: 2;
@@ -510,7 +508,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-position: center 90%;
+      object-position: center center;
       object-fit: cover;
       z-index: 3;
     }
