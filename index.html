@@ -1,22 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Roel Valenzuela | Data Analytics Portfolio</title>
-
-  <!-- GOOGLE FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roel Valenzuela | Data Analytics Portfolio</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
 
     /* =====================================================
        ROOT
@@ -1314,9 +1307,87 @@
       letter-spacing: 0.06em;
     }
 
+    .timeline-location {
+      flex-basis: 100%;
+      margin-top: -8px;
+      font-family: "DM Mono", monospace;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+
     .role-stack {
       display: grid;
       gap: 14px;
+    }
+
+    /* Expandable role details */
+    details.role-entry {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .role-toggle {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px 26px 24px 30px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .role-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .role-toggle::marker {
+      content: "";
+    }
+
+    .role-toggle-main {
+      min-width: 0;
+    }
+
+    .role-chevron {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      color: var(--purple-light);
+      font-size: 1rem;
+      transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+    }
+
+    details.role-entry[open] .role-chevron {
+      transform: rotate(180deg);
+      background: rgba(141,108,196,0.12);
+      border-color: rgba(200,168,243,0.38);
+    }
+
+    details.role-entry .role-summary {
+      padding: 0 26px 26px 30px;
+      margin: 0;
+    }
+
+    details.role-entry:not([open]):hover .role-toggle {
+      background: linear-gradient(90deg, rgba(141,108,196,0.07), rgba(255,255,255,0.008));
+    }
+
+    @media (max-width: 640px) {
+      .role-toggle {
+        padding: 20px 18px 20px 22px;
+        gap: 12px;
+      }
+      details.role-entry .role-summary {
+        padding: 0 18px 22px 22px;
+      }
+      .role-chevron {
+        width: 30px;
+        height: 30px;
+      }
     }
 
     .role-entry {
@@ -1577,99 +1648,249 @@
 
 
     /* =====================================================
-       04 / PORTFOLIO
+       04 / SELECTED WORK
     ===================================================== */
 
     #portfolio {
+      position: relative;
+      overflow: hidden;
       background:
-        radial-gradient(
-          circle at 80% 20%,
-          rgba(141, 108, 196, 0.06),
-          transparent 28%
-        ),
+        radial-gradient(circle at 12% 18%, rgba(141,108,196,.075), transparent 26%),
+        radial-gradient(circle at 88% 72%, rgba(115,213,230,.045), transparent 28%),
         var(--bg);
+    }
+
+    #portfolio::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent 0%, rgba(200,168,243,.018) 45%, transparent 70%);
+      animation: portfolioSheen 16s ease-in-out infinite alternate;
+    }
+
+    .work-intro {
+      max-width: 760px;
+      margin-bottom: 64px;
+    }
+
+    .work-intro .section-description {
+      max-width: 720px;
+    }
+
+    .work-category {
+      position: relative;
+      z-index: 1;
+      margin-top: 82px;
+    }
+
+    .work-category:first-of-type { margin-top: 0; }
+
+    .work-category-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .work-category-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "DM Mono", monospace;
+      font-size: .68rem;
+      letter-spacing: 1.8px;
+      color: var(--purple-light);
+      margin-bottom: 10px;
+    }
+
+    .work-category-kicker::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--purple-light), var(--cyan));
+    }
+
+    .work-category h3 {
+      font-size: clamp(1.5rem, 2.4vw, 2.15rem);
+      font-weight: 500;
+      letter-spacing: -.8px;
+    }
+
+    .work-category-count {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     .portfolio-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 22px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .portfolio-card {
-      min-height: 380px;
-
-      border-radius: 18px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(141, 108, 196, 0.10),
-          rgba(255, 255, 255, 0.02)
-        );
-
-      padding: 35px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-
+      min-height: 0;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(141,108,196,.075), rgba(255,255,255,.018));
       position: relative;
-
       overflow: hidden;
-
-      transition: 0.4s ease;
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
     }
 
     .portfolio-card:hover {
-      transform:
-        translateY(-8px);
-
-      border-color:
-        rgba(200, 168, 243, 0.4);
+      transform: translateY(-8px);
+      border-color: rgba(200,168,243,.42);
+      box-shadow: 0 22px 60px rgba(0,0,0,.24);
     }
+
+    .project-visual {
+      height: 230px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: #11111a;
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.08) 50%, transparent 80%);
+      transform: translateX(-120%);
+      transition: transform .8s ease;
+    }
+
+    .portfolio-card:hover .project-visual::after { transform: translateX(120%); }
+
+    .visual-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .42;
+      background-image: linear-gradient(rgba(200,168,243,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,243,.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .visual-label {
+      position: absolute;
+      left: 20px;
+      top: 18px;
+      z-index: 2;
+      font-family: "DM Mono", monospace;
+      font-size: .62rem;
+      letter-spacing: 1.4px;
+      color: rgba(255,255,255,.56);
+    }
+
+    .visual-bars, .visual-bars span { position: absolute; }
+    .visual-bars { left: 32px; right: 32px; bottom: 28px; height: 130px; display: flex; align-items: flex-end; gap: 10px; }
+    .visual-bars span { position: relative; flex: 1; min-height: 18px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--purple-light), rgba(141,108,196,.18)); box-shadow: 0 0 22px rgba(141,108,196,.16); }
+    .visual-bars span:nth-child(2n) { background: linear-gradient(180deg, var(--cyan), rgba(115,213,230,.12)); }
+
+    .visual-flow {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 14px;
+    }
+    .flow-node {
+      width: 72px; height: 72px; border-radius: 16px; border: 1px solid rgba(200,168,243,.32); background: rgba(141,108,196,.10); display: grid; place-items: center; font-family: "DM Mono", monospace; font-size: .62rem; color: var(--purple-light); position: relative;
+    }
+    .flow-node + .flow-node::before { content: "→"; position: absolute; right: calc(100% + 4px); color: rgba(115,213,230,.65); font-size: 1.1rem; }
+
+    .visual-line {
+      position: absolute; left: 28px; right: 28px; bottom: 35px; height: 120px;
+    }
+    .visual-line svg { width: 100%; height: 100%; overflow: visible; }
+    .visual-line polyline { fill: none; stroke: var(--cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(115,213,230,.25)); }
+    .visual-line circle { fill: var(--purple-light); }
+
+    .visual-dashboard {
+      position: absolute; inset: 36px 30px 26px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px;
+    }
+    .dash-panel { border: 1px solid rgba(255,255,255,.10); border-radius: 10px; background: rgba(255,255,255,.035); position: relative; overflow: hidden; }
+    .dash-panel::before { content: ""; position: absolute; left: 12px; right: 12px; top: 14px; height: 7px; border-radius: 10px; background: rgba(255,255,255,.10); box-shadow: 0 18px 0 rgba(255,255,255,.05), 0 36px 0 rgba(255,255,255,.05); }
+    .dash-panel.large::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 14px; height: 50%; background: linear-gradient(135deg, transparent 0 12%, rgba(141,108,196,.35) 12% 15%, transparent 15% 30%, rgba(115,213,230,.35) 30% 33%, transparent 33% 48%, rgba(141,108,196,.42) 48% 51%, transparent 51%); clip-path: polygon(0 82%, 16% 55%, 32% 66%, 48% 25%, 66% 45%, 82% 10%, 100% 28%, 100% 100%, 0 100%); }
+
+    .visual-regression {
+      position: absolute; inset: 26px 28px; border: 1px solid rgba(255,255,255,.09); border-radius: 14px; background: rgba(255,255,255,.025);
+    }
+    .visual-regression::before { content: "y = β₀ + β₁x₁ + β₂x₂"; position: absolute; left: 18px; top: 16px; font-family: "DM Mono", monospace; color: var(--purple-light); font-size: .7rem; }
+    .visual-dots { position: absolute; inset: 56px 20px 20px; background: radial-gradient(circle at 10% 75%, var(--purple-light) 0 3px, transparent 4px), radial-gradient(circle at 20% 62%, var(--cyan) 0 3px, transparent 4px), radial-gradient(circle at 34% 68%, var(--purple-light) 0 3px, transparent 4px), radial-gradient(circle at 47% 45%, var(--cyan) 0 3px, transparent 4px), radial-gradient(circle at 62% 40%, var(--purple-light) 0 3px, transparent 4px), radial-gradient(circle at 74% 25%, var(--cyan) 0 3px, transparent 4px), radial-gradient(circle at 88% 17%, var(--purple-light) 0 3px, transparent 4px); }
+    .visual-dots::after { content: ""; position: absolute; left: 4%; right: 4%; top: 58%; height: 2px; background: linear-gradient(90deg, transparent, var(--purple-light), var(--cyan), transparent); transform: rotate(-27deg); transform-origin: left center; opacity: .75; }
+
+    .visual-platform { position: absolute; inset: 0; display: grid; place-items: center; }
+    .platform-core { width: 120px; height: 120px; border-radius: 22px; border: 1px solid rgba(200,168,243,.42); background: radial-gradient(circle at 35% 30%, rgba(115,213,230,.22), rgba(141,108,196,.12) 45%, transparent 70%); display: grid; place-items: center; font-family: "DM Mono", monospace; font-size: .8rem; letter-spacing: 2px; color: #fff; box-shadow: 0 0 50px rgba(141,108,196,.18); }
+    .platform-core::before, .platform-core::after { content: ""; position: absolute; width: 230px; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,168,243,.45), transparent); }
+    .platform-core::before { transform: rotate(30deg); } .platform-core::after { transform: rotate(-30deg); }
+
+
+
+    /* =====================================================
+       RICH CONCEPTUAL WORK VISUALS — fictional/anonymized
+       ===================================================== */
+    .project-visual { background: linear-gradient(145deg, #151520, #0f1018 72%); }
+    .project-visual::before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 78% 12%, rgba(141,108,196,.11), transparent 34%), radial-gradient(circle at 18% 88%, rgba(115,213,230,.07), transparent 30%); pointer-events:none; }
+    .mock-app { position:absolute; inset:16px 18px 14px; z-index:1; border:1px solid rgba(255,255,255,.11); border-radius:13px; background:linear-gradient(180deg, rgba(28,29,42,.98), rgba(18,19,28,.98)); box-shadow:0 18px 45px rgba(0,0,0,.2); overflow:hidden; color:rgba(255,255,255,.7); font-family:"DM Mono",monospace; font-size:.48rem; }
+    .mock-topbar { height:27px; display:flex; align-items:center; gap:6px; padding:0 11px; border-bottom:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.018); }
+    .mock-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.28)} .mock-dot:nth-child(2){background:rgba(141,108,196,.65)} .mock-dot:nth-child(3){background:rgba(115,213,230,.55)}
+    .mock-app-title{margin-left:5px;letter-spacing:.8px;color:rgba(255,255,255,.52)}
+    .mock-shell{display:grid;grid-template-columns:58px 1fr;height:calc(100% - 27px)}
+    .mock-nav{padding:12px 7px;border-right:1px solid rgba(255,255,255,.06);display:grid;align-content:start;gap:7px;background:rgba(0,0,0,.11)}
+    .mock-nav span{height:14px;border-radius:4px;background:rgba(255,255,255,.055)} .mock-nav span.active{background:rgba(141,108,196,.22);border-left:2px solid var(--purple-light)}
+    .mock-main{padding:11px;min-width:0}.mock-row{display:flex;gap:8px}.mock-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px}
+    .mock-kpi{min-height:42px;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:7px;background:rgba(255,255,255,.025)} .mock-kpi small{display:block;color:rgba(255,255,255,.35);font-size:.42rem;margin-bottom:4px}.mock-kpi b{font-size:.72rem;font-weight:500;color:rgba(255,255,255,.82)}.mock-kpi em{font-style:normal;font-size:.4rem;color:var(--cyan);margin-left:3px}
+    .mock-panel{border:1px solid rgba(255,255,255,.07);border-radius:8px;background:rgba(255,255,255,.018);position:relative;overflow:hidden}.mock-panel.pad{padding:9px}.panel-head{font-size:.42rem;color:rgba(255,255,255,.43);margin-bottom:7px;letter-spacing:.5px}
+    .mini-bars{height:62px;display:flex;align-items:end;gap:5px;padding-top:4px}.mini-bars i{flex:1;min-height:8px;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--purple-light),rgba(141,108,196,.14))}.mini-bars i:nth-child(3n){background:linear-gradient(180deg,var(--cyan),rgba(115,213,230,.14))}
+    .mock-line{height:70px;position:relative;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:100% 22px}.mock-line svg{position:absolute;inset:0;width:100%;height:100%}.mock-line polyline{fill:none;stroke:var(--cyan);stroke-width:2.2}.mock-line circle{fill:var(--purple-light)}
+    .mock-table{width:100%;border-collapse:collapse;font-size:.43rem}.mock-table th{font-weight:400;color:rgba(255,255,255,.35);text-align:left;padding:5px 4px;border-bottom:1px solid rgba(255,255,255,.07)}.mock-table td{padding:5px 4px;border-bottom:1px solid rgba(255,255,255,.045);color:rgba(255,255,255,.58)}.status-good{color:#8ecfb5!important}.status-warn{color:#d9bb78!important}.status-hot{color:#d98585!important}
+    .kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;height:calc(100% - 35px);padding:9px}.kan-col{border:1px solid rgba(255,255,255,.06);border-radius:7px;padding:7px;background:rgba(255,255,255,.018)}.kan-head{display:flex;justify-content:space-between;color:rgba(255,255,255,.46);margin-bottom:7px}.kan-card{height:24px;margin-bottom:5px;border-radius:4px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.055);padding:5px;font-size:.38rem}.kan-card b{display:block;font-weight:400;color:rgba(255,255,255,.7)}
+    .workflow-canvas{position:absolute;inset:35px 22px 16px;display:grid;place-items:center}.wf-track{width:92%;display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr;align-items:center}.wf-node{min-height:66px;border:1px solid rgba(200,168,243,.28);border-radius:11px;background:linear-gradient(145deg,rgba(141,108,196,.15),rgba(255,255,255,.025));display:grid;place-items:center;text-align:center;padding:8px;color:var(--purple-light);font:.53rem "DM Mono",monospace}.wf-arrow{text-align:center;color:var(--cyan);font-size:.9rem}.wf-sub{font-size:.36rem;color:rgba(255,255,255,.38);margin-top:3px}
+    .data-flow{position:absolute;inset:39px 24px 16px;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:12px;align-items:center}.data-stack{display:grid;gap:7px}.source-chip,.data-node{border:1px solid rgba(255,255,255,.09);border-radius:8px;background:rgba(255,255,255,.035);padding:9px;color:rgba(255,255,255,.62);font:.47rem "DM Mono",monospace}.source-chip:before{content:"●";color:var(--cyan);margin-right:6px}.query-box{height:104px;border:1px solid rgba(141,108,196,.22);border-radius:9px;background:#12131d;padding:10px;color:rgba(255,255,255,.44);font:.43rem/1.8 "DM Mono",monospace}.query-box b{color:var(--purple-light);font-weight:400}.query-box i{color:var(--cyan);font-style:normal}.data-arrow{text-align:center;color:var(--purple-light);font-size:1rem}
+    .reg-app .mock-main{padding:10px}.scatter{height:108px;position:relative;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:20% 25%;overflow:hidden}.scatter .fit{position:absolute;left:5%;top:68%;width:92%;height:2px;background:var(--purple-light);transform:rotate(-27deg);transform-origin:left;box-shadow:0 0 10px rgba(141,108,196,.45)}.pt{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(115,213,230,.35)}.pt.p{background:var(--purple-light)}
+    .metric-list{display:grid;gap:6px}.metric-row{display:grid;grid-template-columns:70px 1fr 26px;gap:7px;align-items:center;font-size:.42rem;color:rgba(255,255,255,.48)}.metric-row i{height:5px;border-radius:10px;background:linear-gradient(90deg,var(--purple-light) var(--w),rgba(255,255,255,.07) var(--w));display:block}.metric-row b{font-weight:400;color:rgba(255,255,255,.68)}
+    .site-map{position:absolute;inset:39px 25px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:center}.site-card{border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:10px;background:rgba(255,255,255,.025);position:relative}.site-card b{display:block;font:.54rem "DM Mono",monospace;color:var(--purple-light);margin-bottom:8px}.site-card span{display:block;height:5px;border-radius:6px;background:rgba(255,255,255,.08);margin-top:5px}.site-card span:nth-child(2){width:82%;background:rgba(115,213,230,.35)}.site-card:after{content:"CONNECTED";position:absolute;right:8px;top:8px;font:.34rem "DM Mono",monospace;color:rgba(115,213,230,.65)}
+    .platform-map{position:absolute;inset:30px 20px 15px;display:grid;place-items:center}.platform-core{position:relative;z-index:2;width:90px;height:90px;font-size:.72rem}.platform-satellite{position:absolute;width:70px;padding:7px;border:1px solid rgba(255,255,255,.09);border-radius:7px;background:rgba(255,255,255,.035);font:.38rem "DM Mono",monospace;text-align:center;color:rgba(255,255,255,.52)}.platform-satellite.s1{transform:translate(-135px,-46px)}.platform-satellite.s2{transform:translate(135px,-46px)}.platform-satellite.s3{transform:translate(-135px,52px)}.platform-satellite.s4{transform:translate(135px,52px)}.platform-map:before,.platform-map:after{content:"";position:absolute;width:360px;height:1px;background:linear-gradient(90deg,transparent,rgba(141,108,196,.4),transparent);transform:rotate(27deg)}.platform-map:after{transform:rotate(-27deg)}
+    .validation-app .mock-shell{grid-template-columns:1fr}.validation-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:9px;padding:10px}.checklist{display:grid;gap:6px}.check{display:flex;gap:7px;align-items:center;padding:7px;border:1px solid rgba(255,255,255,.06);border-radius:6px;color:rgba(255,255,255,.5)}.check:before{content:"✓";color:var(--cyan);font-size:.55rem}.doc-lines{padding:8px}.doc-lines span{display:block;height:6px;background:rgba(255,255,255,.07);border-radius:6px;margin-bottom:7px}.doc-lines span:nth-child(2){width:82%}.doc-lines span:nth-child(4){width:65%}
+    .service-app .mock-main{padding:10px}.sla-ring{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--purple-light) 0 91%,rgba(255,255,255,.07) 91%);position:relative;margin:auto}.sla-ring:after{content:"91%";position:absolute;width:58px;height:58px;border-radius:50%;background:#181925;display:grid;place-items:center;color:#fff;font:.7rem "DM Mono",monospace}.service-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:10px;height:100%;align-items:center}.response-list{display:grid;gap:7px}.response{display:flex;justify-content:space-between;padding:7px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.42rem}.response b{font-weight:400;color:var(--cyan)}
+    .command-app .mock-shell{grid-template-columns:1fr}.command-body{padding:10px}.command-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px}.command-card{padding:8px;border:1px solid rgba(255,255,255,.07);border-radius:7px;background:rgba(255,255,255,.025)}.command-card small{display:block;color:rgba(255,255,255,.35);font-size:.38rem}.command-card b{display:block;font-size:.72rem;font-weight:500;margin-top:5px}.command-card em{font-style:normal;font-size:.38rem;color:var(--cyan)}.command-lower{display:grid;grid-template-columns:1.3fr .7fr;gap:8px}
+    @keyframes tinyPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}.mock-dot:nth-child(2){animation:tinyPulse 2.6s infinite}.mini-bars i:nth-child(odd){animation:barBreath 3.8s ease-in-out infinite}@keyframes barBreath{50%{filter:brightness(1.25);transform:scaleY(.92);transform-origin:bottom}}
+    @media(max-width:750px){.mock-app{inset:12px 12px 10px}.mock-shell{grid-template-columns:44px 1fr}.mock-nav{padding:9px 5px}.mock-kpis{gap:4px}.mock-kpi{padding:5px}.mock-kpi b{font-size:.57rem}.mock-main{padding:7px}.workflow-canvas{inset:34px 12px 10px}.wf-track{width:100%;grid-template-columns:1fr 13px 1fr 13px 1fr}.wf-node{min-height:55px;padding:4px;font-size:.43rem}.kanban{gap:4px;padding:6px}.kan-col{padding:5px}.kan-card{height:21px}.data-flow{inset:38px 12px 10px;gap:5px}.source-chip,.data-node{padding:6px;font-size:.37rem}.query-box{height:92px;padding:6px;font-size:.35rem}.site-map{inset:40px 12px 12px;gap:5px}.site-card{padding:6px}.platform-satellite.s1{transform:translate(-92px,-44px)}.platform-satellite.s2{transform:translate(92px,-44px)}.platform-satellite.s3{transform:translate(-92px,46px)}.platform-satellite.s4{transform:translate(92px,46px)}.platform-map:before,.platform-map:after{width:260px}.validation-grid{gap:5px;padding:6px}.command-card{padding:5px}.command-grid{gap:4px}.command-lower{gap:5px}}
+
+    .project-body { padding: 28px 30px 30px; }
 
     .portfolio-number {
-      position: absolute;
-
-      top: 25px;
-      right: 30px;
-
-      font-family: "DM Mono", monospace;
-
-      color:
-        rgba(200, 168, 243, 0.35);
+      position: absolute; top: 16px; right: 18px; z-index: 3;
+      font-family: "DM Mono", monospace; font-size: .68rem; color: rgba(200,168,243,.55); letter-spacing: 1px;
     }
 
-    .portfolio-type {
-      color: var(--purple-light);
+    .portfolio-type { color: var(--purple-light); font-family: "DM Mono", monospace; font-size: .66rem; letter-spacing: 1.5px; margin-bottom: 11px; }
+    .portfolio-card h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.25; margin-bottom: 20px; font-weight: 500; }
 
-      font-family: "DM Mono", monospace;
+    .case-lines { display: grid; gap: 14px; }
+    .case-line { display: grid; grid-template-columns: 86px 1fr; gap: 14px; align-items: start; }
+    .case-label { font-family: "DM Mono", monospace; font-size: .6rem; letter-spacing: 1.25px; color: rgba(200,168,243,.68); padding-top: 3px; }
+    .case-line p { color: var(--muted); font-size: .82rem; line-height: 1.65; }
+    .case-line.outcome p { color: var(--text); }
 
-      font-size: 0.7rem;
+    .project-tools { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tools span { font-family: "DM Mono", monospace; font-size: .58rem; letter-spacing: .6px; padding: 7px 9px; border: 1px solid rgba(255,255,255,.09); border-radius: 999px; color: rgba(255,255,255,.55); background: rgba(255,255,255,.025); }
 
-      letter-spacing: 1.5px;
+    .work-note { margin-top: 28px; color: rgba(255,255,255,.38); font-size: .78rem; line-height: 1.6; }
 
-      margin-bottom: 14px;
-    }
+    @keyframes portfolioSheen { from { transform: translateX(-8%) translateY(-2%); } to { transform: translateX(8%) translateY(3%); } }
 
-    .portfolio-card h3 {
-      font-size: 1.7rem;
-      margin-bottom: 12px;
-    }
-
-    .portfolio-card p {
-      color: var(--muted);
-
-      line-height: 1.6;
-
-      font-size: 0.9rem;
+    @media (max-width: 750px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .work-category { margin-top: 58px; }
+      .work-category-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .project-visual { height: 205px; }
+      .project-body { padding: 24px 22px 24px; }
+      .case-line { grid-template-columns: 1fr; gap: 4px; }
+      .case-label { padding-top: 0; }
     }
 
 
@@ -1953,850 +2174,747 @@
       .service-icon svg { width: 37px; height: 37px; }
     }
 
-  </style>
+  
+/* --- Portfolio visual repairs: projects 05, 08, 09, 13, 14 --- */
+.project-visual .visual-repair{position:absolute;inset:16px;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:linear-gradient(145deg,#222331,#171824);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.vr-top{height:34px;display:flex;align-items:center;gap:8px;padding:0 13px;border-bottom:1px solid rgba(255,255,255,.09);font:.48rem "DM Mono",monospace;letter-spacing:.16em;color:rgba(255,255,255,.6);white-space:nowrap}
+.vr-dots{display:flex;gap:6px;margin-right:6px}.vr-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4)}.vr-dots i:nth-child(2){background:var(--purple-light)}.vr-dots i:nth-child(3){background:var(--cyan)}
+.vr-body{height:calc(100% - 34px);padding:12px;box-sizing:border-box;min-width:0;overflow:hidden}
+.vr-label{font:.38rem "DM Mono",monospace;letter-spacing:.12em;color:rgba(255,255,255,.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vr-num{font-size:.8rem;font-weight:500;color:#f1eff8}.vr-good{color:var(--cyan)}
+/* 05 */
+.driver-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(150px,.85fr);gap:10px;height:100%}.driver-panel{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:10px;box-sizing:border-box;background:rgba(255,255,255,.018)}.driver-chart{height:78px;position:relative;margin-top:8px;border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:25% 33%}.driver-chart:after{content:"";position:absolute;left:6%;bottom:12%;width:88%;height:2px;background:var(--purple-light);transform:rotate(-24deg);transform-origin:left;box-shadow:0 0 10px rgba(141,108,196,.35)}.driver-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--cyan);z-index:1}.driver-dot.p{background:var(--purple-light)}.driver-side{display:grid;gap:6px}.driver-row{display:grid;grid-template-columns:minmax(48px,1fr) minmax(35px,1.4fr) 26px;gap:6px;align-items:center;font-size:.4rem;color:rgba(255,255,255,.56);min-width:0}.driver-row span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.driver-bar{height:5px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.driver-bar i{display:block;width:var(--w);height:100%;background:linear-gradient(90deg,var(--purple-light),var(--cyan));border-radius:99px}.driver-row b{font-weight:500;color:rgba(255,255,255,.75)}
+/* 08 */
+.performance-layout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:9px}.perf-stat{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:7px}.perf-stat .vr-label{display:block;margin-bottom:5px}.performance-bottom{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(100px,.85fr);gap:9px}.perf-panel{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px}.trend-svg{width:100%;height:56px;display:block;margin-top:4px}.trend-svg polyline{fill:none;stroke:var(--cyan);stroke-width:2}.team-bars{display:flex;align-items:flex-end;gap:7px;height:56px;padding:5px 0 0}.team-bars i{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(to top,var(--purple-light),rgba(115,213,230,.85))}
+/* 09 */
+.vendor-layout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:9px}.vendor-bottom{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr);gap:9px}.vendor-sites{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.vendor-site{border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px;min-width:0}.vendor-site b{display:block;font-size:.58rem;font-weight:500;margin-top:5px}.vendor-list{display:grid;gap:6px;margin-top:7px}.vendor-item{display:grid;grid-template-columns:minmax(50px,1fr) minmax(45px,1.5fr) 22px;gap:6px;align-items:center;font-size:.39rem;min-width:0;color:rgba(255,255,255,.55)}.vendor-item span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.vendor-item i{height:5px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.vendor-item i:after{content:"";display:block;width:var(--w);height:100%;background:var(--cyan);border-radius:99px}
+/* 13 */
+.service-layout-v2{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center;height:100%}.sla-ring-v2{width:86px;height:86px;border-radius:50%;background:conic-gradient(var(--purple-light) 0 91%,rgba(255,255,255,.08) 91%);display:grid;place-items:center;margin:auto;position:relative}.sla-ring-v2:after{content:"91%";position:absolute;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:#191a26;color:#fff;font-size:.72rem}.service-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.service-metric{border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:8px;min-width:0}.service-metric b{display:block;margin-top:5px;font-size:.66rem;color:var(--cyan);font-weight:500}.service-metric small{font-size:.38rem;color:rgba(255,255,255,.48);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 14 */
+.insight-layout{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:9px}.insight-bottom{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(120px,.8fr);gap:9px}.insight-card,.insight-panel{min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px;box-sizing:border-box;overflow:hidden}.insight-card b{display:block;margin-top:5px;font-size:.72rem}.insight-card em{display:block;margin-top:4px;font-style:normal;font-size:.36rem;color:var(--cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.priority-row{display:grid;grid-template-columns:minmax(54px,1fr) minmax(45px,1.4fr) 22px;gap:6px;align-items:center;font-size:.39rem;margin-top:8px;color:rgba(255,255,255,.55);min-width:0}.priority-row span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.priority-row i{height:5px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.priority-row i:after{content:"";display:block;width:var(--w);height:100%;background:var(--purple-light);border-radius:99px}
+@media(max-width:750px){.project-visual .visual-repair{inset:10px;border-radius:13px}.vr-top{height:28px;padding:0 9px;font-size:.38rem}.vr-body{height:calc(100% - 28px);padding:7px}.driver-layout,.performance-bottom,.vendor-bottom,.insight-bottom{gap:5px}.driver-layout{grid-template-columns:1.25fr .75fr}.performance-layout,.vendor-layout,.insight-layout{gap:4px;margin-bottom:5px}.perf-stat,.vendor-site,.service-metric,.insight-card{padding:5px}.driver-panel,.perf-panel,.insight-panel{padding:6px}.driver-chart{height:55px}.service-layout-v2{grid-template-columns:82px minmax(0,1fr);gap:7px}.sla-ring-v2{width:64px;height:64px}.sla-ring-v2:after{width:49px;height:49px;font-size:.55rem}.service-metrics{gap:4px}.trend-svg{height:40px}.team-bars{height:40px}.vendor-sites{gap:4px;margin-top:5px}.vendor-site b{font-size:.48rem}.priority-row,.vendor-item,.driver-row{font-size:.34rem;gap:4px}}
 
+</style>
+<style>
+/* 04 / SELECTED WORK — compact filter view */
+.work-intro { margin-bottom: 34px; }
+.work-filters { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+.work-filter { appearance:none; border:1px solid var(--border); background:rgba(255,255,255,.018); color:var(--muted); padding:10px 14px; border-radius:999px; font-family:"DM Mono",monospace; font-size:.62rem; letter-spacing:1px; cursor:pointer; transition:all .28s ease; }
+.work-filter:hover { color:var(--text); border-color:rgba(200,168,243,.42); transform:translateY(-2px); }
+.work-filter.active { color:#fff; border-color:rgba(200,168,243,.55); background:linear-gradient(135deg,rgba(141,108,196,.24),rgba(115,213,230,.10)); box-shadow:0 8px 28px rgba(141,108,196,.12); }
+.work-category { margin-top:58px; }
+.work-category.is-hidden { display:none; }
+.project-visual { height:190px; }
+.project-body { padding:24px 26px 26px; }
+.portfolio-card h3 { margin-bottom:15px; }
+.case-lines { gap:10px; }
+.case-line { grid-template-columns:78px 1fr; gap:12px; }
+.case-line p { font-size:.78rem; line-height:1.55; }
+.project-tools { margin-top:17px; }
+.project-tools span { padding:6px 8px; }
+@media (max-width:750px){ .work-filters{gap:8px;} .work-filter{font-size:.56rem;padding:9px 11px;} .project-visual{height:170px;} .work-category{margin-top:42px;} }
+</style><style>
+/* 04 / SELECTED WORK — cleaner flat project view */
+#portfolio .work-intro{max-width:760px;margin-bottom:28px;}
+#portfolio .work-filters{margin:26px 0 34px;}
+#portfolio .portfolio-grid-flat{margin-top:0;}
+#portfolio .portfolio-card{transition:opacity .28s ease, transform .28s ease, filter .28s ease;}
+#portfolio .portfolio-card.is-hidden{display:none;}
+#portfolio .project-story{display:flex;flex-direction:column;gap:12px;}
+#portfolio .project-story p{margin:0;font-size:.9rem;line-height:1.62;}
+#portfolio .project-context{color:var(--muted);font-style:italic;}
+#portfolio .project-action{color:var(--text);}
+#portfolio .project-impact{color:#f3efff;font-weight:600;}
+#portfolio .impact-arrow{color:var(--accent);font-weight:700;margin-right:3px;}
+#portfolio .project-body{padding:22px 24px 24px;}
+#portfolio .portfolio-card h3{margin:8px 0 16px;}
+#portfolio .project-tools{margin-top:18px;}
+#portfolio .work-note{margin-top:26px;}
+@media(max-width:750px){
+  #portfolio .work-filters{margin-bottom:26px;}
+  #portfolio .project-story p{font-size:.84rem;line-height:1.58;}
+}
+</style><style>
+/* Cleaner narrative case-study flow */
+.portfolio-card .project-story { display: grid; gap: 0.8rem; }
+.portfolio-card .project-context { margin: 0; }
+.portfolio-card .project-action { margin: 0; }
+.portfolio-card .project-impact { margin: 0.15rem 0 0; }
+</style>
+<style>
+/* 04 / SELECTED WORK — visual layout fixes */
+/* Keep cards at their natural height so shorter projects do not inherit empty space. */
+#portfolio .portfolio-grid-flat { align-items: start; }
+#portfolio .portfolio-card { align-self: start; height: auto; }
+
+/* Give the richer conceptual interfaces enough room to breathe. */
+#portfolio .project-visual { height: 220px; }
+
+/* Prevent dashboard labels from wrapping into awkward narrow columns. */
+.mock-kpi { min-width: 0; overflow: hidden; }
+.mock-kpi small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; }
+.mock-kpi b { white-space: nowrap; }
+
+/* Make compact analytics side panels fit without clipped words. */
+.metric-row { grid-template-columns: 54px minmax(0,1fr) 22px; gap: 5px; min-width: 0; }
+.metric-row span, .metric-row b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.metric-row i { min-width: 0; }
+
+/* Keep dense mock interfaces inside their frame. */
+.mock-main, .command-body { min-height: 0; overflow: hidden; }
+.mock-row > .mock-panel { min-width: 0; }
+.command-lower > .mock-panel { min-width: 0; }
+
+/* The vendor dashboard uses denser content, so slightly tighten its internals. */
+.mock-app-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 750px) {
+  #portfolio .project-visual { height: 185px; }
+  .mock-kpi small { font-size: .36rem; }
+  .mock-kpi b { font-size: .54rem; }
+  .metric-row { grid-template-columns: 42px minmax(0,1fr) 18px; font-size: .35rem; }
+}
+</style>
 </head>
-
-
 <body>
-
-
-  <!-- =====================================================
+<!-- =====================================================
        NAVIGATION
   ===================================================== -->
-
-  <nav>
-
-    <a href="#home" class="logo">
-      <span>RV</span>.
+<nav>
+<a class="logo" href="#home">
+<span>RV</span>.
     </a>
-
-    <ul class="nav-links">
-
-      <li><a href="#home">Home</a></li>
-      <li><a href="#story">Who I Am</a></li>
-      <li><a href="#services">What I Do</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#tools">Tools</a></li>
-      <li><a href="#contact">Contact</a></li>
-
-    </ul>
-
-  </nav>
-
-
-  <!-- =====================================================
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#story">Who I Am</a></li>
+<li><a href="#services">What I Do</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<!-- =====================================================
        HOME
   ===================================================== -->
-
-  <section id="home">
-
-    <canvas id="particles"></canvas>
-
-    <div class="hero-grid">
-
-      <div class="hero-content">
-
-        <h1 class="hero-headline">
+<section id="home">
+<canvas id="particles"></canvas>
+<div class="hero-grid">
+<div class="hero-content">
+<h1 class="hero-headline">
           Behind every number is a story worth
           <span class="highlight">understanding.</span>
-        </h1>
-
-        <p class="hero-description">
+</h1>
+<p class="hero-description">
           I transform complex data into meaningful insights that help
           businesses understand challenges, uncover opportunities,
           and make more confident decisions.
         </p>
-
-        <div class="hero-buttons">
-
-          <a href="#portfolio" class="btn btn-primary">
+<div class="hero-buttons">
+<a class="btn btn-primary" href="#portfolio">
             View My Work →
           </a>
-
-          <a href="#story" class="btn btn-secondary">
+<a class="btn btn-secondary" href="#story">
             Get to Know Me ↓
           </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
        01 / WHO I AM
   ===================================================== -->
-
-  <section id="story" class="section">
-
-    <div class="section-container">
-
-      <div class="story-header">
-        <p class="section-tag">01 / WHO I AM</p>
-
-        <h2 class="section-title">More than just the numbers.</h2>
-
-        <p class="story-subtitle">
+<section class="section" id="story">
+<div class="section-container">
+<div class="story-header">
+<p class="section-tag">01 / WHO I AM</p>
+<h2 class="section-title">More than just the numbers.</h2>
+<p class="story-subtitle">
           Data helps me understand the world. Curiosity makes me explore it.
         </p>
-      </div>
-
-      <div class="story-toggle">
-        <button class="toggle-btn active" data-target="professional">
+</div>
+<div class="story-toggle">
+<button class="toggle-btn active" data-target="professional">
           💼 <span class="toggle-label-long">HOW I WORK</span><span class="toggle-label-short">WORK</span>
-        </button>
-
-        <button class="toggle-btn" data-target="curious">
+</button>
+<button class="toggle-btn" data-target="curious">
           ✨ <span class="toggle-label-long">WHAT KEEPS ME CURIOUS</span><span class="toggle-label-short">CURIOUS</span>
-        </button>
-      </div>
-
-      <div id="professional" class="story-panel active">
-
-        <div class="professional-grid">
-
-          <div class="profile-image">
-            <img src="portfolio_photo1.jpg" alt="Roel Valenzuela" class="profile-photo">
-            <div class="profile-placeholder">RV</div>
-          </div>
-
-          <div class="story-text">
-
-            <p class="story-intro">
+</button>
+</div>
+<div class="story-panel active" id="professional">
+<div class="professional-grid">
+<div class="profile-image">
+<img alt="Roel Valenzuela" class="profile-photo" src="portfolio_photo1.jpg"/>
+<div class="profile-placeholder">RV</div>
+</div>
+<div class="story-text">
+<p class="story-intro">
               Hi, I'm <strong>Roel Valenzuela</strong>, a <strong>Data and Business Analytics Professional</strong>, currently working as a <strong>Senior Team Leader for Global Command Center Real-Time Operations</strong> at a leading global payments technology company.
             </p>
-
-            <p>
+<p>
               With over a decade of experience, I've built my career across <strong>data and business analytics, operations, workforce management, and real-time operations</strong>—while leading teams, improving processes, collaborating with stakeholders, and using data to drive better business decisions.
             </p>
-
-            <p>
+<p>
               I've always been curious about how things work and why they work the way they do. That curiosity naturally led me toward data, problem-solving, and finding the stories hidden behind numbers.
             </p>
-
-            <p>
+<p>
               Working at the intersection of <strong>people, operations, data, and technology</strong> has taught me that the best solutions don't always come from simply looking at a spreadsheet. They come from understanding the bigger picture, asking better questions, and connecting different perspectives.
             </p>
-
-            <p>
+<p>
               But great ideas and insights only matter when they can be turned into action. <strong>I enjoy collaborating across teams and with stakeholders, bringing people together around a problem, and turning insights into practical solutions that deliver meaningful results.</strong>
-            </p>
-
-            <p>
+</p>
+<p>
               Whether it's improving a process, solving an operational challenge, or using data to support better decisions, I believe the best outcomes come from a combination of <strong>curiosity, collaboration, and execution.</strong>
-            </p>
-
-            <div class="story-quote">
-              <p>
+</p>
+<div class="story-quote">
+<p>
                 I don't just look at what the numbers are saying. I look for <strong>why they're saying it—and work with people to turn those insights into meaningful action.</strong>
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div id="curious" class="story-panel">
-
-        <div class="curiosity-intro">
-          <h3>But curiosity doesn't <span>clock out.</span></h3>
-
-          <p>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="story-panel" id="curious">
+<div class="curiosity-intro">
+<h3>But curiosity doesn't <span>clock out.</span></h3>
+<p>
             Outside of work, my curiosity takes me in completely different directions. Music, movement, fashion, languages, technology — I genuinely enjoy starting with something unfamiliar, being a beginner, and slowly figuring it out.
           </p>
-        </div>
-
-        <div class="beyond-layout">
-
-          <div class="activity-list">
-
-            <div class="activity-card">
-              <div class="activity-icon">🎶</div>
-              <div>
-                <span class="activity-label">MUSIC</span>
-                <h3>Guitar & Drums</h3>
-                <p>
+</div>
+<div class="beyond-layout">
+<div class="activity-list">
+<div class="activity-card">
+<div class="activity-icon">🎶</div>
+<div>
+<span class="activity-label">MUSIC</span>
+<h3>Guitar &amp; Drums</h3>
+<p>
                   During my years living in Malaysia, I learned how to play guitar and drums. Both taught me something I genuinely enjoy: being a beginner, practicing, making mistakes, and gradually seeing progress.
                 </p>
-              </div>
-            </div>
-
-            <div class="activity-card">
-              <div class="activity-icon">🧘</div>
-              <div>
-                <span class="activity-label">MOVEMENT</span>
-                <h3>Pilates</h3>
-                <p>
+</div>
+</div>
+<div class="activity-card">
+<div class="activity-icon">🧘</div>
+<div>
+<span class="activity-label">MOVEMENT</span>
+<h3>Pilates</h3>
+<p>
                   Pilates became another kind of learning experience — understanding movement, control, balance, and how small adjustments can completely change an outcome.
                 </p>
-              </div>
-            </div>
-
-            <div class="activity-card">
-              <div class="activity-icon">👗</div>
-              <div>
-                <span class="activity-label">CREATIVITY</span>
-                <h3>Fashion & Design</h3>
-                <p>
+</div>
+</div>
+<div class="activity-card">
+<div class="activity-icon">👗</div>
+<div>
+<span class="activity-label">CREATIVITY</span>
+<h3>Fashion &amp; Design</h3>
+<p>
                   From sketching ideas and understanding dress forms to patterns and sewing, I learned how creativity needs both imagination and structure to bring an idea to life.
                 </p>
-              </div>
-            </div>
-
-            <div class="activity-card">
-              <div class="activity-icon">🧠</div>
-              <div>
-                <span class="activity-label">ALWAYS LEARNING</span>
-                <h3>Learning what's next</h3>
-                <p>
+</div>
+</div>
+<div class="activity-card">
+<div class="activity-icon">🧠</div>
+<div>
+<span class="activity-label">ALWAYS LEARNING</span>
+<h3>Learning what's next</h3>
+<p>
                   From Machine Learning and Generative AI to completely unrelated interests, I enjoy putting myself in situations where I don't know everything yet—and learning my way through them.
                 </p>
-              </div>
-            </div>
-
-            <div class="fun-fact">
-              <div class="fun-icon">🇫🇷</div>
-              <div>
-                <small>FUN FACT</small>
-                <h3>Et oui... j'ai même pris quelques cours de français.</h3>
-                <p>Because apparently learning one thing at a time isn't really my thing.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="curiosity-connection">
-
-            <div class="connection-label">WHAT DOES THIS HAVE TO DO WITH ANALYTICS?</div>
-
-            <h2>More than you might <span>think.</span></h2>
-
-            <p>
+</div>
+</div>
+<div class="fun-fact">
+<div class="fun-icon">🇫🇷</div>
+<div>
+<small>FUN FACT</small>
+<h3>Et oui... j'ai même pris quelques cours de français.</h3>
+<p>Because apparently learning one thing at a time isn't really my thing.</p>
+</div>
+</div>
+</div>
+<div class="curiosity-connection">
+<div class="connection-label">WHAT DOES THIS HAVE TO DO WITH ANALYTICS?</div>
+<h2>More than you might <span>think.</span></h2>
+<p>
               Learning music taught me patience and practice. Pilates taught me awareness and control. Fashion taught me creativity and structure. Learning languages taught me how to see things from a different perspective.
             </p>
-
-            <p>
+<p>
               These experiences may seem completely unrelated to data analytics—but together, they've shaped how I learn, how I think, and how I approach unfamiliar problems.
             </p>
-
-            <p>
+<p>
               Whether I'm exploring a dataset, learning a new technology, picking up an instrument, or trying something I've never done before, the process is surprisingly similar: <strong>Ask questions. Stay curious. Experiment. Learn. Try again.</strong>
-            </p>
-
-            <p class="transferable-skill">
-              <strong>Curiosity is probably my most transferable skill.</strong>
+</p>
+<p class="transferable-skill">
+<strong>Curiosity is probably my most transferable skill.</strong>
               It helps me bring different perspectives together, think creatively, and approach every problem I try to solve with an open mind.
             </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
        02 / WHAT I CAN DO
   ===================================================== -->
-
-  <section id="services" class="section">
-
-    <div class="section-container">
-
-      <p class="section-tag">02 / WHAT I CAN DO</p>
-
-      <h2 class="section-title">
+<section class="section" id="services">
+<div class="section-container">
+<p class="section-tag">02 / WHAT I CAN DO</p>
+<h2 class="section-title">
         Where data, people, and action come together.
       </h2>
-
-      <div class="services-grid">
-
-        <article class="service-card">
-          <div class="service-number">01</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><path d="M10 48V34"/><path d="M24 48V20"/><path d="M38 48V28"/><path d="M52 48V12"/><path d="M8 52h48"/><path d="M12 24l12-8 14 7 14-12"/></svg>
-          </div>
-          <h3>Data Analysis</h3>
-          <p>Transforming complex information into meaningful insights, patterns, and business understanding.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-number">02</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><rect x="9" y="11" width="46" height="38" rx="3"/><path d="M17 39l8-9 9 5 13-15"/><path d="M17 20h14"/><circle cx="47" cy="20" r="2"/></svg>
-          </div>
-          <h3>Dashboard &amp; Reporting</h3>
-          <p>Creating reports, dashboards, and observability views that make important information easier to understand and act upon.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-number">03</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><path d="M32 12v8"/><path d="M32 44v8"/><path d="M12 32h8"/><path d="M44 32h8"/><path d="m25 32 5 5 10-12"/></svg>
-          </div>
-          <h3>Process Improvement</h3>
-          <p>Identifying inefficiencies and opportunities to improve operational processes and outcomes.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-number">04</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><path d="M12 48c8-3 12-13 20-13s12 10 20 13"/><path d="M16 18h32"/><path d="M16 18v10"/><path d="M48 18v10"/><circle cx="22" cy="38" r="4"/><circle cx="42" cy="38" r="4"/></svg>
-          </div>
-          <h3>Business Insights</h3>
-          <p>Connecting data with real business context to support better recommendations and decisions.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-number">05</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><rect x="14" y="18" width="36" height="30" rx="4"/><path d="M22 12v6"/><path d="M32 12v6"/><path d="M42 12v6"/><path d="M22 48v6"/><path d="M32 48v6"/><path d="M42 48v6"/><path d="M8 28h6"/><path d="M8 38h6"/><path d="M50 28h6"/><path d="M50 38h6"/><path d="m24 34 5 5 11-12"/></svg>
-          </div>
-          <h3>Automation &amp; Technology</h3>
-          <p>Exploring ways technology and automation can reduce manual work and improve operations.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-number">06</div>
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><circle cx="22" cy="24" r="7"/><circle cx="43" cy="22" r="6"/><path d="M10 50c1-9 7-14 15-14s14 5 15 14"/><path d="M35 50c1-7 5-11 11-11 5 0 9 4 10 11"/><path d="M30 17l4-4 4 4"/><path d="M34 13v15"/></svg>
-          </div>
-          <h3>Collaboration &amp; Leadership</h3>
-          <p>Bringing people, teams, and stakeholders together around a problem—and helping turn ideas and insights into meaningful action.</p>
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+<div class="services-grid">
+<article class="service-card">
+<div class="service-number">01</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><path d="M10 48V34"></path><path d="M24 48V20"></path><path d="M38 48V28"></path><path d="M52 48V12"></path><path d="M8 52h48"></path><path d="M12 24l12-8 14 7 14-12"></path></svg>
+</div>
+<h3>Data Analysis</h3>
+<p>Transforming complex information into meaningful insights, patterns, and business understanding.</p>
+</article>
+<article class="service-card">
+<div class="service-number">02</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><rect height="38" rx="3" width="46" x="9" y="11"></rect><path d="M17 39l8-9 9 5 13-15"></path><path d="M17 20h14"></path><circle cx="47" cy="20" r="2"></circle></svg>
+</div>
+<h3>Dashboard &amp; Reporting</h3>
+<p>Creating reports, dashboards, and observability views that make important information easier to understand and act upon.</p>
+</article>
+<article class="service-card">
+<div class="service-number">03</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><circle cx="32" cy="32" r="20"></circle><path d="M32 12v8"></path><path d="M32 44v8"></path><path d="M12 32h8"></path><path d="M44 32h8"></path><path d="m25 32 5 5 10-12"></path></svg>
+</div>
+<h3>Process Improvement</h3>
+<p>Identifying inefficiencies and opportunities to improve operational processes and outcomes.</p>
+</article>
+<article class="service-card">
+<div class="service-number">04</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><path d="M12 48c8-3 12-13 20-13s12 10 20 13"></path><path d="M16 18h32"></path><path d="M16 18v10"></path><path d="M48 18v10"></path><circle cx="22" cy="38" r="4"></circle><circle cx="42" cy="38" r="4"></circle></svg>
+</div>
+<h3>Business Insights</h3>
+<p>Connecting data with real business context to support better recommendations and decisions.</p>
+</article>
+<article class="service-card">
+<div class="service-number">05</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><rect height="30" rx="4" width="36" x="14" y="18"></rect><path d="M22 12v6"></path><path d="M32 12v6"></path><path d="M42 12v6"></path><path d="M22 48v6"></path><path d="M32 48v6"></path><path d="M42 48v6"></path><path d="M8 28h6"></path><path d="M8 38h6"></path><path d="M50 28h6"></path><path d="M50 38h6"></path><path d="m24 34 5 5 11-12"></path></svg>
+</div>
+<h3>Automation &amp; Technology</h3>
+<p>Exploring ways technology and automation can reduce manual work and improve operations.</p>
+</article>
+<article class="service-card">
+<div class="service-number">06</div>
+<div aria-hidden="true" class="service-icon">
+<svg viewbox="0 0 64 64"><circle cx="22" cy="24" r="7"></circle><circle cx="43" cy="22" r="6"></circle><path d="M10 50c1-9 7-14 15-14s14 5 15 14"></path><path d="M35 50c1-7 5-11 11-11 5 0 9 4 10 11"></path><path d="M30 17l4-4 4 4"></path><path d="M34 13v15"></path></svg>
+</div>
+<h3>Collaboration &amp; Leadership</h3>
+<p>Bringing people, teams, and stakeholders together around a problem—and helping turn ideas and insights into meaningful action.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- =====================================================
        EXPERIENCE AT A GLANCE
   ===================================================== -->
-
-  <section class="stats">
-
-    <div class="stats-container">
-
-      <div class="stats-header">
-
-        <p class="section-tag experience-section-number">
+<section class="stats">
+<div class="stats-container">
+<div class="stats-header">
+<p class="section-tag experience-section-number">
           03 / EXPERIENCE
         </p>
-
-        <p class="stats-tag">
+<p class="stats-tag">
           EXPERIENCE AT A GLANCE
         </p>
-
-        <h2>
+<h2>
 
           A decade of experience.
 
           <span>
             Still learning what's next.
           </span>
-
-        </h2>
-
-        <p>
+</h2>
+<p>
 
           A career built across operations, workforce management, analytics,
           process improvement, and leadership—driven by a continuous curiosity
           for technology and what's possible next.
 
         </p>
-
-      </div>
-
-
-      <div class="stats-grid">
-
-
-        <!-- 10+ -->
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-
-            <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 7v5l3 2"/>
-            </svg>
-
-          </div>
-
-          <div class="stat-number">
+</div>
+<div class="stats-grid">
+<!-- 10+ -->
+<div class="stat-card">
+<div class="stat-icon">
+<svg fill="none" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 7v5l3 2"></path>
+</svg>
+</div>
+<div class="stat-number">
             10+
           </div>
-
-          <div class="stat-label">
+<div class="stat-label">
             Years of Professional Experience
           </div>
-
-          <div class="stat-detail">
-            Leadership, operations, workforce management & analytics
+<div class="stat-detail">
+            Leadership, operations, workforce management &amp; analytics
           </div>
-
-        </div>
-
-
-        <!-- 30+ -->
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 17l5-5 4 4 7-8"/>
-              <path d="M15 8h5v5"/>
-            </svg>
-
-          </div>
-
-          <div class="stat-number">
+</div>
+<!-- 30+ -->
+<div class="stat-card">
+<div class="stat-icon">
+<svg fill="none" viewbox="0 0 24 24">
+<path d="M4 17l5-5 4 4 7-8"></path>
+<path d="M15 8h5v5"></path>
+</svg>
+</div>
+<div class="stat-number">
             30+
           </div>
-
-          <div class="stat-label">
-            Process & Project Improvements
+<div class="stat-label">
+            Process &amp; Project Improvements
           </div>
-
-          <div class="stat-detail">
-            Initiatives focused on efficiency, performance & better outcomes
+<div class="stat-detail">
+            Initiatives focused on efficiency, performance &amp; better outcomes
           </div>
-
-        </div>
-
-
-        <!-- 4+ -->
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-
-            <svg viewBox="0 0 24 24" fill="none">
-              <rect x="4" y="11" width="3" height="7"/>
-              <rect x="10.5" y="7" width="3" height="11"/>
-              <rect x="17" y="3" width="3" height="15"/>
-            </svg>
-
-          </div>
-
-          <div class="stat-number">
+</div>
+<!-- 4+ -->
+<div class="stat-card">
+<div class="stat-icon">
+<svg fill="none" viewbox="0 0 24 24">
+<rect height="7" width="3" x="4" y="11"></rect>
+<rect height="11" width="3" x="10.5" y="7"></rect>
+<rect height="15" width="3" x="17" y="3"></rect>
+</svg>
+</div>
+<div class="stat-number">
             4+
           </div>
-
-          <div class="stat-label">
+<div class="stat-label">
             Core Support Areas
           </div>
-
-          <div class="stat-detail">
+<div class="stat-detail">
             Data Analytics · Business Analytics · Real-Time Operations · WFM
           </div>
-
-        </div>
-
-
-        <!-- 3 -->
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-
-            <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="8"/>
-              <path d="M4 12h16"/>
-              <path d="M12 4c2.5 2.2 3.8 5 3.8 8S14.5 17.8 12 20"/>
-              <path d="M12 4c-2.5 2.2-3.8 5-3.8 8S9.5 17.8 12 20"/>
-            </svg>
-
-          </div>
-
-          <div class="stat-number">
+</div>
+<!-- 3 -->
+<div class="stat-card">
+<div class="stat-icon">
+<svg fill="none" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+<path d="M4 12h16"></path>
+<path d="M12 4c2.5 2.2 3.8 5 3.8 8S14.5 17.8 12 20"></path>
+<path d="M12 4c-2.5 2.2-3.8 5-3.8 8S9.5 17.8 12 20"></path>
+</svg>
+</div>
+<div class="stat-number">
             3
           </div>
-
-          <div class="stat-label">
+<div class="stat-label">
             Industries Supported
           </div>
-
-          <div class="stat-detail">
+<div class="stat-detail">
             Marketing · Information Technology · Fintech
           </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
        03 / EXPERIENCE
   ===================================================== -->
-
-  <section id="experience" class="section">
-
-    <div class="section-container">
-
-      <div class="experience-intro">
-
-        <h2 class="section-title">
+<section class="section" id="experience">
+<div class="section-container">
+<div class="experience-intro">
+<h2 class="section-title">
           Building experience through real business challenges.
         </h2>
-
-        <p class="section-description">
+<p class="section-description">
           My professional journey has taken me across leadership, workforce management,
           operations, business analytics, process improvement, and technology-driven
           solutions—each role building on the last and shaping how I approach complex
           challenges today.
         </p>
-
-      </div>
-
-
-      <div class="career-timeline">
-
-        <!-- TDCX -->
-        <article class="timeline-item">
-
-          <div class="timeline-node" aria-hidden="true"></div>
-
-          <p class="timeline-period">2021 — Present</p>
-
-          <div class="timeline-company">
-            <h3>TDCX</h3>
-            <span class="timeline-duration">5+ YEARS OF GROWTH</span>
-          </div>
-
-          <div class="role-stack">
-
-            <div class="role-entry current">
-              <h4 class="role-title">Senior Team Lead — Global Real-Time Operations</h4>
-              <div class="role-date">CURRENT ROLE</div>
-              <p class="role-summary">
+</div>
+<div class="career-timeline">
+<!-- TDCX -->
+<article class="timeline-item">
+<div aria-hidden="true" class="timeline-node"></div>
+<p class="timeline-period">2021 — Present</p>
+<div class="timeline-company">
+<h3>TDCX</h3>
+<span class="timeline-duration">5+ YEARS OF GROWTH</span>
+<span class="timeline-location">KUALA LUMPUR, MALAYSIA</span>
+</div>
+<div class="role-stack">
+<details class="role-entry current" open="">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">Senior Team Lead — Global Real-Time Operations</h4>
+<div class="role-date">CURRENT ROLE</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Currently leading a team of <strong>19+ professionals</strong> supporting multiple
                 real-time operations specializations across the Global Command Center. My focus
                 goes beyond day-to-day delivery—helping <strong>scale the support we provide</strong>,
                 strengthen how work flows into the team, and build the foundations needed for
                 sustainable growth.
-                <br><br>
+                <br/><br/>
                 Working to establish stronger capabilities around <strong>training, quality, intake
                 processes, and operational alignment</strong>, while bringing teams and stakeholders
                 together around clearer ways of working. The goal is to build an operation that can
                 grow without losing consistency, quality, or clarity.
               </p>
-            </div>
-
-            <div class="role-entry">
-              <h4 class="role-title">Senior Business Analytics Expert</h4>
-              <div class="role-date">2025</div>
-              <p class="role-summary">
+</details>
+<details class="role-entry">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">Senior Business Analytics Expert</h4>
+<div class="role-date">2025</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Played a key role in <strong>strengthening and scaling the Business Analytics function</strong>,
                 expanding its reach and improving how data and insights were delivered to stakeholders.
                 Helped establish more consistent ways of working through validation processes,
                 documentation, clearer standards, and stronger team alignment—raising confidence in
                 the <strong>quality and reliability of the outputs we deliver</strong>.
               </p>
-            </div>
-
-            <div class="role-entry">
-              <h4 class="role-title">Business Analytics Expert</h4>
-              <div class="role-date">2021 — 2025</div>
-              <p class="role-summary">
+</details>
+<details class="role-entry">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">Business Analytics Expert</h4>
+<div class="role-date">2021 — 2025</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Worked at the intersection of <strong>data, operations, and business needs</strong>, creating
                 analytics solutions that made information more accessible and easier to act on.
                 Built dashboards, reporting solutions, data models, and operational tools while
                 partnering with stakeholders to turn complex business needs into practical,
                 data-driven solutions.
               </p>
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- BAYVIEW -->
-        <article class="timeline-item">
-
-          <div class="timeline-node" aria-hidden="true"></div>
-
-          <p class="timeline-period">2016 — 2021</p>
-
-          <div class="timeline-company">
-            <h3>Bayview Technologies, Inc.</h3>
-            <span class="timeline-duration">WHERE THE FOUNDATION BEGAN</span>
-          </div>
-
-          <div class="role-stack">
-
-            <div class="role-entry">
-              <h4 class="role-title">BA Supervisor</h4>
-              <div class="role-date">2018 — 2021</div>
-              <p class="role-summary">
+</details>
+</div>
+</article>
+<!-- BAYVIEW -->
+<article class="timeline-item">
+<div aria-hidden="true" class="timeline-node"></div>
+<p class="timeline-period">2016 — 2021</p>
+<div class="timeline-company">
+<h3>Bayview Technologies, Inc.</h3>
+<span class="timeline-duration">WHERE THE FOUNDATION BEGAN</span>
+<span class="timeline-location">MAKATI CITY, PHILIPPINES</span>
+</div>
+<div class="role-stack">
+<details class="role-entry">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">BA Supervisor</h4>
+<div class="role-date">2018 — 2021</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Led and supported a team of business analysts while balancing people development
                 with the delivery of reporting, analytics, and operational support. Worked across
                 operations, finance, marketing, and technology to improve processes, solve business
                 challenges, and strengthen how data supported decision-making.
               </p>
-            </div>
-
-            <div class="role-entry">
-              <h4 class="role-title">Senior Business Analyst</h4>
-              <div class="role-date">2017 — 2018</div>
-              <p class="role-summary">
+</details>
+<details class="role-entry">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">Senior Business Analyst</h4>
+<div class="role-date">2017 — 2018</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Took on more complex analytical and technical responsibilities across multiple systems
                 and data sources, developing reporting and data solutions that improved the efficiency,
                 reliability, and accessibility of business information.
               </p>
-            </div>
-
-            <div class="role-entry">
-              <h4 class="role-title">Junior Business Analyst</h4>
-              <div class="role-date">2016 — 2017</div>
-              <p class="role-summary">
+</details>
+<details class="role-entry">
+<summary class="role-toggle">
+<div class="role-toggle-main">
+<h4 class="role-title">Junior Business Analyst</h4>
+<div class="role-date">2016 — 2017</div>
+</div>
+<span aria-hidden="true" class="role-chevron">⌄</span>
+</summary>
+<p class="role-summary">
                 Built the foundations of my career through operational data, performance reporting,
                 and business analysis—learning how information could be transformed into insights that
                 help teams make better decisions and improve day-to-day operations.
               </p>
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+</details>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- =====================================================
        04 / SELECTED WORK
   ===================================================== -->
-
-  <section id="portfolio" class="section">
-
-    <div class="section-container">
-
-      <p class="section-tag">
-        04 / SELECTED WORK
-      </p>
-
-      <h2 class="section-title">
-        Projects that turn ideas into impact.
-      </h2>
-
-      <p class="section-description">
-        A collection of projects, analytical work, process improvements,
-        dashboards, and experiments that represent how I approach problems.
-      </p>
-
-
-      <div class="portfolio-grid">
-
-        <div class="portfolio-card">
-
-          <div class="portfolio-number">01</div>
-
-          <div class="portfolio-type">
-            DATA ANALYTICS
-          </div>
-
-          <h3>
-            Operational Scorecard
-          </h3>
-
-          <p>
-            A centralized view designed to help teams understand
-            performance, critical areas, and common operational drivers.
-          </p>
-
-        </div>
-
-
-        <div class="portfolio-card">
-
-          <div class="portfolio-number">02</div>
-
-          <div class="portfolio-type">
-            DASHBOARD / INSIGHTS
-          </div>
-
-          <h3>
-            Performance Analytics
-          </h3>
-
-          <p>
-            Turning performance data into clearer visual insights
-            that help stakeholders understand trends and opportunities.
-          </p>
-
-        </div>
-
-
-        <div class="portfolio-card">
-
-          <div class="portfolio-number">03</div>
-
-          <div class="portfolio-type">
-            PROCESS IMPROVEMENT
-          </div>
-
-          <h3>
-            Workflow Improvement Initiative
-          </h3>
-
-          <p>
-            Identifying process challenges and developing practical
-            improvements through data and operational understanding.
-          </p>
-
-        </div>
-
-
-        <div class="portfolio-card">
-
-          <div class="portfolio-number">04</div>
-
-          <div class="portfolio-type">
-            MACHINE LEARNING
-          </div>
-
-          <h3>
-            Learning & Experimentation
-          </h3>
-
-          <p>
-            Exploring Machine Learning concepts and models to understand
-            how intelligent systems can support decisions.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+<section class="section" id="portfolio">
+<div class="section-container"><p class="section-tag">04 / SELECTED WORK</p><h2 class="section-title">Projects that turn ideas into impact.</h2><p class="section-description work-intro">A selection of work across operations, dashboarding, reporting, and analytics—each built around a clear need, a practical solution, and meaningful impact.</p><div aria-label="Filter selected work by focus area" class="work-filters" role="group"><button class="work-filter active" data-filter="all" type="button">ALL WORK</button><button class="work-filter" data-filter="operations" type="button">OPERATIONAL EXCELLENCE</button><button class="work-filter" data-filter="dashboards" type="button">DASHBOARDS &amp; BI</button><button class="work-filter" data-filter="analytics" type="button">DATA &amp; ANALYTICS</button></div><div class="portfolio-grid portfolio-grid-flat"><article class="portfolio-card" data-focus="operations">
+<div class="portfolio-number">01</div>
+<div class="project-visual"><div class="mock-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">OBSERVABILITY CONTROL</span></div><div class="mock-shell"><div class="mock-nav"><span class="active"></span><span></span><span></span><span></span></div><div class="mock-main"><div class="mock-kpis"><div class="mock-kpi"><small>Coverage</small><b>92%</b><em>↑</em></div><div class="mock-kpi"><small>Health</small><b>98.4</b><em>↑</em></div><div class="mock-kpi"><small>Alerts</small><b>24</b></div><div class="mock-kpi"><small>MTTR</small><b>1.2h</b><em>↓</em></div></div><div class="mock-row"><div class="mock-panel pad" style="flex:1.4"><div class="panel-head">PERFORMANCE TREND</div><div class="mock-line"><svg viewBox="0 0 240 70" preserveAspectRatio="none"><polyline points="0,56 35,42 68,49 100,27 132,36 170,18 205,23 240,9"></polyline></svg></div></div><div class="mock-panel pad" style="flex:.7"><div class="panel-head">SIGNALS</div><div class="mini-bars"><i style="height:35%"></i><i style="height:68%"></i><i style="height:52%"></i><i style="height:86%"></i></div></div></div></div></div></div></div>
+<div class="project-body">
+<div class="portfolio-type">PROCESS GOVERNANCE / AI-ASSISTED STANDARDIZATION</div>
+<h3>Standardizing Observability &amp; Performance Governance</h3>
+<div class="project-story"><p class="project-context">As operational reporting across GCC evolved, there was a need for a more consistent approach to observability and performance governance.</p><p class="project-action">To create that foundation, I standardized reporting and observability frameworks and used AI-assisted documentation to make expectations and ways of working clearer.</p><p class="project-impact">This created stronger visibility, better alignment, and a more consistent foundation for proactive decision-making.</p></div>
+<div class="project-tools"><span>CHATGPT</span><span>CLAUDE</span><span>FRAMEWORK DESIGN</span><span>DOCUMENTATION</span></div>
+</div>
+</article><article class="portfolio-card" data-focus="operations">
+<div class="portfolio-number">02</div>
+<div class="project-visual"><div class="mock-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">REAL-TIME TICKETING</span></div><div class="mock-shell"><div class="mock-nav"><span class="active"></span><span></span><span></span></div><div class="mock-main"><div class="mock-kpis"><div class="mock-kpi"><small>Open</small><b>312</b></div><div class="mock-kpi"><small>In Progress</small><b>48</b></div><div class="mock-kpi"><small>SLA</small><b>95%</b><em>↑</em></div><div class="mock-kpi"><small>Resolved</small><b>1,247</b></div></div><table class="mock-table"><thead><tr><th>Ticket</th><th>Type</th><th>Priority</th><th>Status</th></tr></thead><tbody><tr><td>OT-2041</td><td>OT</td><td class="status-hot">High</td><td>Open</td></tr><tr><td>AD-2038</td><td>Adherence</td><td class="status-warn">Medium</td><td>In Progress</td></tr><tr><td>OT-2031</td><td>OT</td><td>Low</td><td class="status-good">Resolved</td></tr></tbody></table></div></div></div></div>
+<div class="project-body">
+<div class="portfolio-type">WORKFLOW AUTOMATION / REAL-TIME OPERATIONS</div>
+<h3>OT &amp; Adherence Ticketing and Monitoring</h3>
+<div class="project-story"><p class="project-context">Month-end OT and adherence disputes were difficult to track, making issues harder to resolve quickly and transparently.</p><p class="project-action">To improve the process, I built a centralized ticketing workflow supported by automation, real-time monitoring, and dashboard visibility.</p><p class="project-impact">This resulted in a 60% reduction in payroll and adherence disputes through faster issue resolution and greater transparency.</p></div>
+<div class="project-tools"><span>GOOGLE APPS SCRIPT</span><span>LOOKER STUDIO</span><span>GOOGLE SHEETS QUERY</span></div>
+</div>
+</article><article class="portfolio-card" data-focus="operations">
+<div class="portfolio-number">03</div>
+<div class="project-visual"><div class="mock-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">DISPUTE MANAGEMENT</span></div><div class="kanban"><div class="kan-col"><div class="kan-head"><span>NEW</span><span>12</span></div><div class="kan-card"><b>PRP-2041</b>May 26</div><div class="kan-card"><b>SHIFT-2038</b>May 25</div></div><div class="kan-col"><div class="kan-head"><span>REVIEW</span><span>18</span></div><div class="kan-card"><b>PRP-2035</b>Evidence</div><div class="kan-card"><b>SHIFT-2031</b>Review</div></div><div class="kan-col"><div class="kan-head"><span>PENDING</span><span>7</span></div><div class="kan-card"><b>PRP-2028</b>Docs</div></div><div class="kan-col"><div class="kan-head"><span>RESOLVED</span><span>24</span></div><div class="kan-card"><b>SHIFT-2021</b>Done</div><div class="kan-card"><b>PRP-2018</b>Done</div></div></div></div></div>
+<div class="project-body">
+<div class="portfolio-type">PROCESS IMPROVEMENT / CASE GOVERNANCE</div>
+<h3>Centralized PRP &amp; Shift Allowance Dispute Management</h3>
+<div class="project-story"><p class="project-context">With 80–100 PRP and shift allowance disputes each month, the operation needed a more structured way to track cases and manage escalations.</p><p class="project-action">I developed a centralized process that brought case tracking, governance, and escalation management into one workflow.</p><p class="project-impact">The result was a more transparent process with average resolution times reduced to under 20 minutes.</p></div>
+<div class="project-tools"><span>GOOGLE APPS SCRIPT</span><span>LOOKER STUDIO</span><span>GOOGLE SHEETS QUERY</span></div>
+</div>
+</article><article class="portfolio-card" data-focus="operations">
+<div class="portfolio-number">04</div>
+<div class="project-visual"><span class="visual-label">CENTRALIZED DATA FLOW</span><div class="data-flow"><div class="data-stack"><div class="source-chip">OPS DATA</div><div class="source-chip">WFM DATA</div><div class="source-chip">QUALITY DATA</div></div><div><div class="query-box"><b>SELECT</b> metric,<br><i>FROM</i> unified_source<br><b>WHERE</b> valid = true<br><i>GROUP BY</i> team</div><div class="data-arrow">→</div></div><div class="data-stack"><div class="data-node">VALIDATED DATASET</div><div class="data-node">REPORTING LAYER</div><div class="data-node">ROOT CAUSE VIEW</div></div></div></div>
+<div class="project-body">
+<div class="portfolio-type">DATA WORKFLOW / OBSERVABILITY</div>
+<h3>Streamlining Data Preparation &amp; Root Cause Analysis</h3>
+<div class="project-story"><p class="project-context">Data preparation relied on fragmented sources and significant manual effort, limiting both reporting efficiency and root cause analysis.</p><p class="project-action">To simplify the workflow, I consolidated data sources, automated preparation steps, and introduced SOPs and observability practices.</p><p class="project-impact">This reduced data cleaning and processing effort by approximately 85% while improving reporting accuracy and analytical visibility.</p></div>
+<div class="project-tools"><span>SQL</span><span>INTERNAL DATA</span><span>LOOKER STUDIO</span><span>JAVASCRIPT VISUALIZATION</span></div>
+</div>
+</article><article class="portfolio-card" data-focus="operations">
+<div class="portfolio-number">05</div>
+<div class="project-visual"><div class="visual-repair"><div class="vr-top"><span class="vr-dots"><i></i><i></i><i></i></span>PERFORMANCE DRIVER ANALYSIS</div><div class="vr-body"><div class="driver-layout"><div class="driver-panel"><div class="vr-label">MULTIVARIATE REGRESSION · R² 0.74</div><div class="driver-chart"><i class="driver-dot" style="left:10%;top:67%"></i><i class="driver-dot p" style="left:23%;top:56%"></i><i class="driver-dot" style="left:36%;top:61%"></i><i class="driver-dot p" style="left:49%;top:38%"></i><i class="driver-dot" style="left:63%;top:34%"></i><i class="driver-dot p" style="left:78%;top:19%"></i><i class="driver-dot" style="left:89%;top:12%"></i></div></div><div class="driver-panel"><div class="vr-label">KEY DRIVERS</div><div class="driver-side"><div class="driver-row"><span>Volume</span><i class="driver-bar"><i style="--w:88%"></i></i><b>.88</b></div><div class="driver-row"><span>Adherence</span><i class="driver-bar"><i style="--w:72%"></i></i><b>.72</b></div><div class="driver-row"><span>Skill mix</span><i class="driver-bar"><i style="--w:61%"></i></i><b>.61</b></div><div class="driver-row"><span>Tenure</span><i class="driver-bar"><i style="--w:43%"></i></i><b>.43</b></div></div></div></div></div></div></div>
+<div class="project-body">
+<div class="portfolio-type">PREDICTIVE ANALYTICS / PERFORMANCE</div>
+<h3>Identifying the Drivers Behind TPH Performance</h3>
+<div class="project-story"><p class="project-context">The team needed a clearer understanding of the factors influencing TPH performance before deciding where to focus improvement efforts.</p><p class="project-action">I used multivariate regression and predictive analysis in Python to identify the strongest performance drivers and translate the findings into practical recommendations.</p><p class="project-impact">Those recommendations contributed to an approximately 22% improvement in TPH while maintaining operational targets.</p></div>
+<div class="project-tools"><span>PYTHON</span><span>REGRESSION</span><span>PREDICTIVE ANALYTICS</span></div>
+</div>
+</article><article class="portfolio-card" data-focus="dashboards">
+<div class="portfolio-number">06</div>
+<div class="project-visual"><div class="mock-app command-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">QUEUE HEALTH / CAPACITY</span></div><div class="command-body"><div class="command-grid"><div class="command-card"><small>Demand</small><b>2,480</b><em>↑ 8%</em></div><div class="command-card"><small>Capacity</small><b>2,610</b><em>Healthy</em></div><div class="command-card"><small>SLA Risk</small><b>08</b><em>↓ 42%</em></div><div class="command-card"><small>Backlog</small><b>126</b><em>↓ 18%</em></div></div><div class="command-lower"><div class="mock-panel pad"><div class="panel-head">BURNDOWN TREND</div><div class="mock-line"><svg viewBox="0 0 240 70" preserveAspectRatio="none"><polyline points="0,16 34,24 62,30 98,36 128,41 160,48 198,55 240,61"></polyline></svg></div></div><div class="mock-panel pad"><div class="panel-head">RISK BY QUEUE</div><div class="mini-bars"><i style="height:82%"></i><i style="height:56%"></i><i style="height:32%"></i></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">WORKFORCE PLANNING / QUEUE HEALTH</div><h3>Predictive Workforce Planning &amp; Queue Health Dashboards</h3><div class="project-story"><p class="project-context">Operations needed earlier visibility into capacity, workload, and queue risk to prevent issues before they became critical.</p><p class="project-action">I developed predictive workforce planning, burndown, and queue health dashboards that gave teams a clearer view of operational conditions.</p><p class="project-impact">This strengthened proactive planning and contributed to zero major critical operational incidents in H2.</p></div><div class="project-tools"><span>LOOKER STUDIO</span><span>WORKFORCE PLANNING</span><span>QUEUE HEALTH</span></div></div>
+</article><article class="portfolio-card" data-focus="dashboards">
+<div class="portfolio-number">07</div>
+<div class="project-visual"><div class="mock-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">WFM COMMAND VIEW</span></div><div class="mock-shell"><div class="mock-nav"><span class="active"></span><span></span><span></span><span></span></div><div class="mock-main"><div class="mock-kpis"><div class="mock-kpi"><small>Forecast</small><b>98.1%</b></div><div class="mock-kpi"><small>Delivery</small><b>94.6%</b><em>↑</em></div><div class="mock-kpi"><small>Shrinkage</small><b>12.8%</b></div><div class="mock-kpi"><small>Coverage</small><b>102%</b><em>↑</em></div></div><div class="mock-row"><div class="mock-panel pad" style="flex:1"><div class="panel-head">FORECAST VS ACTUAL</div><div class="mock-line"><svg viewBox="0 0 240 70" preserveAspectRatio="none"><polyline points="0,55 38,39 72,46 110,30 146,34 183,20 214,28 240,16"></polyline></svg></div></div><div class="mock-panel pad" style="flex:.8"><div class="panel-head">WEEKLY DELIVERY</div><div class="mini-bars"><i style="height:58%"></i><i style="height:74%"></i><i style="height:65%"></i><i style="height:88%"></i><i style="height:72%"></i></div></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">BUSINESS INTELLIGENCE / WFM</div><h3>Centralized Workforce Management Dashboard</h3><div class="project-story"><p class="project-context">Forecasting, delivery, shrinkage, and operational KPIs were spread across recurring reports, creating unnecessary manual work for WFM teams.</p><p class="project-action">I brought these metrics together into a centralized dashboard designed for WFM teams, Team Leads, and Operations Leaders.</p><p class="project-impact">The solution reduced manual reporting by 3–4 hours per week while making key workforce metrics easier to access and act on.</p></div><div class="project-tools"><span>LOOKER STUDIO</span><span>GOOGLE SHEETS QUERY</span><span>DATA MODELING</span></div></div>
+</article><article class="portfolio-card" data-focus="dashboards">
+<div class="portfolio-number">08</div>
+<div class="project-visual"><div class="visual-repair"><div class="vr-top"><span class="vr-dots"><i></i><i></i><i></i></span>CSAT / PRODUCTIVITY PERFORMANCE</div><div class="vr-body"><div class="performance-layout"><div class="perf-stat"><span class="vr-label">CSAT</span><b class="vr-num">87.2%</b></div><div class="perf-stat"><span class="vr-label">TPH</span><b class="vr-num">102.4</b></div><div class="perf-stat"><span class="vr-label">TARGET</span><b class="vr-num">85%</b></div><div class="perf-stat"><span class="vr-label">COACHING</span><b class="vr-num">18</b></div></div><div class="performance-bottom"><div class="perf-panel"><div class="vr-label">PERFORMANCE TREND</div><svg class="trend-svg" viewBox="0 0 240 60" preserveAspectRatio="none"><polyline points="0,52 32,43 60,47 91,33 122,38 151,22 184,28 215,15 240,20"></polyline></svg></div><div class="perf-panel"><div class="vr-label">TEAM DISTRIBUTION</div><div class="team-bars"><i style="height:42%"></i><i style="height:66%"></i><i style="height:86%"></i><i style="height:58%"></i></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">PERFORMANCE INTELLIGENCE / COACHING</div><h3>CSAT &amp; Productivity Performance Dashboards</h3><div class="project-story"><p class="project-context">Teams needed a simpler way to monitor CSAT and productivity trends and identify where coaching or intervention was needed.</p><p class="project-action">I built accessible performance dashboards that brought CSAT and TPH data into one view for ongoing monitoring and coaching.</p><p class="project-impact">This supported more proactive performance management and consistent progress toward the 85% performance target.</p></div><div class="project-tools"><span>LOOKER STUDIO</span><span>GOOGLE SHEETS QUERY</span><span>PERFORMANCE ANALYTICS</span></div></div>
+</article><article class="portfolio-card" data-focus="dashboards">
+<div class="portfolio-number">09</div>
+<div class="project-visual"><div class="visual-repair"><div class="vr-top"><span class="vr-dots"><i></i><i></i><i></i></span>OPERATIONS / VENDOR VIEW</div><div class="vr-body"><div class="vendor-layout"><div class="perf-stat"><span class="vr-label">OPS HEALTH</span><b class="vr-num">94 <span class="vr-good">↑</span></b></div><div class="perf-stat"><span class="vr-label">VENDORS</span><b class="vr-num">06</b></div><div class="perf-stat"><span class="vr-label">SLA</span><b class="vr-num">96%</b></div><div class="perf-stat"><span class="vr-label">RISKS</span><b class="vr-num">03</b></div></div><div class="vendor-bottom"><div class="perf-panel"><div class="vr-label">SITE PERFORMANCE</div><div class="vendor-sites"><div class="vendor-site"><span class="vr-label">SITE 01</span><b>98%</b></div><div class="vendor-site"><span class="vr-label">SITE 02</span><b>94%</b></div><div class="vendor-site"><span class="vr-label">SITE 03</span><b>91%</b></div></div></div><div class="perf-panel"><div class="vr-label">VENDOR STATUS</div><div class="vendor-list"><div class="vendor-item"><span>Vendor A</span><i style="--w:92%"></i><b>92</b></div><div class="vendor-item"><span>Vendor B</span><i style="--w:84%"></i><b>84</b></div><div class="vendor-item"><span>Vendor C</span><i style="--w:71%"></i><b>71</b></div></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">OBSERVABILITY / STAKEHOLDER VISIBILITY</div><h3>Centralized Operational &amp; Vendor Performance Reporting</h3><div class="project-story"><p class="project-context">Operational and vendor performance information was spread across different views, making it harder for stakeholders to see the full picture.</p><p class="project-action">To improve transparency, I expanded centralized observability and performance reporting across GCC operations.</p><p class="project-impact">This gave stakeholders clearer visibility and supported faster, better-informed operational decisions.</p></div><div class="project-tools"><span>LOOKER</span><span>SQL</span><span>OBSERVABILITY</span></div></div>
+</article><article class="portfolio-card" data-focus="dashboards">
+<div class="portfolio-number">10</div>
+<div class="project-visual"><span class="visual-label">3-SITE WORKFORCE ANALYTICS</span><div class="site-map"><div class="site-card"><b>SITE 01</b><span></span><span></span><span></span></div><div class="site-card"><b>SITE 02</b><span></span><span></span><span></span></div><div class="site-card"><b>SITE 03</b><span></span><span></span><span></span></div></div></div>
+<div class="project-body"><div class="portfolio-type">WORKFORCE ANALYTICS / GOVERNANCE</div><h3>Financial Crimes Contractor Workforce Analytics</h3><div class="project-story"><p class="project-context">Three Financial Crimes sites needed stronger visibility into contractor activity to support workforce planning, governance, and vendor accountability.</p><p class="project-action">I developed workforce analytics dashboards that centralized activity tracking and made performance easier to monitor across sites.</p><p class="project-impact">This increased activity tracking adoption from 50% to 90% and strengthened planning and governance.</p></div><div class="project-tools"><span>LOOKER</span><span>SQL</span><span>WORKFORCE ANALYTICS</span></div></div>
+</article><article class="portfolio-card" data-focus="analytics">
+<div class="portfolio-number">11</div>
+<div class="project-visual"><div class="platform-map"><div class="platform-satellite s1">OPS DATA</div><div class="platform-satellite s2">WFM DATA</div><div class="platform-satellite s3">QUALITY</div><div class="platform-satellite s4">REPORTING</div><div class="platform-core">NEXUS</div></div></div>
+<div class="project-body"><div class="portfolio-type">DATA PLATFORM / SOURCE OF TRUTH</div><h3>Scaling Nexus, GCC's Centralized Reporting Platform</h3><div class="project-story"><p class="project-context">Fragmented data sources were creating duplicated effort and inconsistent reporting across GCC.</p><p class="project-action">To address this, I helped scale Nexus as a centralized reporting platform that consolidated key data into a more reliable source of truth.</p><p class="project-impact">This reduced data processing effort by approximately 80% while making reporting more scalable and consistent.</p></div><div class="project-tools"><span>SQL</span><span>INTERNAL DATA</span><span>LOOKER STUDIO</span><span>JAVASCRIPT VISUALIZATION</span></div></div>
+</article><article class="portfolio-card" data-focus="analytics">
+<div class="portfolio-number">12</div>
+<div class="project-visual"><div class="mock-app validation-app"><div class="mock-topbar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-app-title">VALIDATION &amp; GOVERNANCE</span></div><div class="validation-grid"><div class="mock-panel pad"><div class="panel-head">VALIDATION CHECKS</div><div class="checklist"><div class="check">Source completeness</div><div class="check">Metric reconciliation</div><div class="check">Threshold review</div><div class="check">Owner approval</div></div></div><div class="mock-panel"><div class="panel-head" style="padding:9px 8px 0">DOCUMENTATION</div><div class="doc-lines"><span></span><span></span><span></span><span></span><span></span></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">DATA QUALITY / REPORTING GOVERNANCE</div><h3>Scalable Reporting Frameworks &amp; Validation Controls</h3><div class="project-story"><p class="project-context">As reporting needs expanded, there was a need for stronger validation, clearer standards, and more consistent governance across outputs.</p><p class="project-action">I established reporting frameworks, data validation controls, and AI-assisted documentation to create more structured ways of working.</p><p class="project-impact">This improved reporting consistency, strengthened data quality, and increased stakeholder confidence in the insights being delivered.</p></div><div class="project-tools"><span>CHATGPT</span><span>AI-ASSISTED WORKFLOWS</span><span>VALIDATION</span><span>GOVERNANCE</span></div></div>
+</article><article class="portfolio-card" data-focus="analytics">
+<div class="portfolio-number">13</div>
+<div class="project-visual"><div class="visual-repair"><div class="vr-top"><span class="vr-dots"><i></i><i></i><i></i></span>ANALYTICS SERVICE DELIVERY</div><div class="vr-body"><div class="service-layout-v2"><div class="sla-ring-v2"></div><div class="service-metrics"><div class="service-metric"><small>First response</small><b>01:42</b></div><div class="service-metric"><small>SLA attainment</small><b>91%</b></div><div class="service-metric"><small>Open requests</small><b>28</b></div><div class="service-metric"><small>Stakeholder score</small><b>4.8/5</b></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">ANALYTICS PARTNERSHIP / SERVICE PERFORMANCE</div><h3>Primary Analytics Partner for Stripe Strategy &amp; Analytics</h3><div class="project-story"><p class="project-context">The Strategy &amp; Analytics partnership required responsive and reliable support across a fast-moving stream of analytics and data requests.</p><p class="project-action">I served as the primary analytics partner, managing requests through structured workflows and working closely with stakeholders to deliver timely support.</p><p class="project-impact">This consistently achieved more than 90% SLA attainment and first-response times of under two minutes while strengthening stakeholder trust.</p></div><div class="project-tools"><span>JIRA</span><span>SQL</span><span>SLA MANAGEMENT</span></div></div>
+</article><article class="portfolio-card" data-focus="analytics">
+<div class="portfolio-number">14</div>
+<div class="project-visual"><div class="visual-repair"><div class="vr-top"><span class="vr-dots"><i></i><i></i><i></i></span>STRATEGIC INSIGHT CENTER</div><div class="vr-body"><div class="insight-layout"><div class="insight-card"><span class="vr-label">DATA SOURCES</span><b>12</b><em>Connected</em></div><div class="insight-card"><span class="vr-label">REPORTS</span><b>38</b><em>Live</em></div><div class="insight-card"><span class="vr-label">DECISIONS</span><b>64</b><em>Supported</em></div><div class="insight-card"><span class="vr-label">DATA QUALITY</span><b>97%</b><em>↑ Improving</em></div></div><div class="insight-bottom"><div class="insight-panel"><div class="vr-label">INSIGHT TREND</div><svg class="trend-svg" viewBox="0 0 240 60" preserveAspectRatio="none"><polyline points="0,52 28,45 58,49 90,31 122,39 156,21 190,27 240,10"></polyline></svg></div><div class="insight-panel"><div class="vr-label">PRIORITIES</div><div class="priority-row"><span>Operations</span><i style="--w:86%"></i><b>86</b></div><div class="priority-row"><span>Workforce</span><i style="--w:72%"></i><b>72</b></div><div class="priority-row"><span>Quality</span><i style="--w:64%"></i><b>64</b></div></div></div></div></div></div>
+<div class="project-body"><div class="portfolio-type">STRATEGIC ANALYTICS / ORGANIZATIONAL DATA MATURITY</div><h3>Strategic Analytics &amp; Reporting Solutions</h3><div class="project-story"><p class="project-context">As GCC operations grew, teams needed scalable analytics and faster access to information to support increasingly complex decisions.</p><p class="project-action">I consolidated internal data and delivered practical reporting and analytics solutions designed around real operational needs.</p><p class="project-impact">This improved visibility, accelerated decision-making, and helped strengthen data maturity across GCC operations.</p></div><div class="project-tools"><span>SQL</span><span>INTERNAL DATA</span><span>LOOKER STUDIO</span><span>JAVASCRIPT VISUALIZATION</span></div></div>
+</article></div><p class="work-note">Visuals are conceptual representations designed to protect confidential information and data privacy while illustrating the nature of the work without exposing sensitive business or operational details.</p></div>
+</section>
+<!-- =====================================================
        05 / TOOLKIT
   ===================================================== -->
-
-  <section id="tools" class="section">
-
-    <div class="section-container">
-
-      <p class="section-tag">
+<section class="section" id="tools">
+<div class="section-container">
+<p class="section-tag">
         05 / TOOLKIT
       </p>
-
-      <h2 class="section-title">
+<h2 class="section-title">
         Tools I use to explore, analyze, and build.
       </h2>
-
-      <p class="section-description">
+<p class="section-description">
         A growing toolkit across analytics, visualization, databases,
         automation, Machine Learning, and Generative AI.
       </p>
-
-
-      <div class="tools-grid">
-
-        <div class="tool">Excel</div>
-        <div class="tool">SQL</div>
-        <div class="tool">Power BI</div>
-        <div class="tool">Python</div>
-        <div class="tool">Tableau</div>
-        <div class="tool">Google Sheets</div>
-        <div class="tool">Data Visualization</div>
-        <div class="tool">Automation</div>
-        <div class="tool">Machine Learning</div>
-        <div class="tool">Generative AI</div>
-        <div class="tool">Prompt Engineering</div>
-        <div class="tool">GitHub</div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+<div class="tools-grid">
+<div class="tool">Excel</div>
+<div class="tool">SQL</div>
+<div class="tool">Power BI</div>
+<div class="tool">Python</div>
+<div class="tool">Tableau</div>
+<div class="tool">Google Sheets</div>
+<div class="tool">Data Visualization</div>
+<div class="tool">Automation</div>
+<div class="tool">Machine Learning</div>
+<div class="tool">Generative AI</div>
+<div class="tool">Prompt Engineering</div>
+<div class="tool">GitHub</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
        06 / CONTACT
   ===================================================== -->
-
-  <section id="contact" class="section">
-
-    <div class="contact-container">
-
-      <p class="section-tag">
+<section class="section" id="contact">
+<div class="contact-container">
+<p class="section-tag">
         06 / LET'S CONNECT
       </p>
-
-      <h2 class="contact-title">
+<h2 class="contact-title">
         Let's turn curiosity into something meaningful.
       </h2>
-
-      <p class="contact-text">
+<p class="contact-text">
         I'm always interested in conversations about data, analytics,
         technology, Machine Learning, AI, and how these can create
         meaningful impact.
       </p>
-
-      <a
-        href="mailto:your@email.com"
-        class="contact-button"
-      >
+<a class="contact-button" href="mailto:your@email.com">
         Get In Touch →
       </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
+</div>
+</section>
+<!-- =====================================================
        FOOTER
   ===================================================== -->
-
-  <footer>
-
-    <div>
+<footer>
+<div>
       © 2026 Roel Valenzuela
     </div>
-
-    <div>
+<div>
       Built with curiosity.
     </div>
-
-  </footer>
-
-
-  <!-- =====================================================
+</footer>
+<!-- =====================================================
        JAVASCRIPT
   ===================================================== -->
-
-  <script>
+<script>
 
     /* =====================================================
        WHO I AM TOGGLE
@@ -3103,7 +3221,16 @@
     draw();
 
   </script>
-
-
-</body>
+<script>/* Selected Work filter */
+document.querySelectorAll('.work-filter').forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    document.querySelectorAll('.work-filter').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    document.querySelectorAll('#portfolio .portfolio-card').forEach(card => {
+      const show = filter === 'all' || card.dataset.focus === filter;
+      card.classList.toggle('is-hidden', !show);
+    });
+  });
+});</script></body>
 </html>
